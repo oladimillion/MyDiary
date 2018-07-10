@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./assets/favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/header.css">
+  <link rel="stylesheet" href="./assets/css/form.css">
+  <title>MyDiary - Register</title>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="row">
+      <div class="logo">
+        <img 
+          src="./assets/img/andela.png" 
+          alt="logo"
+          />
+      </div>
+      <!-- end of logo -->
+
+      <div class="app-name">
+        MyDiary
+      </div>
+
+      <div class="dropdown">
+        <div class="settings-btn">
+          Settings
+          <i class="fa fa-caret-down"></i>
+        </div>
+        <ul class="dropdown-items">
+          <li>
+            <a href="javascript:void(0)">Profile</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <!-- end of dropdown -->
+    </div>
+  </header>
+  <!-- end of main header -->
+
+  <main class="main-body row">
+
+    <div class="wrapper row">
+
+      <div class="info-wrapper">
+        <div class="info">
+          MyDiary is an online journal where you can
+          pen down your thoughts and feelings
+        </div>
+      </div>
+      <!-- end of info wrapper -->
+
+      <div class="form-wrapper login">
+        <form>
+          <div class="form-title">Register</div>
+          <div class="input-wrapper">
+            <label class="input-label" for="username">
+              Username <span class="required">*</span>
+            </label>
+            <input 
+              class="input" 
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Enter username"
+              />
+            <span class="input-icon">
+              <i class="fa fa-user"></i>
+            </span>
+          </div>
+          <!-- end of input wrapper -->
+          <div class="input-wrapper">
+            <label class="input-label" for="email">
+              Email <span class="required">*</span>
+            </label>
+            <input 
+              class="input" 
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter email"
+              />
+            <span class="input-icon">
+              <i class="fa fa-envelope"></i>
+            </span>
+          </div>
+          <!-- end of input wrapper -->
+          <div class="input-wrapper">
+            <label class="input-label" for="password">
+              Password <span class="required">*</span>
+            </label>
+            <input 
+              class="input" 
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter password"
+              />
+            <span class="input-icon">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+          <!-- end of input wrapper -->
+          <div class="input-wrapper">
+            <label class="input-label" for="cpassword">
+              Confirm Password <span class="required">*</span>
+            </label>
+            <input 
+              class="input" 
+              type="password"
+              name="cpassword"
+              id="cpassword"
+              placeholder="Re-enter your password"
+              />
+            <span class="input-icon">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+          <!-- end of input wrapper -->
+          <div class="form-btn">
+            <button 
+              class="btn btn-signup" 
+              type="submit">
+              Sign Up
+            </button>
+          </div>
+          <!-- end of form btn -->
+          <div class="alt-link">
+            <a href="./login.html">Have an account?</a>
+          </div>
+        </form>
+      </div>
+      <!-- end of login -->
+    </div>
+    <!-- end of wrapper -->
+
+  </main>
+  <!-- end of main body -->
+  <footer class="main-footer">
+    <div>&copy; Andela</div>
+  </footer>
+  <!-- end of main footer -->
+</body>
+</html>
