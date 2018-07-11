@@ -63,15 +63,6 @@ li.list div.date {
   color: #eee;
 }
 
-div.list-entry aside.aside-bar.mobile-aside ,
-div.list-entry div.entry-body.mobile-entry {
-  width: 0px;
-  min-width: 0px;
-  padding: 0px;
-  overflow: hidden;
-  transition: all 0.5s;
-}
-
 div.list-entry div.entry-body {
   width: 70%;
   min-width: 300px;
@@ -84,6 +75,7 @@ div.entry-body div.title {
   color: #444;
   line-height: 2.2;
   height: 50px;
+  overflow: hidden;
 }
 
 div.entry-body div.content {
@@ -114,14 +106,16 @@ div.btm-content button.btn-edit {
   letter-spacing: 0.5px;
   background: #316CBE;
   transition: all 0.4s;
-  padding: 0px 13px;
-  height: 33px;
+  max-height: 33px;
 }
 
 button.btn-edit a {
   color:  #fff;
   display: block;
   text-decoration: none;
+  padding: 0px 13px;
+  height: 33px;
+  line-height: 2.2;
 }
 
 div.btm-content button.btn-edit:hover {
@@ -133,4 +127,26 @@ div.btm-content div.date {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
+}
+
+
+
+@media (max-width: 605px){
+
+  div.list-entry aside.mobile-aside {
+    width: 0px;
+    min-width: 0px;
+    padding: 0px;
+    overflow: hidden;
+    transition: all 0.5s;
+  }
+
+  /* div.list-entry div.entry-body.mobile-entry { */
+  /*   width: 0px; */
+  /*   min-width: 0px; */
+  /*   padding: 0px; */
+  /*   overflow: hidden; */
+  /*   transition: all 0.5s; */
+  /* } */
+
 }

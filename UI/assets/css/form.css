@@ -18,6 +18,7 @@ div.wrapper div.info-wrapper {
 
 div.info-wrapper div.info {
   margin: auto;
+  text-shadow: 0 0 21px #aaa;
 }
 
 div.wrapper div.form-wrapper {
@@ -91,6 +92,7 @@ form span.input-icon {
   position: absolute;
   top: 24px;
   left: 6px;
+  font-size: 15px;
 }
 
 

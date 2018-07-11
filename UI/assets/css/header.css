@@ -41,20 +41,25 @@ header.main-header div.dropdown {
 
 div.dropdown div.settings-btn {
   min-width: 69px;
+  cursor: pointer;
 }
 
 div.dropdown ul.dropdown-items {
   list-style: none;
   position: absolute;
-  border:  1px solid #ccc;
   background: #fff;
   box-shadow: 0 0 13px #ccc;
   z-index: 100;
+  border-radius: 1px;
+}
+
+div.dropdown ul.dropdown-items.hide {
+  display: none;
 }
 
 ul.dropdown-items li {
   text-align: center;
-  margin: 5px 0px;
+  margin: 1px 0px;
 }
 
 ul.dropdown-items li:hover {

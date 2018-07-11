@@ -29,16 +29,16 @@
       </div>
 
       <div class="dropdown">
-        <div class="settings-btn">
+        <div class="settings-btn" id="settings-btn">
           Settings
           <i class="fa fa-caret-down"></i>
         </div>
-        <ul class="dropdown-items">
+        <ul class="dropdown-items hide" id="settings-dropdown">
           <li>
             <a href="javascript:void(0)">Profile</a>
           </li>
           <li>
-            <a href="javascript:void(0)">Logout</a>
+            <a id="logout" href="./login.html">Logout</a>
           </li>
         </ul>
       </div>
@@ -75,7 +75,7 @@
 
       <div class="row list-entry">
 
-        <aside class="aside-bar">
+        <aside class="aside-bar mobile-aside">
           <ul class="list-wrapper">
             <li class="list selected">
               <input class="hidden" type="hidden" value="a:{a: test}" />
@@ -102,7 +102,7 @@
         </aside>
         <!-- end of aside bar -->
 
-        <div class="entry entry-body">
+        <div class="entry entry-body mobile-aside">
           <div class="title">
             This is a title
           </div>
@@ -143,5 +143,6 @@
     <div>&copy; Andela</div>
   </footer>
   <!-- end of main footer -->
+  <script src="./assets/js/common.js"></script>
 </body>
 </html>
