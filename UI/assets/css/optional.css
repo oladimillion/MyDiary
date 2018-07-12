@@ -2,3 +2,8 @@ div.dropdown div.settings-btn {
   display: none;
 }
 
+header.main-header div.app-name{
+  position: relative;
+  left: -28px;
+}
+

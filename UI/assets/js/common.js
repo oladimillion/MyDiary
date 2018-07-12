@@ -1,54 +1,33 @@
 // show/hide settings dropdown
 //
 
-
-class Header{
-
-  constructor(){
-    this.settingsDropdown = 
-      document.getElementById("settings-dropdown");
-    this.timerID = null;
-  }
-
-  clearTimeout(){
-    if(this.timerID){
-      clearTimeout(this.timerID);
-      this.timerID = null;
+function ValidateInput(formData){
+  let errors = [];
+  for(let f of formData){
+    if(!f[1]){
+      const label = f[0] === "cpassword" ? "confirm password" : f[0];
+      errors = [...errors, label + " is required"];
     }
   }
 
-  hideSettingItem(){
-    this.clearTimeout();
-    this.timerID = setTimeout(() => {
-      this.settingsDropdown.classList.add("hide");
-    }, 200);
-  }
-
-  showSettingItem(){
-    this.clearTimeout()
-    this.settingsDropdown.classList.remove("hide");
-  }
-
-  logout(){
-    console.log("logging out");
-  }
+  return errors;
 }
 
+class TodayDate{
 
-const header = new Header();
+  fixLength(data=""){
+    return data.length < 2 ? "0"+data : data;
+  }
 
-document.getElementById("settings-btn")
-  .addEventListener("click", (e) => header.showSettingItem());
+  getDate(data=Date.now()){
+    let date = new Date(data)
+      .toLocaleString()
+      .split("/");
 
-document.getElementsByTagName("body")[0]
-  .addEventListener("click", (e) => {
-    if(e.target.id !== "settings-btn"){
-      header.hideSettingItem();
-    }
-  });
-
-document.getElementById("logout")
-  .addEventListener("click", (e) => header.logout());
-
+    return date[2].split(",")[0] +"-"+ 
+      this.fixLength(date[0]) +"-"+ 
+      this.fixLength(date[1]);      
+  }
+}
 
 

@@ -38,7 +38,7 @@
             <a href="javascript:void(0)">Profile</a>
           </li>
           <li>
-            <a id="logout" href="./login.html">Logout</a>
+            <a id="logout" href="javascript:void(0)">Logout</a>
           </li>
         </ul>
       </div>
@@ -70,31 +70,39 @@
     <div class="wrapper entry-wrapper entry-list-wrapper row">
 
       <div class="switch-arrow">
+        <button 
+          type="button"
+          class="btn btn-back" id="btn-back">
+          <i class="fa fa-arrow-left"></i>
+          &nbsp;Back
+        </button>
       </div>
       <!-- end of switch arrow -->
 
       <div class="row list-entry">
 
-        <aside class="aside-bar mobile-aside">
+        <aside class="aside-bar" id="entry-aside">
           <ul class="list-wrapper">
-            <li class="list selected">
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
               <input class="hidden" type="hidden" value="a:{a: test}" />
               <div class="title">
-                  Consectetur sunt asperiores a quas necessitatibus. Sapiente illum eius dolorum molestias nesciunt labore. Sunt eos laudantium eveniet cupiditate excepturi. Unde ex ex corporis rem saepe. Repudiandae ipsa ducimus blanditiis est.
+                This is a title
               </div>
               <!-- end of title -->
               <div class="date">
-                17/04/2018
+                10/07/2018
               </div>
             </li>
-            <li class="list">
+            <li class="list"
+              onclick="entries.listSelected(event, this, 2)">
               <input class="hidden" type="hidden" value="a:{a: test}" />
               <div class="title">
-                  Consectetur sunt asperiores a quas necessitatibus. Sapiente illum eius dolorum molestias nesciunt labore. Sunt eos laudantium eveniet cupiditate excepturi. Unde ex ex corporis rem saepe. Repudiandae ipsa ducimus blanditiis est.
+                This is a title
               </div>
               <!-- end of title -->
               <div class="date">
-                17/04/2018
+                10/07/2018
               </div>
             </li>
           </ul>
@@ -102,7 +110,9 @@
         </aside>
         <!-- end of aside bar -->
 
-        <div class="entry entry-body mobile-aside">
+        <!-- TODO: remember to add _hide to entry body -->
+         <div class="entry entry-body 
+           mobile-body" id="entry-body">
           <div class="title">
             This is a title
           </div>
@@ -122,7 +132,7 @@
             </button>
 
             <div class="date">
-              17/04/2018
+              10/07/2018
             </div>
           </div>
           <!-- end of btm btn -->
@@ -144,5 +154,8 @@
   </footer>
   <!-- end of main footer -->
   <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/header.js"></script>
+  <script src="./assets/js/request.js"></script>
+  <script src="./assets/js/entries.js"></script>
 </body>
 </html>

@@ -51,10 +51,22 @@ div.dropdown ul.dropdown-items {
   box-shadow: 0 0 13px #ccc;
   z-index: 100;
   border-radius: 1px;
+  height: 56px;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+
+div.dropdown ul.dropdown-items::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: #444;
 }
 
 div.dropdown ul.dropdown-items.hide {
-  display: none;
+  height: 0px;
 }
 
 ul.dropdown-items li {
