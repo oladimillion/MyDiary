@@ -42,6 +42,7 @@ header.main-header div.dropdown {
 div.dropdown div.settings-btn {
   min-width: 69px;
   cursor: pointer;
+  user-select: none;
 }
 
 div.dropdown ul.dropdown-items {
