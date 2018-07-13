@@ -37,8 +37,9 @@ div.entry-wrapper {
 
 div.entry-wrapper div.entry {
   margin: auto;
-  /* border: 1px solid #000; */
-  box-shadow: 0 0 10px #aaa;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 0 4px #aaa;
   height: 100%;
   padding: 20px;
 }
@@ -48,7 +49,7 @@ div.entry form {
 }
 
 div.entry-input input.input {
-  background: #fff;
+  background: rgba(255,255,255,0.2);
   border: none;
   border-bottom: 1px solid #ddd;
   border-radius: 0px;
@@ -60,6 +61,7 @@ div.entry-input input.input {
 
 div.entry-input input[type="date"]{
   border: none;
+  background: rgba(255,255,255,0.2);
   /* color: #666; */
 }
 
@@ -68,6 +70,7 @@ div.entry-input.textarea {
 }
 
 div.entry-input textarea.input {
+  background: rgba(255,255,255,0.2);
   font-family: Roboto;
   font-size: 20px;
   margin: 0px;
@@ -79,8 +82,6 @@ div.entry-input textarea.input {
   border: none;
   border-top: 1px solid #ccc;
   border-radius: 0px;
-  background: #fff;
-  rows: 12px;
 }
 
 div.entry-input button.btn.btn-save {
