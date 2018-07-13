@@ -27,7 +27,7 @@ class Header{
 
   logout(){
     console.log("logging out");
-    window.location.href = "MyDiary/UI/login.html";
+    window.location.href = "login.html";
   }
 }
 
