@@ -3,7 +3,7 @@
 > MyDiary is an online journal where you can
 > pen down your thoughts and feelings
 
-## App's Template Urls
+## App's template paths
 
 |          Templates           |                        Paths                             |
 | ---------------------------- | -------------------------------------------------------- |
