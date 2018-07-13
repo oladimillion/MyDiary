@@ -1,0 +1,103 @@
+header.dashboard-header {
+  position: relative;
+  top: -20px;
+  /* border: 1px solid; */
+}
+
+header.dashboard-header ul.nav-entry {
+  list-style: none; 
+  flex-wrap: wrap;
+  background: #3E454E;
+}
+
+ul.nav-entry li.nav-list {
+  margin: 0px 1px; 
+  background: #505860;
+}
+
+ul.nav-entry li.nav-list.selected {
+  background: #0098D8;
+}
+
+li.nav-list a {
+  padding: 10px;
+  display: block;
+  color: #eee;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+
+div.entry-wrapper {
+  display: block;
+  height: calc(100% - 97px);
+  width: 60%;
+}
+
+div.entry-wrapper div.entry {
+  margin: auto;
+  /* border: 1px solid #000; */
+  box-shadow: 0 0 10px #aaa;
+  height: 100%;
+  padding: 20px;
+}
+
+div.entry form {
+  height: 100%;
+}
+
+div.entry-input input.input {
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0px;
+  font-size: 20px;
+  margin-right: 10px;
+  flex: 1;
+  padding-left: 8px;
+}
+
+div.entry-input input[type="date"]{
+  border: none;
+  /* color: #666; */
+}
+
+div.entry-input.textarea {
+  height: calc(100% - 100px);
+}
+
+div.entry-input textarea.input {
+  font-family: Roboto;
+  font-size: 20px;
+  margin: 0px;
+  padding-left: 8px;
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-top: 1px solid #ccc;
+  border-radius: 0px;
+  background: #fff;
+  rows: 12px;
+}
+
+div.entry-input button.btn.btn-save {
+  border: none;
+  padding: 0px 12px;
+  color: #fff;
+  background: #000;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+div.entry-input button.btn.btn-save:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 875px){
+  div.entry-wrapper {
+    width: 90%;
+  }
+}
