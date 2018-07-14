@@ -14,6 +14,8 @@ body {
   min-height: 660px;
   overflow-x: hidden;
   position: relative;
+  background-image: url("https://images.pexels.com/photos/273025/pexels-photo-273025.jpeg?cs=srgb&dl=agenda-book-business-273025.jpg&fm=jpg");
+  background-size: cover;
 }
 
 .row {
@@ -35,13 +37,13 @@ footer.main-footer {
   bottom: 0px;
   width: 100%;
   text-align: center;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #eee;
   font-size: 13px;
   font-weight: 600;
-  background: #eee;
-  letter-spacing: 0.6px;
+  background: rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.9px;
   padding: 15px;
-  color: #666;
+  color: rgba(255,255,255,0.9);
 }
 
 @media (max-width: 850px){
