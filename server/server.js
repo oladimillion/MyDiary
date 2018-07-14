@@ -4,6 +4,7 @@ import path from "path";
 import { Server } from "http";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import route from "./routes/index" ;
 
 const app = express();
 const http = Server(app);
@@ -40,7 +41,7 @@ app.use((req, res, next) => {
 });
 
 //load all routes
-// app.use(require('./routes/index'));
+app.use(route);
 
 app.set('port', process.env.PORT || 8000);
 
