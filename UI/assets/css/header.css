@@ -39,10 +39,15 @@ header.main-header div.dropdown {
   margin-right: 20px;
 }
 
-div.dropdown div.settings-btn {
+div.dropdown button.settings-btn {
   min-width: 69px;
-  cursor: pointer;
   user-select: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
 }
 
 div.dropdown ul.dropdown-items {
