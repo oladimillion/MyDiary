@@ -1,11 +1,11 @@
-import Data from "./data";
+import { DiaryData } from "./data";
 import { GenId } from "../utils/common";
 import { Validator } from "../utils/validator";
 
 class Diary {
 
   constructor(){
-    this.Data = Data;
+    this.Data = DiaryData;
   }
 
   createEntry(req, res, next){
