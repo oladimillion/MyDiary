@@ -1,4 +1,4 @@
-# MyDiary
+# MyDiary &nbsp;[![Build Status](https://travis-ci.com/oladimillion/MyDiary.svg?branch=develop)](https://travis-ci.com/oladimillion/MyDiary) &nbsp; [![Coverage Status](https://coveralls.io/repos/github/oladimillion/MyDiary/badge.svg?branch=develop)](https://coveralls.io/github/oladimillion/MyDiary?branch=develop)
 
 > MyDiary is an online journal where you can
 > pen down your thoughts and feelings
