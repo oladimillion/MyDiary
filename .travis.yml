@@ -1,0 +1,21 @@
+language: node_js
+
+sudo: required
+
+node_js:
+  - "node"
+
+install:
+  - npm install
+
+cache:
+  directories:
+    - "node_modules"
+
+after_success:
+  - npm run cover
+
+after_script: 
+  - nyc npm test && nyc report --reporter=text-lcov | coveralls
+
+script: npm run test
