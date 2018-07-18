@@ -45,12 +45,14 @@ app.use(route);
 
 app.set('port', process.env.PORT || 8000);
 
-// connecting to database
-// require("./models/database");
+// TODO:connecting to database
 
 http.listen(app.get('port'), function (err) {
   if (!err) console.log('server listening on port ', app.get('port'));
   else console.log(err);
 });
+
+export default http;
+
 
 

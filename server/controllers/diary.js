@@ -4,13 +4,13 @@ import { Validator } from "../utils/validator";
 
 class Diary {
 
-  constructor(){}
+  constructor(){
+    this.Data = Data;
+  }
 
   createEntry(req, res, next){
 
-    const data = req.body;
-
-    const errors = Validator(data);
+    const errors = Validator(req.body);
 
     if(errors.length){
       return res.status(403).json({
@@ -18,9 +18,9 @@ class Diary {
       });
     }
 
-    Object.assign(data, {id: GenId()});
+    const data = Object.assign({}, req.body, {entry_id: GenId()});
   
-    Data.push(data);
+    this.Data = [...this.Data, data];
 
     return res.status(200).json({
       message: ["Entry successfully added"],
@@ -30,15 +30,15 @@ class Diary {
 
   getEntries(req, res, next){
     return res.status(200).json({
-      payload: Data,
+      payload: this.Data,
     });
   }
 
   getEntry(req, res, next){
 
-    const data = Data.find(item => {
-      return item.id === req.params.id;
-    }) 
+    const data = this.Data.find(item => {
+      return item.entry_id === req.params.id;
+    }); 
 
     if(!data){
       return res.status(400).json({
@@ -52,9 +52,8 @@ class Diary {
   }
 
   updateEntry(req, res, next){
-    const data = req.body;
 
-    const errors = Validator(data);
+    const errors = Validator(req.body);
 
     if(errors.length){
       return res.status(403).json({
@@ -62,10 +61,8 @@ class Diary {
       });
     }
 
-    let index = -1;
-    let _data = Data.find((item, i) => {
-      index = i;
-      return item.id === req.params.id;
+    const _data = this.Data.find((item)=>{
+      return item.entry_id === req.params.id
     });
 
     if(!_data){
@@ -74,8 +71,14 @@ class Diary {
       });
     }
 
-    Object.assign(_data, data);
-    Data[index] = _data;
+    const data = Object.assign({}, _data, req.body);
+
+    this.Data = this.Data.map(item => {
+      if(item.entry_id === req.params.id){
+        return data;
+      }
+      return item;
+    });
 
     return res.status(200).json({
       message: ["Entry updated successfully"],

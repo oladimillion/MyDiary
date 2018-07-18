@@ -5,9 +5,9 @@ export function Validator(data){
   }
 
   Object.keys(data).forEach(key => {
-    let value = data[key];
+    let value = data[key].trim();
     if(!value){
-      errors = [...errors, key + " is required"];
+      errors = [...errors, key.replace("_", " ") + " is required"];
     }
   })
 

@@ -11,10 +11,12 @@ class Entry extends Request{
     this.update = false;
     this.entry = {};
 
-    this.localStorageData();
+    this.localStorageData()
   }
 
-  genId(len=10, chars="abcdefghjkmnpqrstwxyz123456789"){
+  genId(
+    len=10, 
+    chars="abcdefghjkmnpqrstwxyzABCDEFGHJKMNPQRSTWXYZ123456789"){
     let id = "";
     while(len){
       id += chars[Math.random() * chars.length | 0];
@@ -46,30 +48,25 @@ class Entry extends Request{
     const formData = new FormData(form);
 
     const errors = ValidateInput(formData);
-    console.log(errors)
 
     if(errors.length){
       // return;
     }
 
-    const payload = {
-      body: {
-        entry_id: this.entry.entry_id 
-        ? this.entry.entry_id : this.genId(),
-        entry_title: formData.get("title"),
-        entry_date: formData.get("date"),
-        entry_content: formData.get("textarea"),
-      }
+    const body = {
+      entry_title: formData.get("title"),
+      entry_date: formData.get("date"),
+      entry_content: formData.get("entry"),
     };
 
     if(!this.update){
-      this.post("entries", payload)
+      this.post("entries", body)
         .then(res => res.json())
         .then(this.onSuccess.bind(this))
         .catch(this.onError.bind(this));    
     }
     else {
-      this.put("entries/" + this.entry.entry_id,  payload)
+      this.put("entries/" + this.entry.entry_id, body)
         .then(res => res.json())
         .then(this.onSuccess.bind(this))
         .catch(this.onError.bind(this));    
