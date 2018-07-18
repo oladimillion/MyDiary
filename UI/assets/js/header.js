@@ -39,7 +39,8 @@ document.getElementById("settings-btn")
 
 document.getElementsByTagName("body")[0]
   .addEventListener("click", (e) => {
-    if(e.target.id !== "settings-btn"){
+    if(e.target.id !== "settings-btn" 
+      && e.target.id !== "settings-icon"){
       header.hideSettingItem();
     }
   });
