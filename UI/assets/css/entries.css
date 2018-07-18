@@ -54,6 +54,22 @@ aside.aside-bar ul.list-wrapper {
   overflow-y: auto;
 }
 
+aside.aside-bar ul.list-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+aside.aside-bar ul.list-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+aside.aside-bar ul.list-wrapper::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+aside.aside-bar ul.list-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
 ul.list-wrapper li.list:first-child{
   margin-top: 0px;
 }
@@ -67,6 +83,8 @@ ul.list-wrapper li.list {
   cursor: pointer;
   background: #505860;
   margin: 2px 0px;
+  position: relative;
+  padding-left: 24px;
 }
 
 ul.list-wrapper li.list.selected {
@@ -75,6 +93,15 @@ ul.list-wrapper li.list.selected {
 
 ul.list-wrapper li.list:hover {
   /* background: #D3D3D3; */
+}
+
+li.list span.list-icon {
+  position: absolute;
+  font-size: 17px;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ccc;
 }
 
 li.list div.title {
