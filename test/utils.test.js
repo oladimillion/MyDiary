@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { GenId } from "../server/utils/common";
-import { Validator } from "../server/utils/validator";
+import { AuthValidator, Validator } from "../server/utils/validators";
 
 describe('Validator function test', () => {
 
@@ -45,6 +45,39 @@ describe('Validator function test', () => {
 
 });
 
+describe('AuthValidator function test', () => {
+
+  it('should return "[All fields are required]" for\
+    providing empty array', done => {
+      assert.deepEqual(AuthValidator([]), 
+        ["All fields are required"]);
+    done();
+  });
+
+  it('should return "[All fields are required]" for\
+    providing empty object', done => {
+      assert.deepEqual(AuthValidator({}), 
+        ["All fields are required"]);
+    done();
+  });
+
+  it('should return "[username\
+    must have four characters long at least]" for\
+    providing {username: "as"}', done => {
+      assert.deepEqual(AuthValidator({username: 'as'}), 
+        ["username must have four characters long at least"]);
+    done();
+  });
+
+  it('should return "[Enter a valid email]" for\
+    providing {email: "email"}', done => {
+      assert.deepEqual(AuthValidator({email: 'email'}), 
+        ["Enter a valid email"]);
+    done();
+  });
+
+});
+
 describe('GenId function test', () => {
 
   it('should return generated id of length 6', done => {
@@ -63,6 +96,5 @@ describe('GenId function test', () => {
   });
 
 });
-
 
 

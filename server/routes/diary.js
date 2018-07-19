@@ -1,4 +1,5 @@
 import express from "express";
+import { authenticate } from "../middlewares/authenticate";
 import diary from "../controllers/diary";
 
 const route = express.Router();
