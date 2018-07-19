@@ -1,7 +1,7 @@
 import { GenId } from "../utils/common";
-import { Validator } from "../utils/validator";
+import { AuthValidator as Validator } from "../utils/validators";
 
-class User {
+class Auth {
   
   constructor(){
   }
@@ -20,4 +20,4 @@ class User {
 
 }
 
-export default new User;
+export default new Auth;

@@ -3,6 +3,24 @@
 > MyDiary is an online journal where you can
 > pen down your thoughts and feelings
 
+## Running the app locally
+  1. Clone the repository:
+  ```
+  git clone https://github.com/oladimillion/MyDiary.git
+  ```
+  2. Navigate into the cloned repository folder
+
+  3. Install dependencies:
+  ```
+  $ npm install
+  ```
+  4. run `npm run start` to start the server
+
+  5. visit `http://localhost:8000`
+
+## App is live
+  visit [https://mydiary-ola.herokuapp.com](https://mydiary-ola.herokuapp.com)
+
 ## App's API endpoints
 
 | Function        |  HTTP Method  |         API endpoints           |
