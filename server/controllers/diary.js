@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { DiaryData } from "./data";
+import { DiaryData } from "../models/data";
 import { GenId } from "../utils/common";
 import { Validator } from "../utils/validators";
 

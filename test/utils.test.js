@@ -80,8 +80,8 @@ describe('AuthValidator function test', () => {
 
 describe('GenId function test', () => {
 
-  it('should return generated id of length 6', done => {
-    assert.equal(GenId().length, 6);
+  it('should return generated id of length 8', done => {
+    assert.equal(GenId().length, 8);
     done();
   });
 
@@ -96,5 +96,6 @@ describe('GenId function test', () => {
   });
 
 });
+
 
 
