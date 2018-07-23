@@ -6,8 +6,10 @@ class Request{
     this.token = localStorage.getItem("token") || "";
 
     this.headers = {
-      "Authorization": "Bearer " + this.token,
-      "Content-Type": "application/json; charset=utf-8",
+      headers: {
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json; charset=utf-8",
+      } 
     };
 
     this.options = {
@@ -20,7 +22,7 @@ class Request{
     const URI = this.API + url;
     return fetch(URI, {
       method: "POST", 
-      headers: this.headers,
+      ...this.headers,
       ...this.options,
       body: JSON.stringify(payload),
     });
@@ -30,7 +32,7 @@ class Request{
     const URI = this.API + url;
     return fetch(URI, {
       method: "PUT", 
-      headers: this.headers,
+      ...this.headers,
       ...this.options,
       body: JSON.stringify(payload),
     });
@@ -38,7 +40,7 @@ class Request{
 
   get(url){
     const URI = this.API + url;
-    return fetch(URI, {headers: this.headers, ...this.options});
+    return fetch(URI, {...this.headers, ...this.options});
   }
 
 }
