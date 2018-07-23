@@ -62,10 +62,10 @@ describe('AuthValidator function test', () => {
   });
 
   it('should return "[username\
-    must have four characters long at least]" for\
+    must be four characters long at least]" for\
     providing {username: "as"}', done => {
       assert.deepEqual(AuthValidator({username: 'as'}), 
-        ["username must have four characters long at least"]);
+        ["username must be four characters long at least"]);
     done();
   });
 

@@ -25,7 +25,7 @@ export function AuthValidator(data){
     if(value && value.length < 4){
       errors = [
         ...errors, 
-        key + " must have four characters long at least"];
+        key + " must be four characters long at least"];
     }
 
     const re = /^[A-Za-z0-9._%-]{2,40}@[A-Za-z0-9.-]{2,20}.[A-Za-z]{2,10}$/

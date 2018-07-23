@@ -100,7 +100,7 @@ describe('Create entry api test', () => {
     });
   });
 
-  it('should return an object with message arrayafter\
+  it('should return an object with message array after\
     successful creation of an entry', done => {
     request.post(_path).send(data).end((err, res) => {
       assert.equal(Array.isArray(JSON.parse(res.text).message), true);
@@ -183,7 +183,7 @@ describe('Update single entry api test', () => {
 });
 
 
-
-
 http.close();
+
+
 
