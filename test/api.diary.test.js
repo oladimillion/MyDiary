@@ -24,9 +24,9 @@ describe('Get all entries api test', () => {
 		});
   });
 
-  it('should return an object with payload array', done => {
+  it('should return an object with entries array', done => {
     request.get(_path).send().end((err, res) => {
-			assert.equal(Array.isArray(JSON.parse(res.text).payload), true);
+			assert.equal(Array.isArray(JSON.parse(res.text).entries), true);
 			done();
 		});
   });
@@ -36,10 +36,10 @@ describe('Get all entries api test', () => {
 
 describe('Get single entry api test', () => {
 
-  it('should return 400 status code for\
+  it('should return 404 status code for\
     fetching entry of non-exiting id', done => {
     request.get(_path + "/randomid").send().end((err, res) => {
-			assert.equal(res.statusCode, 400);
+			assert.equal(res.statusCode, 404);
 			done();
 		});
   });
@@ -51,19 +51,18 @@ describe('Get single entry api test', () => {
 		});
   });
 
-  it('should return an object with array of error message for\
+  it('should return an error message of "Entry not found" for\
     fetching entry of non-exiting id', done => {
     request.get(_path + "/randomid").send().end((err, res) => {
-			assert.equal(Array.isArray(JSON.parse(res.text).message), true);
+			assert.equal(JSON.parse(res.text).error, "Entry not found");
 			done();
 		});
   });
 
-  it('should return an "Entry not found" error message for\
+  it('should return an error message of type String for\
     fetching entry of non-exiting id', done => {
     request.get(_path + "/randomid").send().end((err, res) => {
-      assert.deepEqual(JSON.parse(res.text).message, 
-        ["Entry not found"]);
+      assert.equal(typeof JSON.parse(res.text).error, "string");
 			done();
 		});
   });
@@ -95,40 +94,39 @@ describe('Create entry api test', () => {
   it('should return an payload object after\
     successful creation of an entry', done => {
     request.post(_path).send(data).end((err, res) => {
-      assert.equal(typeof JSON.parse(res.text).payload, "object");
+      assert.equal(typeof JSON.parse(res.text).entry, "object");
       done();
     });
   });
 
-  it('should return an object with message array after\
-    successful creation of an entry', done => {
+  it('should return an message of type string', done => {
     request.post(_path).send(data).end((err, res) => {
-      assert.equal(Array.isArray(JSON.parse(res.text).message), true);
+      assert.equal(typeof JSON.parse(res.text).message, "string");
       done();
     });
   });
 
-  it('should return ["Entry successfully added"] message after\
+  it('should return "Entry successfully added" message after\
     successful creation of an entry', done => {
     request.post(_path).send(data).end((err, res) => {
       assert.deepEqual(JSON.parse(res.text).message, 
-        ["Entry successfully added"]);
+        "Entry successfully added");
 			done();
 		});
   });
 
-  it('should return ["All fields are required"] error \
+  it('should return {error: "All fields are required"} error \
     message for submitting empty fields', done => {
     request.post(_path).send({}).end((err, res) => {
-      assert.deepEqual(JSON.parse(res.text).message, 
-        ["All fields are required"]);
+      assert.deepEqual(JSON.parse(res.text).errors, 
+        {error: "All fields are required"});
 			done();
 		});
   });
 
   it('should return same object as the submitted data', done => {
     request.post(_path).send(data).end((err, res) => {
-      const payload = JSON.parse(res.text).payload;
+      const payload = JSON.parse(res.text).entry;
       assert.equal(payload.entry_title, data.entry_title);
       assert.equal(payload.entry_date, data.entry_date);
       assert.equal(payload.entry_content, data.entry_content);
@@ -154,11 +152,11 @@ describe('Update single entry api test', () => {
 		});
   });
 
-  it('should return "All fields are required" error \
+  it('should return {error: "All fields are required"} error \
     message for submitting empty fields', done => {
     request.put(_path + "/randomid").send({}).end((err, res) => {
-      assert.deepEqual(JSON.parse(res.text).message, 
-        ["All fields are required"]);
+      assert.deepEqual(JSON.parse(res.text).errors, 
+        {error: "All fields are required"});
 			done();
 		});
   });
@@ -174,8 +172,8 @@ describe('Update single entry api test', () => {
   it('should return an "Entry not found" error\
     message for updating non-exiting entry', done => {
     request.put(_path + "/randomid").send(data).end((err, res) => {
-      assert.deepEqual(JSON.parse(res.text).message, 
-        ["Entry not found"]);
+      assert.equal(JSON.parse(res.text).error, 
+        "Entry not found");
 			done();
 		});
   });
