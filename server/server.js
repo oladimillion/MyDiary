@@ -10,7 +10,6 @@ const app = express();
 const http = Server(app);
 
 
-
 // loading env variables
 dotenv.config();
 

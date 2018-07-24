@@ -13,19 +13,16 @@ export function authenticate (req, res, next) {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         res.status(403).json({
-          success: false,
-          message: "Please login to access the resource"
+          message: ["Please login to access the resource"]
         });
       } else {
-        req._userId = decoded.userId;
-        req._id = decoded.id;
+        req._user_id = decoded.user_id;
         next();
       }
     });
   } else {
     res.status(403).json({
-      success: false,
-      message: "Please login to access the resource"
+      message: ["Please login to access the resource"]
     });
   }
 }

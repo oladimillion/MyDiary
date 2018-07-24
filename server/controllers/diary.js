@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { DiaryData } from "./data";
+import { DiaryData } from "../models/data";
 import { GenId } from "../utils/common";
 import { Validator } from "../utils/validators";
 
@@ -13,9 +13,9 @@ class Diary {
 
     const errors = Validator(req.body);
 
-    if(errors.length){
+    if(Object.keys(errors).length){
       return res.status(403).json({
-        message: errors,
+        errors,
       });
     }
 
@@ -24,14 +24,14 @@ class Diary {
     this.Data = [...this.Data, data];
 
     return res.status(200).json({
-      message: ["Entry successfully added"],
-      payload: data,
+      message: "Entry successfully added",
+      entry: data,
     });
   }
 
   getEntries(req, res, next){
     return res.status(200).json({
-      payload: this.Data,
+      entries: this.Data,
     });
   }
 
@@ -42,13 +42,13 @@ class Diary {
     }); 
 
     if(!data){
-      return res.status(400).json({
-        message: ["Entry not found"],
+      return res.status(404).json({
+        error: "Entry not found",
       });
     }
 
     return res.status(200).json({
-      payload: data, 
+      entry: data, 
     });
   }
 
@@ -56,9 +56,9 @@ class Diary {
 
     const errors = Validator(req.body);
 
-    if(errors.length){
+    if(Object.keys(errors).length){
       return res.status(403).json({
-        message: errors,
+        errors,
       });
     }
 
@@ -68,7 +68,7 @@ class Diary {
 
     if(!_data){
       return res.status(400).json({
-        message: ["Entry not found"],
+        error: "Entry not found",
       });
     }
 
@@ -82,8 +82,8 @@ class Diary {
     });
 
     return res.status(200).json({
-      message: ["Entry updated successfully"],
-      payload: data, 
+      message: "Entry updated successfully",
+      entry: data, 
     });
   }
 
