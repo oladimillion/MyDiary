@@ -1,9 +1,14 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-export function authenticate (req, res, next) {
+dotenv.config();
+
+export function Private (req, res, next) {
   // verifying headers token
   const authorizationHeader = req.headers["authorization"];
   let token;
+
+  console.log("token: ", authorizationHeader);
 
   if (authorizationHeader) {
     token = authorizationHeader.split(" ")[1];
