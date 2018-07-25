@@ -1,7 +1,6 @@
 header.dashboard-header {
   position: relative;
   top: -20px;
-  /* border: 1px solid; */
 }
 
 header.dashboard-header ul.nav-entry {
@@ -62,7 +61,6 @@ div.entry-input input.input {
 div.entry-input input[type="date"]{
   border: none;
   background: rgba(255,255,255,0.2);
-  /* color: #666; */
 }
 
 div.entry-input.textarea {
@@ -80,7 +78,6 @@ div.entry-input textarea.input {
   width: 100%;
   height: 100%;
   border: none;
-  border-top: 1px solid #ccc;
   border-radius: 0px;
 }
 
