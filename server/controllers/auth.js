@@ -7,13 +7,22 @@ import LoginModel from "../models/login-model";
 dotenv.config();
 
 class Auth {
-  
+
   constructor(){
     this.loginModel = new LoginModel();
     this.signupModel = new SignupModel();
   }
 
   login(req, res, next){
+
+    const errors = Validator(req.body);
+
+    if(Object.keys(errors).length){
+      return res.status(400).json({
+        errors,
+      });
+    }
+
     return this.loginModel.login(req.body)
       .then(result => {
         if(result.exist){
@@ -32,7 +41,6 @@ class Auth {
         }
       })
       .catch(err => {
-        console.log(err)
         return res.status(400).json({
           error: "Authentication failed. Try again",
         });
@@ -40,6 +48,15 @@ class Auth {
   }
 
   signup(req, res, next){
+
+    const errors = Validator(req.body);
+
+    if(Object.keys(errors).length){
+      return res.status(400).json({
+        errors,
+      });
+    }
+
     return this.signupModel.signup(req.body)
       .then((result) => {
         const { user_id, username, email } = result.rows[0];
@@ -53,7 +70,6 @@ class Auth {
         });
       })
       .catch((err) => {
-        console.log(err);
         return res.status(400).json({
           error: "Registration failed. Try again",
         });

@@ -1,5 +1,3 @@
-// show/hide settings dropdown
-//
 
 function ValidateInput(formData){
   let errors = [];
