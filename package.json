@@ -1,0 +1,44 @@
+{
+  "name": "mydiary",
+  "version": "1.0.0",
+  "description": "> MyDiary is an online journal where you can\r > pen down your thoughts and feelings",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node server/server.js",
+    "start:dev": "nodemon --exec \"babel-node server/server.js\"",
+    "test": "mocha --compilers js:babel-register test/index.js",
+    "test:dev": "mocha --compilers js:babel-register --watch \"test/index.js\" --watch-extensions js",		
+    "cover": "nyc npm run test",
+		"coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oladimillion/MyDiary.git"
+  },
+  "author": "oladimeji akande",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oladimillion/MyDiary/issues"
+  },
+  "homepage": "https://github.com/oladimillion/MyDiary#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0",
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "morgan": "^1.9.0",
+    "nyc": "^12.0.2",
+    "supertest": "^3.1.0"
+  }
+}
