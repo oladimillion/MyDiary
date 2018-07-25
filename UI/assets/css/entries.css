@@ -94,7 +94,7 @@ ul.list-wrapper li.list.selected {
 }
 
 ul.list-wrapper li.list:hover {
-  /* background: #D3D3D3; */
+  background: #D3D3D3;
 }
 
 li.list span.list-icon {

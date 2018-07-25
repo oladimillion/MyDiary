@@ -8,13 +8,13 @@ class Auth {
 
   login(req, res, next){
     return res.status(200).json({
-      message: ["Login route working"],
+      message: "Login route working",
     });
   }
 
   signup(req, res, next){
     return res.status(200).json({
-      message: ["Registration route working"],
+      message: "Registration route working",
     });
   }
 
