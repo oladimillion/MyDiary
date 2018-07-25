@@ -11,7 +11,7 @@ class Login extends Request{
     console.log(errors)
 
     if(errors.length){
-      // return;
+      return;
     }
 
     this.post("signin", 

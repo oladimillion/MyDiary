@@ -4,7 +4,6 @@ class Entry extends Request{
     super();
     this.todayDate = new TodayDate();
 
-    this.dateInput = document.querySelector("input[type='date']");
     this.titleInput = document.querySelector("input[name='title']");
     this.textarea = document.querySelector("textarea");
 
@@ -46,10 +45,9 @@ class Entry extends Request{
     const formData = new FormData(form);
 
     const errors = ValidateInput(formData);
-    console.log(errors)
 
     if(errors.length){
-      // return;
+      return;
     }
 
     const payload = {
@@ -57,7 +55,6 @@ class Entry extends Request{
         entry_id: this.entry.entry_id 
         ? this.entry.entry_id : this.genId(),
         entry_title: formData.get("title"),
-        entry_date: formData.get("date"),
         entry_content: formData.get("textarea"),
       }
     };

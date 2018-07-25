@@ -11,7 +11,7 @@ class Register extends Request{
     console.log(errors)
 
     if(errors.length){
-      // return;
+      return;
     }
 
     this.post("signup", 
