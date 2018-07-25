@@ -37,7 +37,7 @@ class Entries extends Request {
 
   listSelected(event, context, index){
     if(context.classList.contains("selected")){
-      // return;
+      return;
     }
 
     this.clearSelections();
@@ -46,7 +46,6 @@ class Entries extends Request {
     this.showContentBody();
     this.showMobileContentBody();
     this.hideMobileAside();
-    // console.log(context)
   }
 
   showMobileAside(){
