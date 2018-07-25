@@ -7,9 +7,9 @@
     "start": "babel-node server/server.js",
     "start:dev": "nodemon --exec \"babel-node server/server.js\"",
     "test": "mocha --compilers js:babel-register test/index.js",
-    "test:dev": "mocha --compilers js:babel-register --watch \"test/index.js\" --watch-extensions js",		
+    "test:dev": "mocha --compilers js:babel-register --watch \"test/index.js\" --watch-extensions js",
     "cover": "nyc npm run test",
-		"coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,8 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
-    "jsonwebtoken": "^8.3.0"
+    "jsonwebtoken": "^8.3.0",
+    "pg": "^7.4.3"
   },
   "devDependencies": {
     "babel-register": "^6.26.0",

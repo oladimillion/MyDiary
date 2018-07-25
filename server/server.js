@@ -4,6 +4,7 @@ import path from "path";
 import { Server } from "http";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import Models from "./models/models";
 import route from "./routes/index" ;
 
 const app = express();
@@ -44,7 +45,8 @@ app.use(route);
 
 app.set('port', process.env.PORT || 8000);
 
-// TODO:connecting to database
+// connecting to database
+Models.connect();
 
 http.listen(app.get('port'), function (err) {
   if (!err) console.log('server listening on port ', app.get('port'));
