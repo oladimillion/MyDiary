@@ -1,17 +1,20 @@
-import { Pool, Client } from 'pg';
+import { Pool } from 'pg';
 
-let connectionString = "";
-
-if(process.env.NODE_ENV !== "production"){
-  connectionString = 'postgresql://oladimillion:dimillion@localhost:5432/mydiary'
-} else {
-  connectionString = 'postgresql://dbuser:secretpassword@database.server.com:3211/mydb'
-}
-
+import dotenv from "dotenv";
+dotenv.config();
 
 class Models {
 
   constructor(){
+
+    let connectionString = "";
+
+    if(process.env.NODE_ENV !== "production"){
+      connectionString = process.env.LOCAL_DB_URI;
+    } else {
+      connectionString = process.env.SERVER_DB_URI;
+    }
+
     this.pool = new Pool({
       connectionString,
     });
@@ -62,4 +65,4 @@ class Models {
 
 }
 
-export default new Models;
+export default Models;
