@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import { Server } from "http";
-import dotenv from "dotenv";
 import morgan from "morgan";
 import Models from "./models/models";
 import route from "./routes/index" ;
@@ -10,9 +9,6 @@ import route from "./routes/index" ;
 const app = express();
 const http = Server(app);
 
-
-// loading env variables
-dotenv.config();
 
 app.disable('x-powered-by');
 
@@ -46,7 +42,7 @@ app.use(route);
 app.set('port', process.env.PORT || 8000);
 
 // connecting to database
-Models.connect();
+new Models().connect();
 
 http.listen(app.get('port'), function (err) {
   if (!err) console.log('server listening on port ', app.get('port'));
