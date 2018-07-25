@@ -37,6 +37,7 @@ class Models {
       );
 
       CREATE TABLE IF NOT EXISTS entries(
+        user_id VARCHAR NOT NULL,
         entry_id VARCHAR UNIQUE NOT NULL,
         entry_title VARCHAR NOT NULL,
         entry_content TEXT NOT NULL,
@@ -64,5 +65,6 @@ class Models {
   }
 
 }
+
 
 export default Models;
