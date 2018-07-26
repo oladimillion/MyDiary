@@ -36,6 +36,24 @@ class Diary {
       })
   }
 
+  deleteAll(req, res, next){
+
+    const data = Object.assign({}, {user_id: req.params.userId});
+
+    return this.diaryModel.deleteAll(data)
+      .then(result => {
+        return res.status(200).json({
+          message: "Entries deleted successfully",
+        });
+      })
+      .catch(err => {
+        console.log(err)
+        return res.status(403).json({
+          error: "Entries not deleted",
+        });
+      })
+  }
+
   getEntries(req, res, next){
     return this.diaryModel.getAll({user_id: req._user_id})
       .then(result => {

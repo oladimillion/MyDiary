@@ -27,6 +27,11 @@ route.put('/:id',
   diary.updateEntry.bind(diary),
 );
 
+route.delete('/:userId', 
+  Private,
+  diary.deleteAll.bind(diary),
+);
+
 export default route;
 
 

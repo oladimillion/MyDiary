@@ -58,20 +58,6 @@
             }
           }
         }
-      },
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get all users in system",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Users"
-            }
-          }
-        }
       }
     },
     "/auth/login": {
@@ -101,72 +87,51 @@
             }
           }
         }
-      },
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Get all users in system",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Users"
-            }
-          }
-        }
       }
     },
-    "/users/{userId}": {
+    "/entries/{entry_id}": {
       "parameters": [
         {
-          "name": "userId",
+          "name": "entry_id",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to find",
+          "description": "ID of entry that we want to find",
           "type": "string"
         }
       ],
       "get": {
         "tags": [
-          "Users"
+          "Entry"
         ],
-        "summary": "Get user with given ID",
+        "summary": "Get entry with given ID",
         "responses": {
           "200": {
-            "description": "User is found",
+            "description": "Entry is found",
             "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete user with given ID",
-        "tags": [
-          "Users"
-        ],
-        "responses": {
-          "200": {
-            "description": "User is deleted",
-            "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Entry"
             }
           }
         }
       },
       "put": {
-        "summary": "Update user with give ID",
+        "summary": "Update entry with give ID",
         "tags": [
-          "Users"
+          "Entry"
         ],
         "parameters": [
           {
-            "name": "user",
+            "name": "entry_id",
             "in": "body",
-            "description": "User with new values of properties",
+            "description": "Entry with new values of properties",
             "schema": {
-              "$ref": "#/definitions/User"
+              "properties": {
+                "entry_title": {
+                  "type": "string"
+                },
+                "entry_content": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -184,8 +149,8 @@
   "definitions": {
     "User": {
       "required": [
-        "email",
         "username",
+        "email",
         "password"
       ],
       "properties": {
@@ -193,22 +158,46 @@
           "type": "string",
           "uniqueItems": true
         },
-        "email": {
-          "type": "string",
-          "uniqueItems": true
-        },
         "username": {
           "type": "string",
           "uniqueItems": true
         },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
         "password": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "create_at": {
           "type": "string"
         }
       }
     },
-    "Users": {
-      "type": "array",
-      "$ref": "#/definitions/User"
+    "Entry": {
+      "required": [
+        "entry_title",
+        "entry_content"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "entry_title": {
+          "type": "string"
+        },
+        "entry_content": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "create_at": {
+          "type": "string"
+        }
+      }
     }
   }
 }

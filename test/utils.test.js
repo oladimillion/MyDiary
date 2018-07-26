@@ -2,6 +2,7 @@ import assert from 'assert';
 import { GenId } from "../server/utils/common";
 import { AuthValidator, Validator } from "../server/utils/validators";
 
+
 describe('Validator function test', () => {
 
   it('should return "{error: "All fields are required"}" for\

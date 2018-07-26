@@ -37,6 +37,23 @@ class DiaryModel extends Models{
     return this.pool.query(query);
   }
 
+  deleteAll(data){
+
+    const text = `
+      DELETE FROM entries
+      WHERE user_id = $1 
+    `;
+
+    const query = {
+      text,
+      values: [
+        data.user_id,
+      ],
+    };
+
+    return this.pool.query(query);
+  }
+
   getOne(data){
 
     const text = `

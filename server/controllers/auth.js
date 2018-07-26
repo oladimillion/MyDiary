@@ -13,6 +13,25 @@ class Auth {
     this.signupModel = new SignupModel();
   }
 
+
+  delete(req, res, next){
+
+    const data = Object.assign({}, {username: req.params.username});
+
+    return this.signupModel.delete(data)
+      .then(result => {
+        return res.status(200).json({
+          message: "User deleted successfully",
+        });
+      })
+      .catch(err => {
+        console.log(err)
+        return res.status(403).json({
+          error: "User not deleted",
+        });
+      })
+  }
+
   login(req, res, next){
 
     const errors = Validator(req.body);

@@ -23,6 +23,22 @@ class SignupModel extends Models{
 
   }
 
+  delete(data){
+
+    const text = `
+      DELETE FROM users
+      WHERE username = $1 
+    `;
+
+    const query = {
+      text,
+      values: [
+        data.username,
+      ],
+    };
+
+    return this.pool.query(query);
+  }
   insertData(data){
     const text = `
       INSERT INTO users(

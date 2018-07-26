@@ -12,6 +12,10 @@ route.post('/login',
   auth.login.bind(auth)
 );
 
+route.delete('/:username', 
+  auth.delete.bind(auth),
+);
+
 route.post('/signup', 
   SignupMiddleware,
   auth.signup.bind(auth)
