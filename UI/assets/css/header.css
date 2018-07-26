@@ -1,0 +1,100 @@
+
+header.main-header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  letter-spacing: 0.6px;
+  background: rgba(223, 232, 247, 0.3);
+  color: #354E89;
+}
+
+
+header.main-header div.row {
+  justify-content: space-between;
+}
+
+header.main-header div.logo {
+  width: 100px;
+  height: 26px;
+  margin: auto 10px;
+  margin-left: 0px;
+}
+
+div.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+header.main-header div.app-name {
+  margin: auto 10px;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+header.main-header div.dropdown {
+  position: relative;
+  font-size: 14px;
+  margin: auto 20px;
+  margin-right: 20px;
+}
+
+div.dropdown button.settings-btn {
+  min-width: 69px;
+  user-select: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+}
+
+div.dropdown ul.dropdown-items {
+  list-style: none;
+  position: absolute;
+  right: 0px;
+  background: #fff;
+  box-shadow: 0 0 13px #ccc;
+  z-index: 100;
+  border-radius: 1px;
+  height: 56px;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+
+div.dropdown ul.dropdown-items::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: #444;
+}
+
+div.dropdown ul.dropdown-items.hide {
+  height: 0px;
+}
+
+ul.dropdown-items li {
+  text-align: center;
+  margin: 1px 0px;
+}
+
+ul.dropdown-items li:hover {
+  background: #eee;
+}
+
+ul.dropdown-items li a {
+  text-decoration: none;
+  color: #354E89;
+  font-size: 13px;
+  text-align:;
+  padding: 5px 10px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+
+
+
