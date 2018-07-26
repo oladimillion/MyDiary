@@ -19,7 +19,11 @@ class Diary {
       });
     }
 
-    const data = Object.assign({}, req.body, {entry_id: GenId()});
+    const data = Object.assign(
+      {}, 
+      req.body, 
+      {entry_id: GenId(), created_at: new Date()}
+    );
   
     this.Data = [...this.Data, data];
 
