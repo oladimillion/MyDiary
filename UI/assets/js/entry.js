@@ -2,7 +2,6 @@ class Entry extends Request{
 
   constructor(){
     super();
-    this.todayDate = new TodayDate();
 
     this.titleInput = document.querySelector("input[name='title']");
     this.textarea = document.querySelector("textarea");
@@ -35,8 +34,6 @@ class Entry extends Request{
   }
 
   setData(data){
-    const date = data.entry_date || this.todayDate.getDate();
-    this.dateInput.value = date;
     this.textarea.value = data.entry_content || "";
     this.titleInput.value = data.entry_title || "";
   }

@@ -1,0 +1,103 @@
+
+div._hide{
+  display: none !important;
+}
+
+div.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+}
+
+div.modal div.modal-content {
+  margin: auto;
+  width: 300px;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+div.modal-content header.modal-header {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 10px;
+  position: relative;
+}
+
+header.modal-header span.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 9px;
+  color: red;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+div.modal-content div.modal-body {
+  padding: 10px;
+}
+
+div.modal-body div.top-section {
+  font-size: 17px;
+  font-weight: 600;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #bbb
+}
+
+div.modal-body div.lower-section {
+  padding: 10px 0px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+div.lower-section select.dropdown {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 2px 6px;
+  margin: 0 6px;
+}
+
+div.modal-body div.ctrl-btns {
+  padding: 5px 0px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #bbb;
+  padding-top: 10px;
+}
+
+div.ctrl-btns button.btn {
+  color: #fff;
+  padding: 8px 10px;
+  border: none;
+  color: #fff;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+}
+
+div.ctrl-btns button.btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+div.ctrl-btns button.btn.btn-cancel {
+  background: #000;
+}
+
+div.ctrl-btns button.btn.btn-save {
+  background: #CD0707;
+}
+
+
+
+
