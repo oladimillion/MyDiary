@@ -2,16 +2,15 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import { Server } from "http";
-import dotenv from "dotenv";
 import morgan from "morgan";
+import Models from "./models/models";
 import route from "./routes/index" ;
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 
 const app = express();
 const http = Server(app);
 
-
-// loading env variables
-dotenv.config();
 
 app.disable('x-powered-by');
 
@@ -40,16 +39,21 @@ app.use((req, res, next) => {
 });
 
 //load all routes
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(route);
+
 
 app.set('port', process.env.PORT || 8000);
 
-// TODO:connecting to database
+// connecting to database
+new Models().connect();
 
-http.listen(app.get('port'), function (err) {
-  if (!err) console.log('server listening on port ', app.get('port'));
-  else console.log(err);
-});
+if(!http.listening){
+  http.listen(app.get('port'), function (err) {
+    if (!err) console.log('server listening on port ', app.get('port'));
+    else console.log(err);
+  });
+}
 
 export default http;
 
