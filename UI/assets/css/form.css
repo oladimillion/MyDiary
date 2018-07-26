@@ -1,0 +1,146 @@
+div.wrapper {
+  margin: auto;
+  justify-content: space-between;
+  width: 80%;
+  flex-wrap: wrap;
+}
+
+div.wrapper div.info-wrapper {
+  margin: 20px auto;
+  margin-bottom: 40px;
+  max-width: 400px;
+  text-align: center;
+  font-size: 23px;
+  font-weight: 600;
+  display: flex;
+  color: #5E7698;
+}
+
+div.info-wrapper div.info {
+  margin: auto;
+  text-shadow: 0 0 21px #aaa;
+}
+
+div.wrapper div.form-wrapper {
+  width: 300px;
+  height: auto;
+  margin: auto;
+  padding: 20px;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 0 4px #aaa;
+  color: #234C85;
+}
+
+form div.form-title {
+  font-size: 20px;
+  text-align: center;
+  margin: 16px 0px;
+  margin-top: 0px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+form div.input-wrapper {
+  margin: 10px 0px;
+  position: relative;
+}
+
+form label.input-label {
+  display: block;
+  margin: 2px 0px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+label.input-label span.required {
+  color: #E20808;
+  position: relative;
+  left: -4px;
+}
+
+form input.input,
+form textarea.input {
+  display: block;
+  margin: 2px 0px;
+  width: 100%;
+  padding: 8px;
+  padding-left: 27px;
+  border-radius: 3px;
+  border: 0.6px solid #e4e2e2;
+  outline: none;
+  transition: background-color 0.2s, color 0.2s;
+  background: #f7f6f6;
+  color: #1B2847;
+  font-weight: 600;
+}
+
+form input.input:focus {
+  background: #fff;
+}
+
+form input.input::-webkit-input-placeholder,
+form textarea.input::-webkit-input-placeholder{
+  color: #bbb;
+}
+
+form span.input-icon {
+  position: absolute;
+  top: 24px;
+  left: 6px;
+  font-size: 15px;
+}
+
+
+form div.form-btn {
+  margin: 5px 0px;
+  margin-top: 20px;
+}
+
+div.form-btn button.btn {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+div.form-btn button.btn:hover{
+  opacity: 0.8;
+}
+
+div.form-btn button.btn:active{
+  opacity: 1;
+}
+
+div.form-btn button.btn-signup {
+  background: #BD081C;
+}
+
+div.form-btn button.btn-login {
+  background: #25385F;
+}
+
+form div.alt-link {
+  margin: 5px 0px;
+}
+
+div.alt-link a {
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+div.alt-link a:hover {
+  text-decoration: underline;
+}
+
+
