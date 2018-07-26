@@ -5,6 +5,8 @@ import { Server } from "http";
 import morgan from "morgan";
 import Models from "./models/models";
 import route from "./routes/index" ;
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 
 const app = express();
 const http = Server(app);
@@ -37,7 +39,9 @@ app.use((req, res, next) => {
 });
 
 //load all routes
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(route);
+
 
 app.set('port', process.env.PORT || 8000);
 
