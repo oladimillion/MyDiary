@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="./assets/css/header.css">
   <link rel="stylesheet" href="./assets/css/form.css">
   <link rel="stylesheet" href="./assets/css/entry.css">
-  <link rel="stylesheet" href="./assets/css/modal.css">
   <title>MyDiary - Entry</title>
 </head>
 <body>
@@ -35,7 +34,7 @@
         </button>
         <ul class="dropdown-items hide" id="settings-dropdown">
           <li>
-            <a class="cancel-btn" href="javascript:void(0)">Reminder</a>
+            <a href="javascript:void(0)">Reminder</a>
           </li>
           <li>
             <a id="logout" href="javascript:void(0)">Logout</a>
@@ -103,57 +102,6 @@
   </main>
   <!-- end of main body -->
 
-  <div id="modal" class="modal _hide">
-    <div class="modal-content">
-      <header class="modal-header">
-        REMINDER
-        <span class="close-btn cancel-btn">x</span>
-      </header>
-      <!-- end of modal header -->
-      <div class="modal-body">
-        <div class="top-section">
-          <span class="label">Number of entries:</span>
-          <span class="count">40</span>
-        </div>
-        <!-- end of top section -->
-        <div class="lower-section">
-          <span class="label">Time:</span>
-          <select class="dropdown" name="">
-            <option value="">0</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-          </select>
-          <select class="dropdown" name="">
-            <option value="">am</option>
-            <option value="">pm</option>
-          </select>
-        </div>
-        <!-- end of lower section -->
-        <div class="ctrl-btns">
-          <button class="btn btn-cancel cancel-btn">
-            Cancel
-          </button>
-          <button id="save-btn" class="btn btn-save">
-            Save
-          </button>
-        </div>
-        <!-- end of ctrl btn -->
-      </div>
-      <!-- end of modal body -->
-    </div>
-    <!-- end of modal content -->
-  </div>
-  <!-- end of modal -->
-
   <footer class="main-footer">
     <div>&copy; Andela</div>
   </footer>
@@ -163,6 +111,5 @@
   <script src="./assets/js/header.js"></script>
   <script src="./assets/js/request.js"></script>
   <script src="./assets/js/entry.js"></script>
-  <script src="./assets/js/modal.js"></script>
 </body>
 </html>
