@@ -12,7 +12,7 @@ class Models {
     if(process.env.NODE_ENV !== "production"){
       connectionString = process.env.LOCAL_DB_URI;
     } else {
-      connectionString = process.env.SERVER_DB_URI;
+      connectionString = process.env.DATABASE_URL;
     }
 
     this.pool = new Pool({
