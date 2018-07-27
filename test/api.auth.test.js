@@ -9,7 +9,7 @@ const _path = "/api/v1/auth";
 
 
 
-describe('Delete all entry api test', () => {
+describe('Delete use api test', () => {
   it('should return 200 status code', done => {
     request.delete(_path + "/test").send()
       .end((err, res) => {

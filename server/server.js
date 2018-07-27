@@ -48,12 +48,10 @@ app.set('port', process.env.PORT || 8000);
 // connecting to database
 new Models().connect();
 
-if(!http.listening){
-  http.listen(app.get('port'), function (err) {
-    if (!err) console.log('server listening on port ', app.get('port'));
-    else console.log(err);
-  });
-}
+http.listen(app.get('port'), function (err) {
+  if (!err) console.log('server listening on port ', app.get('port'));
+  else console.log(err);
+});
 
 export default http;
 
