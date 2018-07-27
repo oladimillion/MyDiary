@@ -1,3 +1,18 @@
-import "./api.diary.test";
-import "./api.auth.test";
-import "./utils.test";
+import assert from 'assert';
+import UtilsTest from "./utils.test";
+import AuthApiTest from "./api.auth.test";
+import EntryApiTest from "./api.diary.test";
+
+
+
+describe('hooks', function() {
+
+  after(function() {
+    // runs after all tests in this block
+    process.exit(0);
+  });
+
+  UtilsTest();
+  AuthApiTest();
+  EntryApiTest();
+});

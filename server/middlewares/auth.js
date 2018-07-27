@@ -64,7 +64,7 @@ export function SignupMiddleware(req, res, next){
 
   const signupModel = new SignupModel();
 
-  signupModel.isDataExisting(req.body)
+  return signupModel.isDataExisting(req.body)
     .then(([result1, result2]) => {
 
       if(result1.rows.length){
