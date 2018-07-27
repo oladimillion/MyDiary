@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 
 import dotenv from "dotenv";
+
 dotenv.config();
 
 class Models {
@@ -10,7 +11,7 @@ class Models {
     let connectionString = "";
 
     if(process.env.NODE_ENV !== "production"){
-      connectionString = "postgresql://oladimillion:dimillion@localhost:5432/mydiary";
+      connectionString = process.env.LOCAL_DB_URI;
     } else {
       connectionString = process.env.DATABASE_URL;
     }
