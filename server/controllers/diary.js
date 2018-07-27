@@ -38,7 +38,7 @@ class Diary {
 
   deleteAll(req, res, next){
 
-    const data = Object.assign({}, {user_id: req.params.userId});
+    const data = Object.assign({}, {user_id: req.params.user_id});
 
     return this.diaryModel.deleteAll(data)
       .then(result => {
@@ -57,15 +57,9 @@ class Diary {
   getEntries(req, res, next){
     return this.diaryModel.getAll({user_id: req._user_id})
       .then(result => {
-        if(result.rows.length){
-          return res.status(200).json({
-            entries: result.rows,
-          });
-        } else {
-          return res.status(404).json({
-            entries: result.rows,
-          });
-        }
+        return res.status(200).json({
+          entries: result.rows,
+        });
       })
       .catch(err => {
         console.log(err)

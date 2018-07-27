@@ -1,5 +1,6 @@
 import express from "express";
 import auth from "../controllers/auth";
+import { Private } from "../middlewares/private";
 import { 
   SignupMiddleware, 
   LoginMiddleware,
@@ -13,6 +14,7 @@ route.post('/login',
 );
 
 route.delete('/:username', 
+  Private,
   auth.delete.bind(auth),
 );
 

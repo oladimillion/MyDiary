@@ -9,7 +9,7 @@ describe('hooks', function() {
 
   after(function() {
     // runs after all tests in this block
-    process.exit(0);
+    // process.exit(0);
   });
 
   UtilsTest();

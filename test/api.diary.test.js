@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import http from "../server/server";
 
+
+const request = supertest(http);
 dotenv.config();
 
 
@@ -20,8 +22,6 @@ const token = jwt.sign({
 export default function EntryApiTest(){
 
   describe('Delete all entry api test', () => {
-
-    const request = supertest(http);
 
     it('should return 200 status code', done => {
       request.delete(_path + "/test").send()
@@ -43,8 +43,6 @@ export default function EntryApiTest(){
     };
 
 
-    const request = supertest(http);
-
     it('should return 200 status code', done => {
       request.post(_path).send(data)
         .set('Authorization', 'Bearer ' + token)
@@ -65,7 +63,7 @@ export default function EntryApiTest(){
           });
       });
 
-    it('should return an payload object after\
+    it('should return entry object after\
       successful creation of an entry', done => {
         request.post(_path).send(data)
           .set('Authorization', 'Bearer ' + token)
@@ -75,7 +73,7 @@ export default function EntryApiTest(){
           });
       });
 
-    it('should return an message of type string', done => {
+    it('should return a message of type string', done => {
       request.post(_path).send(data)
         .set('Authorization', 'Bearer ' + token)
         .end((err, res) => {
@@ -95,8 +93,7 @@ export default function EntryApiTest(){
           });
       });
 
-    it('should return {entry_title: "This field is required", \
-      entry_content: "This field is required"} error \
+    it('should return and error \
       message for submitting empty fields', done => {
         request.post(_path).send({})
           .set('Authorization', 'Bearer ' + token)
@@ -110,13 +107,12 @@ export default function EntryApiTest(){
           });
       });
 
-    it('should return same object as the submitted data', done => {
+    it('should return same response data as the submitted data', done => {
       request.post(_path).send(data)
         .set('Authorization', 'Bearer ' + token)
         .end((err, res) => {
           const payload = JSON.parse(res.text).entry;
           assert.equal(payload.entry_title, data.entry_title);
-          assert.equal(payload.entry_date, data.entry_date);
           assert.equal(payload.entry_content, data.entry_content);
           done();
         });
@@ -125,8 +121,6 @@ export default function EntryApiTest(){
   });
 
   describe('Get all entries api test', () => {
-
-    const request = supertest(http);
 
     it('should return 200 status code\
       successful fetch request', done => {
@@ -138,16 +132,6 @@ export default function EntryApiTest(){
             done();
           });
       });
-
-    it('should always return an object', done => {
-      request.get(_path)
-        .send()
-        .set('Authorization', 'Bearer ' + token)
-        .end((err, res) => {
-          assert.equal(typeof JSON.parse(res.text), "object");
-          done();
-        });
-    });
 
     it('should return an object with entries array', done => {
       request.get(_path).send()
@@ -163,8 +147,6 @@ export default function EntryApiTest(){
 
   describe('Get single entry api test', () => {
 
-    const request = supertest(http);
-
     it('should return 404 status code for\
       fetching entry of non-exiting id', done => {
         request.get(_path + "/randomid").send()
@@ -174,15 +156,6 @@ export default function EntryApiTest(){
             done();
           });
       });
-
-    it('should always return an object', done => {
-      request.get(_path + "/randomid").send()
-        .set('Authorization', 'Bearer ' + token)
-        .end((err, res) => {
-          assert.equal(typeof JSON.parse(res.text), "object");
-          done();
-        });
-    });
 
     it('should return an error message of "Entry not found" for\
       fetching entry of non-exiting id', done => {
@@ -194,7 +167,7 @@ export default function EntryApiTest(){
           });
       });
 
-    it('should return an error message of type String for\
+    it('should return an error message of string type for\
       fetching entry of non-exiting id', done => {
         request.get(_path + "/randomid").send()
           .set('Authorization', 'Bearer ' + token)
@@ -212,11 +185,8 @@ export default function EntryApiTest(){
 
     const data = {
       entry_title: 'this is a title',
-      entry_date: '12/07/2018',
       entry_content: 'this is a content',
     };
-
-    const request = supertest(http);
 
     it('should return 400 status code for \
       submitting empty fields', done => {
@@ -228,9 +198,8 @@ export default function EntryApiTest(){
           });
       });
 
-    it('should return {entry_title: "This field is required", \
-      entry_content: "This field is required"} error \
-      message for submitting empty fields', done => {
+    it('should return an error \
+      for submitting empty fields', done => {
         request.put(_path + "/randomid").send({})
           .set('Authorization', 'Bearer ' + token)
           .end((err, res) => {
