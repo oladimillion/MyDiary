@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node server/server.js",
     "start:dev": "nodemon --exec \"babel-node server/server.js\"",
-    "test": "mocha --compilers js:babel-register test/index.js",
+    "test": "mocha --compilers js:babel-register test/index.js --exit",
     "test:dev": "mocha --compilers js:babel-register --watch \"test/index.js\" --watch-extensions js",
     "cover": "nyc npm run test",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"

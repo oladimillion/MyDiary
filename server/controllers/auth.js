@@ -13,7 +13,6 @@ class Auth {
     this.signupModel = new SignupModel();
   }
 
-
   delete(req, res, next){
 
     const data = Object.assign({}, {username: req.params.username});

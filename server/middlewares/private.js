@@ -6,6 +6,7 @@ dotenv.config();
 export function Private (req, res, next) {
   // verifying headers token
   const authorizationHeader = req.headers["authorization"];
+
   let token;
 
   if (authorizationHeader) {
