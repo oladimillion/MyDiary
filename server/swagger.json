@@ -14,11 +14,11 @@
   "tags": [
     {
       "name": "Users",
-      "description": "API for users in the system"
+      "description": "API for users"
     },
     {
       "name": "Entries",
-      "description": "API for entries in the system"
+      "description": "API for entries"
     }
   ],
   "schemes": [
@@ -36,14 +36,27 @@
         "tags": [
           "Users"
         ],
-        "description": "Create new user in system",
+        "summary": "Create new user",
         "parameters": [
           {
             "name": "user",
             "in": "body",
             "description": "User that we want to create",
             "schema": {
-              "$ref": "#/definitions/User"
+              "properties": {
+                "username": {
+                  "required": true,
+                  "type": "string"
+                },
+                "email": {
+                  "required": true,
+                  "type": "string"
+                },
+                "password": {
+                  "required": true,
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -54,7 +67,18 @@
           "200": {
             "description": "Registration successful",
             "schema": {
-              "$ref": "#/definitions/User"
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Registration successful",
+                "token": "hgby7thjydkhgkjguy"
+              }
             }
           }
         }
@@ -65,14 +89,23 @@
         "tags": [
           "Users"
         ],
-        "description": "Login user into system",
+        "summary": "Login user",
         "parameters": [
           {
             "name": "user",
             "in": "body",
             "description": "User that we want to signin",
             "schema": {
-              "$ref": "#/definitions/User"
+              "properties": {
+                "username": {
+                  "required": true,
+                  "type": "string"
+                },
+                "password": {
+                  "required": true,
+                  "type": "string"
+                }
+              }
             }
           }
         ],
@@ -83,7 +116,88 @@
           "200": {
             "description": "Login successful",
             "schema": {
-              "$ref": "#/definitions/User"
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Login successful",
+                "token": "hgby7thjydkhgkjguy"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries": {
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Get entry all entries",
+        "responses": {
+          "200": {
+            "description": "List of entries",
+            "schema": {
+              "type": "array",
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": [{
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creating a new entry",
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "entry",
+            "in": "body",
+            "description": "Entry with new values of properties",
+            "schema": {
+              "properties": {
+                "entry_title": {
+                  "required": true,
+                  "type": "string"
+                },
+                "entry_content": {
+                  "required": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entry is successful added",
+            "schema": {
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": {
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }
             }
           }
         }
@@ -95,20 +209,30 @@
           "name": "entry_id",
           "in": "path",
           "required": true,
-          "description": "ID of entry that we want to find",
+          "description": "ID of an entry",
           "type": "string"
         }
       ],
       "get": {
         "tags": [
-          "Entry"
+          "Entries"
         ],
         "summary": "Get entry with given ID",
         "responses": {
           "200": {
             "description": "Entry is found",
             "schema": {
-              "$ref": "#/definitions/Entry"
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": {
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }
             }
           }
         }
@@ -116,19 +240,21 @@
       "put": {
         "summary": "Update entry with give ID",
         "tags": [
-          "Entry"
+          "Entries"
         ],
         "parameters": [
           {
-            "name": "entry_id",
+            "name": "entry",
             "in": "body",
             "description": "Entry with new values of properties",
             "schema": {
               "properties": {
                 "entry_title": {
+                  "required": true,
                   "type": "string"
                 },
                 "entry_content": {
+                  "required": true,
                   "type": "string"
                 }
               }
@@ -137,9 +263,19 @@
         ],
         "responses": {
           "200": {
-            "description": "User is updated",
+            "description": "Entry is updated",
             "schema": {
-              "$ref": "#/definitions/User"
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": {
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }
             }
           }
         }
@@ -167,8 +303,7 @@
           "uniqueItems": true
         },
         "password": {
-          "type": "string",
-          "uniqueItems": true
+          "type": "string"
         },
         "create_at": {
           "type": "string"
@@ -182,6 +317,9 @@
       ],
       "properties": {
         "user_id": {
+          "type": "string"
+        },
+        "entry_id": {
           "type": "string",
           "uniqueItems": true
         },

@@ -9,18 +9,13 @@ import {
 const route = express.Router();
 
 route.post('/login', 
-  LoginMiddleware,
-  auth.login.bind(auth)
-);
-
-route.delete('/:username', 
-  Private,
-  auth.delete.bind(auth),
+  LoginMiddleware, 
+  auth.login.bind(auth), 
 );
 
 route.post('/signup', 
-  SignupMiddleware,
-  auth.signup.bind(auth)
+  SignupMiddleware, 
+  auth.signup.bind(auth), 
 );
 
 

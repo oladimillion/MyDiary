@@ -21,19 +21,6 @@ const token = jwt.sign({
 
 export default function EntryApiTest(){
 
-  describe('Delete all entry api test', () => {
-
-    it('should return 200 status code', done => {
-      request.delete(_path + "/test").send()
-        .set('Authorization', 'Bearer ' + token)
-        .end((err, res) => {
-          assert.equal(res.statusCode, 200);
-          done();
-        });
-    });
-  });
-
-
 
   describe('Create entry api test', () => {
 
@@ -237,7 +224,8 @@ export default function EntryApiTest(){
 }
 
 
-
+http.close();
 // process.exit(0);
+
 
 
