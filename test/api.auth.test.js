@@ -17,18 +17,6 @@ const token = jwt.sign({
 
 export default function AuthApiTest(){
 
-  describe('Delete user api test', () => {
-    it('should return 200 status code', done => {
-      request.delete(_path + "/test").send()
-        .set('Authorization', 'Bearer ' + token)
-        .end((err, res) => {
-          assert.equal(res.statusCode, 200);
-          done();
-        });
-    });
-  });
-
-
   describe('Signup api test', () => {
 
     const data = {
@@ -89,6 +77,6 @@ export default function AuthApiTest(){
 
 }
 
-// http.close(process.exit(0));
+http.close();
 
 
