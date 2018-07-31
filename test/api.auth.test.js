@@ -27,7 +27,6 @@ export default function AuthApiTest(){
     };
 
 
-
     it('should return 200 status code for \
     providing valid data', done => {
       request.post(_path + "/signup").send(data)
