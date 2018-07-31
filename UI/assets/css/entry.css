@@ -64,7 +64,7 @@ div.entry-input input[type="date"]{
 }
 
 div.entry-input.textarea {
-  height: calc(100% - 100px);
+  height: calc(100% - 48px);
 }
 
 div.entry-input textarea.input {
@@ -82,8 +82,11 @@ div.entry-input textarea.input {
 }
 
 div.entry-input button.btn.btn-save {
+  border-radius: 2px;
+  font-weight: 600;
   border: none;
   padding: 0px 12px;
+  height: 36px;
   color: #fff;
   background: #000;
   cursor: pointer;
