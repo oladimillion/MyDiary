@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./assets/favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/header.css">
+  <link rel="stylesheet" href="./assets/css/form.css">
+  <link rel="stylesheet" href="./assets/css/entry.css">
+  <link rel="stylesheet" href="./assets/css/entries.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <title>MyDiary - Entries</title>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="row">
+      <div class="logo">
+        <img 
+          src="./assets/img/andela.png" 
+          alt="logo"
+          />
+      </div>
+      <!-- end of logo -->
+
+      <div class="app-name">
+        MyDiary
+      </div>
+
+      <div class="dropdown">
+        <button class="settings-btn" id="settings-btn">
+          Settings
+          <i id="settings-icon" class="fa fa-caret-down"></i>
+        </button>
+        <ul class="dropdown-items hide" id="settings-dropdown">
+          <li>
+            <a class="cancel-profile-btn" href="javascript:void(0)">
+              <i class="fa fa-user"></i>
+              &nbsp;Profile
+            </a>
+          </li>
+          <li>
+            <a class="cancel-btn" href="javascript:void(0)">
+              <i class="fa fa-bell"></i>
+              &nbsp;Reminder
+            </a>
+          </li>
+          <li>
+            <a id="logout" href="javascript:void(0)">
+              <i class="fa fa-sign-out"></i>
+              &nbsp;Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- end of dropdown -->
+    </div>
+  </header>
+  <!-- end of main header -->
+
+  <main class="main-body row flow-column">
+
+    <header class="dashboard-header">
+      <ul class="nav-entry row">
+        <li class="nav-list">
+          <a href="./entry.html">
+            <i class="fa fa-plus"></i>
+            &nbsp;New Entry
+          </a>
+        </li>
+        <li class="nav-list selected">
+          <a href="./entries.html">
+            <i class="fa fa-list"></i>
+            &nbsp;View All Entries
+          </a>
+        </li>
+      </ul>
+    </header>
+    <!-- end of dashboard header -->
+
+    <div class="wrapper entry-wrapper entry-list-wrapper row">
+
+      <div class="switch-arrow">
+        <button 
+          type="button"
+          class="btn btn-back" id="btn-back">
+          <i class="fa fa-arrow-left"></i>
+          &nbsp;Back
+        </button>
+      </div>
+      <!-- end of switch arrow -->
+
+      <div class="row list-entry">
+
+        <aside class="aside-bar" id="entry-aside">
+          <ul class="list-wrapper">
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+            <li class="list"
+              onclick="entries.listSelected(event, this, 1)">
+              <span class="list-icon">
+                <i class="fa fa-minus"></i>
+              </span>
+              <div class="title">
+                This is a title
+              </div>
+              <!-- end of title -->
+              <div class="date">
+                10/07/2018
+              </div>
+            </li>
+          </ul>
+          <!-- end of list wrapper -->
+        </aside>
+        <!-- end of aside bar -->
+
+        <!-- TODO: remember to add _hide to entry body -->
+         <div class="entry entry-body 
+           mobile-body" id="entry-body">
+          <div class="title">
+            This is a title
+          </div>
+          <!-- end of title -->
+          <div class="content">
+              Dolor impedit praesentium dolore amet ea Dolores vel quaerat dolorum dolorem velit! Laudantium molestiae nisi accusantium ratione quasi. Officia at consectetur velit corporis libero? Eius dignissimos minus quaerat maxime quasi?
+                Ipsum provident accusantium accusantium ex sapiente Molestiae amet iure error suscipit natus distinctio. A dolorum dicta qui repellendus sunt, ex Nostrum repudiandae eius magni assumenda nesciunt? Est eligendi commodi provident
+            
+          </div>
+          <!-- end of content -->
+          <div class="row btm-content">
+            <button class="btn btn-edit">
+              <a href="./entry.html">
+                <i class="fa fa-edit"></i>
+                &nbsp;Edit
+              </a>
+            </button>
+
+            <div class="date">
+              10/07/2018
+            </div>
+          </div>
+          <!-- end of btm btn -->
+
+        </div>
+        <!-- end of entry -->
+
+      </div>
+      <!-- end of list entry -->
+
+    </div>
+    <!-- end of wrapper -->
+
+  </main>
+  <!-- end of main body -->
+
+  <div id="modal-profile" class="modal _hide">
+    <div class="modal-content">
+      <header class="modal-header">
+        <i class="fa fa-user"></i>
+        &nbsp;&nbsp;PROFILE
+        <span class="close-btn cancel-profile-btn">x</span>
+      </header>
+      <!-- end of modal header -->
+      <div class="modal-body">
+        <div class="top-section">
+          <span class="label">Username:</span>
+          <span class="">test</span>
+        </div>
+        <!-- end of top section -->
+        <div class="top-section mid-section">
+          <span class="label">Email:</span>
+          <span class="">test@test.com</span>
+        </div>
+        <!-- end of top section -->
+        <div class="lower-section">
+          <span class="label">Password:</span>
+          <span class="">************</span>
+        </div>
+        <!-- end of lower section -->
+        <div class="ctrl-btns">
+          <button class="btn btn-cancel cancel-profile-btn">
+            Cancel
+          </button>
+        </div>
+        <!-- end of ctrl btn -->
+      </div>
+      <!-- end of modal body -->
+    </div>
+    <!-- end of modal content -->
+  </div>
+  <!-- end of modal -->
+
+
+  <div id="modal-reminder" class="modal _hide">
+    <div class="modal-content">
+      <header class="modal-header">
+        <i class="fa fa-bell"></i>
+        &nbsp;&nbsp;REMINDER
+        <span class="close-btn cancel-btn">x</span>
+      </header>
+      <!-- end of modal header -->
+      <div class="modal-body">
+        <div class="top-section">
+          <span class="label">Number of entries:</span>
+          <span class="count">40</span>
+        </div>
+        <!-- end of top section -->
+        <div class="lower-section">
+          <span class="label">Time:</span>
+          <input class="input" type="time" />
+        </div>
+        <!-- end of lower section -->
+        <div class="ctrl-btns">
+          <button class="btn btn-cancel cancel-btn">
+            Cancel
+          </button>
+          <button class="btn btn-save">
+            Save
+          </button>
+        </div>
+        <!-- end of ctrl btn -->
+      </div>
+      <!-- end of modal body -->
+    </div>
+    <!-- end of modal content -->
+  </div>
+  <!-- end of modal -->
+
+
+  <footer class="main-footer">
+    <div>&copy; Andela</div>
+  </footer>
+  <!-- end of main footer -->
+  <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/header.js"></script>
+  <script src="./assets/js/request.js"></script>
+  <script src="./assets/js/entries.js"></script>
+  <script src="./assets/js/modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./assets/favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/header.css">
+  <link rel="stylesheet" href="./assets/css/form.css">
+  <link rel="stylesheet" href="./assets/css/entry.css">
+  <link rel="stylesheet" href="./assets/css/modal.css">
+  <title>MyDiary - Entry</title>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="row">
+      <div class="logo">
+        <img 
+          src="./assets/img/andela.png" 
+          alt="logo"
+          />
+      </div>
+      <!-- end of logo -->
+
+      <div class="app-name">
+        MyDiary
+      </div>
+
+      <div class="dropdown">
+        <button class="settings-btn" id="settings-btn">
+          Settings
+          <i id="settings-icon" class="fa fa-caret-down"></i>
+        </button>
+        <ul class="dropdown-items hide" id="settings-dropdown">
+          <li>
+            <a class="cancel-profile-btn" href="javascript:void(0)">
+              <i class="fa fa-user"></i>
+              &nbsp;Profile
+            </a>
+          </li>
+          <li>
+            <a class="cancel-btn" href="javascript:void(0)">
+              <i class="fa fa-bell"></i>
+              &nbsp;Reminder
+            </a>
+          </li>
+          <li>
+            <a id="logout" href="javascript:void(0)">
+              <i class="fa fa-sign-out"></i>
+              &nbsp;Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- end of dropdown -->
+    </div>
+  </header>
+  <!-- end of main header -->
+
+  <main class="main-body row flow-column">
+
+    <header class="dashboard-header">
+      <ul class="nav-entry row">
+        <li class="nav-list selected">
+          <a href="./entry.html">
+            <i class="fa fa-plus"></i>
+            &nbsp;New Entry
+          </a>
+        </li>
+        <li class="nav-list">
+          <a href="./entries.html">
+            <i class="fa fa-list"></i>
+            &nbsp;View All Entries
+          </a>
+        </li>
+      </ul>
+    </header>
+    <!-- end of dashboard header -->
+
+    <div class="wrapper entry-wrapper row">
+
+      <div class="entry">
+        <form id="form">
+          <div class="entry-input row">
+            <input 
+              class="input" 
+              name="title"
+              id="title"
+              type="text" 
+              placeholder="Entry Title" 
+              />
+            <button
+              type="submit"
+              class="btn btn-save">
+              <i class="fa fa-floppy-o"></i>
+              &nbsp;&nbsp;Save
+            </button>
+          </div>
+          <div class="entry-input textarea">
+            <textarea 
+              placeholder="Your entry here"
+              class="input"
+              id="entry"
+              name="entry"></textarea>
+          </div>
+          <!-- end of entry input -->
+        </form>
+      </div>
+      <!-- end of entry -->
+
+    </div>
+    <!-- end of wrapper -->
+
+  </main>
+  <!-- end of main body -->
+
+  <div id="modal-profile" class="modal _hide">
+    <div class="modal-content">
+      <header class="modal-header">
+        <i class="fa fa-user"></i>
+        &nbsp;&nbsp;PROFILE
+        <span class="close-btn cancel-profile-btn">x</span>
+      </header>
+      <!-- end of modal header -->
+      <div class="modal-body">
+        <div class="top-section">
+          <span class="label">Username:</span>
+          <span class="">test</span>
+        </div>
+        <!-- end of top section -->
+        <div class="top-section mid-section">
+          <span class="label">Email:</span>
+          <span class="">test@test.com</span>
+        </div>
+        <!-- end of top section -->
+        <div class="lower-section">
+          <span class="label">Password:</span>
+          <span class="">************</span>
+        </div>
+        <!-- end of lower section -->
+        <div class="ctrl-btns">
+          <button class="btn btn-cancel cancel-profile-btn">
+            Cancel
+          </button>
+        </div>
+        <!-- end of ctrl btn -->
+      </div>
+      <!-- end of modal body -->
+    </div>
+    <!-- end of modal content -->
+  </div>
+  <!-- end of modal -->
+
+
+  <div id="modal-reminder" class="modal _hide">
+    <div class="modal-content">
+      <header class="modal-header">
+        <i class="fa fa-bell"></i>
+        &nbsp;&nbsp;REMINDER
+        <span class="close-btn cancel-btn">x</span>
+      </header>
+      <!-- end of modal header -->
+      <div class="modal-body">
+        <div class="top-section">
+          <span class="label">Number of entries:</span>
+          <span class="count">40</span>
+        </div>
+        <!-- end of top section -->
+        <div class="lower-section">
+          <span class="label">Time:</span>
+          <input class="input" type="time" />
+        </div>
+        <!-- end of lower section -->
+        <div class="ctrl-btns">
+          <button class="btn btn-cancel cancel-btn">
+            Cancel
+          </button>
+          <button id="save-btn" class="btn btn-save">
+            Save
+          </button>
+        </div>
+        <!-- end of ctrl btn -->
+      </div>
+      <!-- end of modal body -->
+    </div>
+    <!-- end of modal content -->
+  </div>
+  <!-- end of modal -->
+
+  <footer class="main-footer">
+    <div>&copy; Andela</div>
+  </footer>
+  <!-- end of main footer -->
+
+  <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/header.js"></script>
+  <script src="./assets/js/request.js"></script>
+  <script src="./assets/js/entry.js"></script>
+  <script src="./assets/js/modal.js"></script>
+</body>
+</html>
