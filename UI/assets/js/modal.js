@@ -1,11 +1,16 @@
 
 class Modal {
   constructor(){
-    this.modal = document.getElementById("modal");
+    this.modalReminder = document.getElementById("modal-reminder");
+    this.modalProfile = document.getElementById("modal-profile");
   }
 
-  toggleModal(){
-    this.modal.classList.toggle("_hide");
+  toggleModalReminder(){
+    this.modalReminder.classList.toggle("_hide");
+  }
+
+  toggleModalProfile(){
+    this.modalProfile.classList.toggle("_hide");
   }
 }
 
@@ -14,5 +19,17 @@ const modal = new Modal();
 
 document.querySelectorAll(".cancel-btn")
   .forEach(element => {
-    element.addEventListener("click", modal.toggleModal.bind(modal));
+    element.addEventListener("click", 
+      modal.toggleModalReminder.bind(modal)
+    );
   })
+
+
+document.querySelectorAll(".cancel-profile-btn")
+  .forEach(element => {
+    element.addEventListener("click", 
+      modal.toggleModalProfile.bind(modal)
+    );
+  })
+
+

@@ -54,10 +54,22 @@ div.modal-body div.top-section {
   border-bottom: 1px solid #bbb
 }
 
+div.modal-body div.mid-section {
+  margin-top: 11px;
+}
+
 div.modal-body div.lower-section {
   padding: 10px 0px;
   font-size: 17px;
   font-weight: 600;
+}
+
+div.lower-section input.input {
+  font-size: 16px;
+  margin-left: 12px;
+  border: 1px solid #ccc;
+  padding: 2px;
+  border-radius: 2px;
 }
 
 div.lower-section select.dropdown {
