@@ -7,13 +7,8 @@ class Models {
 
   constructor(){
 
-    let connectionString = "";
-
-    if(process.env.NODE_ENV !== "production"){
-      connectionString = process.env.LOCAL_DB_URI;
-    } else {
-      connectionString = process.env.DATABASE_URL;
-    }
+    const connectionString = process.env.DATABASE_URL 
+      || process.env.LOCAL_DB_URI;
 
     this.pool = new Pool({
       connectionString,
