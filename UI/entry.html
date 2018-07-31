@@ -35,10 +35,22 @@
         </button>
         <ul class="dropdown-items hide" id="settings-dropdown">
           <li>
-            <a class="cancel-btn" href="javascript:void(0)">Reminder</a>
+            <a class="cancel-profile-btn" href="javascript:void(0)">
+              <i class="fa fa-user"></i>
+              &nbsp;Profile
+            </a>
           </li>
           <li>
-            <a id="logout" href="javascript:void(0)">Logout</a>
+            <a class="cancel-btn" href="javascript:void(0)">
+              <i class="fa fa-bell"></i>
+              &nbsp;Reminder
+            </a>
+          </li>
+          <li>
+            <a id="logout" href="javascript:void(0)">
+              <i class="fa fa-sign-out"></i>
+              &nbsp;Logout
+            </a>
           </li>
         </ul>
       </div>
@@ -82,7 +94,8 @@
             <button
               type="submit"
               class="btn btn-save">
-              Save Now
+              <i class="fa fa-floppy-o"></i>
+              &nbsp;&nbsp;Save
             </button>
           </div>
           <div class="entry-input textarea">
@@ -103,10 +116,49 @@
   </main>
   <!-- end of main body -->
 
-  <div id="modal" class="modal _hide">
+  <div id="modal-profile" class="modal _hide">
     <div class="modal-content">
       <header class="modal-header">
-        REMINDER
+        <i class="fa fa-user"></i>
+        &nbsp;&nbsp;PROFILE
+        <span class="close-btn cancel-profile-btn">x</span>
+      </header>
+      <!-- end of modal header -->
+      <div class="modal-body">
+        <div class="top-section">
+          <span class="label">Username:</span>
+          <span class="">test</span>
+        </div>
+        <!-- end of top section -->
+        <div class="top-section mid-section">
+          <span class="label">Email:</span>
+          <span class="">test@test.com</span>
+        </div>
+        <!-- end of top section -->
+        <div class="lower-section">
+          <span class="label">Password:</span>
+          <span class="">************</span>
+        </div>
+        <!-- end of lower section -->
+        <div class="ctrl-btns">
+          <button class="btn btn-cancel cancel-profile-btn">
+            Cancel
+          </button>
+        </div>
+        <!-- end of ctrl btn -->
+      </div>
+      <!-- end of modal body -->
+    </div>
+    <!-- end of modal content -->
+  </div>
+  <!-- end of modal -->
+
+
+  <div id="modal-reminder" class="modal _hide">
+    <div class="modal-content">
+      <header class="modal-header">
+        <i class="fa fa-bell"></i>
+        &nbsp;&nbsp;REMINDER
         <span class="close-btn cancel-btn">x</span>
       </header>
       <!-- end of modal header -->
@@ -118,24 +170,7 @@
         <!-- end of top section -->
         <div class="lower-section">
           <span class="label">Time:</span>
-          <select class="dropdown" name="">
-            <option value="">0</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
-            <option value="">5</option>
-            <option value="">6</option>
-            <option value="">7</option>
-            <option value="">8</option>
-            <option value="">9</option>
-            <option value="">10</option>
-            <option value="">11</option>
-          </select>
-          <select class="dropdown" name="">
-            <option value="">am</option>
-            <option value="">pm</option>
-          </select>
+          <input class="input" type="time" />
         </div>
         <!-- end of lower section -->
         <div class="ctrl-btns">

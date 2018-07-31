@@ -42,6 +42,7 @@ div.list-entry aside.aside-bar {
   width: 300px;
   height: 100%;
   margin-right: 5px;
+  margin-left: 20px;
   box-shadow: 0 0 9px #505860;
   overflow: hidden;
 }
@@ -59,15 +60,15 @@ aside.aside-bar ul.list-wrapper::-webkit-scrollbar {
 }
 
 aside.aside-bar ul.list-wrapper::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+  background: #f1f1f1; 
 }
 
 aside.aside-bar ul.list-wrapper::-webkit-scrollbar-thumb {
-    background: #888; 
+  background: #888; 
 }
 
 aside.aside-bar ul.list-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+  background: #555; 
 }
 
 ul.list-wrapper li.list:first-child{
@@ -97,6 +98,10 @@ ul.list-wrapper li.list:hover {
   background: #D3D3D3;
 }
 
+ul.list-wrapper li.list.selected:hover {
+  background: #0098D8;
+}
+
 li.list span.list-icon {
   position: absolute;
   font-size: 17px;
@@ -119,6 +124,18 @@ li.list div.title {
   transform: translateY(-50%);
   letter-spacing: 0.1px;
   font-weight: 500;
+}
+
+li.list:hover span.list-icon,
+li.list:hover div.date,
+li.list:hover div.title{
+  color: #777 !important;
+}
+
+li.list.selected:hover span.list-icon,
+li.list.selected:hover div.date,
+li.list.selected:hover div.title{
+  color: #fff !important;
 }
 
 li.list div.date {
@@ -203,6 +220,10 @@ div.btm-content div.date {
 
 @media (max-width: 605px){
 
+  div.list-entry aside.aside-bar {
+    margin-left: 9px;
+  }
+
   div.list-entry aside.mobile-aside {
     width: 0px;
     min-width: 0px;
@@ -217,6 +238,7 @@ div.btm-content div.date {
 
   div.list-entry div.entry-body {
     width: 90%;
+    margin-left: -1%;
   }
 
   div.list-entry div.mobile-body {
