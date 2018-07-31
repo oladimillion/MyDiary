@@ -49,6 +49,15 @@ export function SignupMiddleware(req, res, next){
     );
   }
 
+  const re = /([\s]+)/g;
+
+  if(re.test(password)){
+    Object.assign(
+      errors, 
+      {password: "Password can not contain spaces"}
+    );
+  }
+
   if(!email){
     Object.assign(
       errors, 
