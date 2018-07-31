@@ -1,0 +1,341 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MyDiary",
+    "description": "An app that allows users to pen down their thoughts and feelings",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users"
+    },
+    {
+      "name": "Entries",
+      "description": "API for entries"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create new user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "username": {
+                  "required": true,
+                  "type": "string"
+                },
+                "email": {
+                  "required": true,
+                  "type": "string"
+                },
+                "password": {
+                  "required": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Registration successful",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Registration successful",
+                "token": "hgby7thjydkhgkjguy"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Login user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to signin",
+            "schema": {
+              "properties": {
+                "username": {
+                  "required": true,
+                  "type": "string"
+                },
+                "password": {
+                  "required": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "message": "Login successful",
+                "token": "hgby7thjydkhgkjguy"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries": {
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Get entry all entries",
+        "responses": {
+          "200": {
+            "description": "List of entries",
+            "schema": {
+              "type": "array",
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": [{
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creating a new entry",
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "entry",
+            "in": "body",
+            "description": "Entry with new values of properties",
+            "schema": {
+              "properties": {
+                "entry_title": {
+                  "required": true,
+                  "type": "string"
+                },
+                "entry_content": {
+                  "required": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entry is successful added",
+            "schema": {
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": {
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entries/{entry_id}": {
+      "parameters": [
+        {
+          "name": "entry_id",
+          "in": "path",
+          "required": true,
+          "description": "ID of an entry",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Entries"
+        ],
+        "summary": "Get entry with given ID",
+        "responses": {
+          "200": {
+            "description": "Entry is found",
+            "schema": {
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": {
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update entry with give ID",
+        "tags": [
+          "Entries"
+        ],
+        "parameters": [
+          {
+            "name": "entry",
+            "in": "body",
+            "description": "Entry with new values of properties",
+            "schema": {
+              "properties": {
+                "entry_title": {
+                  "required": true,
+                  "type": "string"
+                },
+                "entry_content": {
+                  "required": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entry is updated",
+            "schema": {
+              "items":{
+                "$ref": "#/definitions/Entry"
+              },
+              "example": {
+                "user_id": "kjsl9y9dkiuyjhjk",
+                "entry_id": "kjsdiyiuyeiuui87687",
+                "entry_title": "This is a title",
+                "entry_content": "This is a content",
+                "updated_at": "2018-07-29 17:31:02.607",
+                "created_at": "2018-07-29 17:31:02.607"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "username",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "username": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "create_at": {
+          "type": "string"
+        }
+      }
+    },
+    "Entry": {
+      "required": [
+        "entry_title",
+        "entry_content"
+      ],
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "entry_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "entry_title": {
+          "type": "string"
+        },
+        "entry_content": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "create_at": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
