@@ -5,26 +5,18 @@ class Entry extends Request{
 
     this.titleInput = document.querySelector("input[name='title']");
     this.textarea = document.querySelector("textarea");
+    this.btnSave = document.getElementById("btn-save");
 
     this.update = false;
+    this.isLoading = false;
     this.entry = {};
 
     this.localStorageData()
   }
 
-  genId(
-    len=10, 
-    chars="abcdefghjkmnpqrstwxyzABCDEFGHJKMNPQRSTWXYZ123456789"){
-    let id = "";
-    while(len){
-      id += chars[Math.random() * chars.length | 0];
-      len--;
-    }
-    return id;
-  }
-
   localStorageData(){
     this.entry = localStorage.getItem("entry");
+
     this.update = !!this.entry;
 
     if(this.update){
@@ -36,8 +28,8 @@ class Entry extends Request{
   }
 
   setData(data){
-    this.textarea.value = data.entry_content || "";
     this.titleInput.value = data.entry_title || "";
+    this.textarea.value = data.entry_content || "";
   }
 
   submit(form){
@@ -45,14 +37,18 @@ class Entry extends Request{
 
     const errors = ValidateInput(formData);
 
-    if(errors.length){
+    if(Object.keys(errors).length || this.isLoading){
+      console.log(errors)
       return;
     }
 
     const body = {
       entry_title: formData.get("title"),
-      entry_date: formData.get("date"),
+      entry_content: formData.get("entry"),
     };
+
+    this.isLoading = true;
+    this.updateSaveBtn();
 
     if(!this.update){
       this.post("entries", body)
@@ -68,12 +64,32 @@ class Entry extends Request{
     }
   }
 
+
+  updateSaveBtn(){
+    if(!this.isLoading){
+      this.btnSave.innerHTML = `
+      <i class="fa fa-floppy-o"></i>
+      &nbsp;&nbsp;Save
+      `;
+    } else {
+      this.btnSave.innerHTML = 
+        '<i class="fa fa-spinner fa-spin"></i>';
+    }
+  }
+
+
   onSuccess(data){
     console.log(data);
+    this.isLoading = false;
+    this.updateSaveBtn();
+    localStorage.removeItem("entry");
+    window.location.href = "entries.html";
   }
 
   onError(error){
     console.log(error);
+    this.isLoading = false;
+    this.updateSaveBtn();
   }
 
 } 

@@ -82,6 +82,7 @@ div.entry-input textarea.input {
 }
 
 div.entry-input button.btn.btn-save {
+  width: 78px;
   border-radius: 2px;
   font-weight: 600;
   border: none;

@@ -1,10 +1,10 @@
 
 function ValidateInput(formData){
-  let errors = [];
+  let errors = {};
   for(let f of formData){
     if(!f[1]){
       const label = f[0] === "cpassword" ? "confirm password" : f[0];
-      errors = [...errors, label + " is required"];
+      errors = {...errors, [label]: "This field is required"};
     }
   }
 

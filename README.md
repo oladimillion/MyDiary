@@ -23,7 +23,7 @@
 
 ## App's API endpoints
 
-| Function        |  HTTP Method  |         API endpoints           |
+| Functionality        |  HTTP Method  |         API endpoints           |
 | --------------- | --------------|-------------------------------- |
 | Login           | POST          | /api/v1/auth/login              |
 | Registration    | POST          |  /api/v1/auth/signup            |

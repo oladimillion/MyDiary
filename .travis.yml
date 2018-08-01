@@ -28,6 +28,6 @@ after_success:
 after_script: 
   - nyc npm test && nyc report --reporter=text-lcov | coveralls
   - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < ./coverage/lcov.info
+  - codeclimate-test-reporter < ./lcov.info
 
 script: npm run test
