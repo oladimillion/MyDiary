@@ -26,10 +26,45 @@ body {
   flex-flow: column;
 }
 
+._hide{
+  display: none;
+}
+
 main.main-body {
   min-height: 500px;
   height: calc(100% - 97px);
   padding: 20px 0px;
+  position: relative;
+}
+
+main.main-body div.show-status {
+  position: absolute;
+  z-index: 200;
+  top: 37px;
+  right: 25px;
+  color: #fff;
+  padding: 6px;
+  border-radius: 3px;
+  box-shadow: 0 0 5px #fff;
+}
+
+main.main-body div.show-status.success{
+  background: #41A34C;
+  border: 2px solid #378B41;
+}
+
+main.main-body div.show-status.error{
+  background: #EE0808;
+  border: 2px solid #B80606;
+}
+
+div.show-status table#errors-wrapper {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+table#errors-wrapper td {
+  padding: 2px;
 }
 
 footer.main-footer {

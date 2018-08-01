@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/oladimillion/MyDiary#readme",
   "dependencies": {
-    "async": "^2.6.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",

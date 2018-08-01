@@ -45,6 +45,24 @@ div.list-entry aside.aside-bar {
   margin-left: 20px;
   box-shadow: 0 0 9px #505860;
   overflow: hidden;
+  position: relative;
+}
+
+aside.aside-bar div.show-action {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+div.show-action div._center {
+  font-size: 40px;
+  font-weight: 600;
+  color: #fff;
+  margin: auto;
 }
 
 aside.aside-bar ul.list-wrapper {
@@ -95,7 +113,7 @@ ul.list-wrapper li.list.selected {
 }
 
 ul.list-wrapper li.list:hover {
-  background: #D3D3D3;
+  background: #65707F;
 }
 
 ul.list-wrapper li.list.selected:hover {
@@ -129,7 +147,7 @@ li.list div.title {
 li.list:hover span.list-icon,
 li.list:hover div.date,
 li.list:hover div.title{
-  color: #777 !important;
+  color: #fff !important;
 }
 
 li.list.selected:hover span.list-icon,

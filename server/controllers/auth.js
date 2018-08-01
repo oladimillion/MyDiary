@@ -43,9 +43,11 @@ class Auth {
 
     return this.loginModel.login(req.body)
       .then(result => {
+        const { user_id, username, email } = result.user;
         if(result.exist){
           return res.status(200).json({
             message: "Login successful",
+            user: {user_id, username, email},
             token: jwt.sign({
               user_id: result.user.user_id,
               username: result.user.username,
@@ -80,6 +82,7 @@ class Auth {
         const { user_id, username, email } = result.rows[0];
         return res.status(200).json({
           message: "Registration successful",
+          user: {user_id, username, email},
           token: jwt.sign({
             user_id,
             username,

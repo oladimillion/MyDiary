@@ -61,6 +61,20 @@
 
   <main class="main-body row flow-column">
 
+    <div class="show-status _hide">
+      <table id="errors-wrapper">
+        <tr>
+          <td>Email:</td>
+          <td>enter a valid email</td>
+        </tr>
+        <tr>
+          <td>Username:</td>
+          <td>enter a valid username</td>
+        </tr>
+      </table>
+    </div>
+    <!-- end of show error -->
+
     <header class="dashboard-header">
       <ul class="nav-entry row">
         <li class="nav-list selected">
@@ -92,6 +106,7 @@
               placeholder="Entry Title" 
               />
             <button
+              id="btn-save"
               type="submit"
               class="btn btn-save">
               <i class="fa fa-floppy-o"></i>
