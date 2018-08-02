@@ -45,8 +45,8 @@ class Entry extends Request{
     }
 
     const body = {
-      entry_title: formData.get("title"),
-      entry_content: formData.get("entry"),
+      entryTitle: formData.get("title"),
+      entryContent: formData.get("entry"),
     };
 
     this.isLoading = true;
@@ -79,7 +79,6 @@ class Entry extends Request{
 
 
   onSuccess(data){
-    console.log(data);
     this.isLoading = false;
     this.updateSaveBtn();
     localStorage.removeItem("entry");
@@ -90,7 +89,6 @@ class Entry extends Request{
   }
 
   onError(error){
-    console.log(error);
     this.isLoading = false;
     this.updateSaveBtn();
     this.status.show(error, true);

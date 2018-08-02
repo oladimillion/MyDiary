@@ -167,7 +167,6 @@ class Entries extends Request {
 
   onSuccess(data){
     this.itemsList = data.entries;
-    // console.log(this.itemsList);
     this.hideLoadingIcon();
     if(this.itemsList.length){
       this.appendListItems(this.itemsList);
@@ -179,7 +178,6 @@ class Entries extends Request {
   onError(error){
     this.hideLoadingIcon();
     this.showInfoText();
-    console.log(error);
   }
 
 

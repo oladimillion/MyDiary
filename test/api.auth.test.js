@@ -7,41 +7,62 @@ import dotenv from "dotenv";
 
 const request = supertest(http);
 
-const _path = "/api/v1/auth";
+const path = "/api/v1/auth";
 
 const token = jwt.sign({
-  user_id: "test",
-  username: "test",
-  email: "test@test.com",
+  userId: "test",
 }, process.env.JWT_SECRET);
 
-export default function AuthApiTest(){
+
+describe('hooks', function() {
+
+  before(function() {
+    // runs before all tests in this block
+    describe('Delete auth api test', () => {
+      it('should remove user', done => {
+        request.delete(path + "/test").send()
+          .set('Authorization', 'Bearer ' + token)
+          .end((err, res) => {
+            assert.equal(res.statusCode, 200);
+            done();
+          });
+      });
+    });
+  });
 
   describe('Signup api test', () => {
 
     const data = {
-      user_id: "test",
+      userId: "test",
       username: "test",
       email: "test@test.com",
       password: "test",
     };
 
-
-    it('should return 200 status code for \
-    providing valid data', done => {
-      request.post(_path + "/signup").send(data)
+    it('should return success message', done => {
+      request.post(path + "/signup").send(data)
         .end((err, res) => {
-          assert.equal(res.statusCode, 200);
+          const response = JSON.parse(res.text);
+          assert.equal(res.statusCode, 201);
+          assert.equal(response.hasOwnProperty("token"), true);
+          assert.equal(response.hasOwnProperty("message"), true);
+          assert.equal(response.hasOwnProperty("user"), true);
+          assert.equal(response.user.hasOwnProperty("userId"), true);
+          assert.equal(response.message, "Registration successful");
           done();
         });
     });
 
 
-    it('should return 400 status code \
-    for providing empty field', done => {
-      request.post(_path + "/signup").send()
+    it('should return an error message', done => {
+      request.post(path + "/signup").send()
         .end((err, res) => {
+          const response = JSON.parse(res.text);
           assert.equal(res.statusCode, 400);
+          assert.equal(response.hasOwnProperty("errors"), true);
+          assert.equal(response.errors.hasOwnProperty("username"), true);
+          assert.equal(response.errors.hasOwnProperty("email"), true);
+          assert.equal(response.errors.hasOwnProperty("password"), true);
           done();
         });
     });
@@ -57,26 +78,36 @@ export default function AuthApiTest(){
 
 
     it('should return 200 status code', done => {
-      request.post(_path + "/login").send(data)
+      request.post(path + "/login").send(data)
         .end((err, res) => {
+          const response = JSON.parse(res.text);
           assert.equal(res.statusCode, 200);
+          assert.equal(response.hasOwnProperty("token"), true);
+          assert.equal(response.hasOwnProperty("message"), true);
+          assert.equal(response.hasOwnProperty("user"), true);
+          assert.equal(response.user.hasOwnProperty("userId"), true);
+          assert.equal(response.message, "Login successful");
           done();
         });
     });
 
 
     it('should return 400 status code', done => {
-      request.post(_path + "/login").send()
+      request.post(path + "/login").send()
         .end((err, res) => {
+          const response = JSON.parse(res.text);
           assert.equal(res.statusCode, 400);
+          assert.equal(response.hasOwnProperty("errors"), true);
+          assert.equal(response.errors.hasOwnProperty("username"), true);
+          assert.equal(response.errors.hasOwnProperty("password"), true);
           done();
         });
     });
 
   });
 
-}
 
+});
 http.close();
 
 

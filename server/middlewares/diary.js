@@ -3,19 +3,19 @@ export function DiaryMiddleware(req, res, next){
 
   const errors = {};
 
-  const { entry_title, entry_content } = req.body;
+  const { entryTitle, entryContent } = req.body;
 
-  if(!entry_title){
+  if(!entryTitle){
     Object.assign(
       errors, 
-      {entry_title: "This field is required"}
+      {entryTitle: "This field is required"}
     );
   }
 
-  if(!entry_content){
+  if(!entryContent){
     Object.assign(
       errors, 
-      {entry_content: "This field is required"}
+      {entryContent: "This field is required"}
     );
   }
 

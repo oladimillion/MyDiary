@@ -13,7 +13,7 @@ class Auth {
     this.signupModel = new SignupModel();
   }
 
-  delete(req, res, next){
+  delete(req, res){
 
     const data = Object.assign({}, {username: req.params.username});
 
@@ -24,14 +24,13 @@ class Auth {
         });
       })
       .catch(err => {
-        console.log(err)
-        return res.status(403).json({
+        return res.status(500).json({
           error: "User not deleted",
         });
       })
   }
 
-  login(req, res, next){
+  login(req, res){
 
     const errors = Validator(req.body);
 
@@ -47,11 +46,9 @@ class Auth {
         if(result.exist){
           return res.status(200).json({
             message: "Login successful",
-            user: {user_id, username, email},
+            user: {userId: user_id, username, email},
             token: jwt.sign({
-              user_id: result.user.user_id,
-              username: result.user.username,
-              email: result.user.email,
+              userId: user_id,
             }, process.env.JWT_SECRET),
           });
         } else {
@@ -61,13 +58,13 @@ class Auth {
         }
       })
       .catch(err => {
-        return res.status(400).json({
+        return res.status(500).json({
           error: "Authentication failed. Try again",
         });
       })
   }
 
-  signup(req, res, next){
+  signup(req, res){
 
     const errors = Validator(req.body);
 
@@ -80,18 +77,16 @@ class Auth {
     return this.signupModel.signup(req.body)
       .then((result) => {
         const { user_id, username, email } = result.rows[0];
-        return res.status(200).json({
+        return res.status(201).json({
           message: "Registration successful",
-          user: {user_id, username, email},
+          user: {userId: user_id, username, email},
           token: jwt.sign({
-            user_id,
-            username,
-            email,
+            userId: user_id,
           }, process.env.JWT_SECRET),
         });
       })
       .catch((err) => {
-        return res.status(400).json({
+        return res.status(500).json({
           error: "Registration failed. Try again",
         });
       })

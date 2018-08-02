@@ -16,16 +16,16 @@ export function Private (req, res, next) {
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
-        res.status(403).json({
+        res.status(401).json({
           error: "Please login to access the resource"
         });
       } else {
-        req._user_id = decoded.user_id;
+        req.userId = decoded.userId;
         next();
       }
     });
   } else {
-    res.status(403).json({
+    res.status(401).json({
       error: "Please login to access the resource"
     });
   }

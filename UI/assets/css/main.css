@@ -47,6 +47,7 @@ main.main-body div.show-status {
   padding: 7px;
   border-radius: 3px;
   box-shadow: 0 0 5px #fff;
+  max-width: 296px;
 }
 
 main.main-body div.show-status.success{
@@ -60,8 +61,7 @@ main.main-body div.show-status.error{
 }
 
 div.show-status table#status-wrapper {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 11px;
   letter-spacing: 0.7px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;

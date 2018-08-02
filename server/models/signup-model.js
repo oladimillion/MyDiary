@@ -33,7 +33,7 @@ class SignupModel extends Models{
     const query = {
       text,
       values: [
-        data.username,
+        data.username
       ],
     };
 

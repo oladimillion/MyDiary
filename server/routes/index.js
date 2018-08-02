@@ -4,10 +4,10 @@ import diaryRoute from "./diary";
 
 const route = express.Router();
 
-const _path = "/api/v1";
+const path = "/api/v1";
 
-route.use(_path + "/auth", authRoute);
-route.use(_path + "/entries", diaryRoute);
+route.use(path + "/auth", authRoute);
+route.use(path + "/entries", diaryRoute);
 
 route.use((req, res) => {
 	res.type('text/json');
