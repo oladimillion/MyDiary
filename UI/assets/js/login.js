@@ -2,31 +2,64 @@ class Login extends Request{
 
   constructor(){
     super();
+    this.status = new Status();
+    this.btnSignin = document.getElementById("btn-signin");
+    this.isLoading = false;
   }
 
   submit(form){
     const formData = new FormData(form);
 
     const errors = ValidateInput(formData);
-    console.log(errors)
 
-    if(errors.length){
+    if(Object.keys(errors).length || this.isLoading){
+      this.status.show({errors}, true);
       return;
     }
 
-    this.post("signin", 
-      { body: formData })
-      .then(res => res.json())
+    let body = {};
+
+    if(this.isLoading){
+      return;
+    }
+
+    Array.from(formData).forEach(([label, value]) => {
+      body = {...body, [label]: value};
+    })
+
+    this.isLoading = true;
+    this.updateSigninBtn();
+
+    this.post("auth/login", body)
       .then(this.onSuccess.bind(this))
       .catch(this.onError.bind(this));    
   }
 
+  updateSigninBtn(){
+    if(!this.isLoading){
+      this.btnSignin.innerHTML = "Sign In";
+    } else {
+      this.btnSignin.innerHTML = 
+        '<i class="fa fa-spinner fa-spin"></i>';
+    }
+  }
+
   onSuccess(data){
-    console.log(data);
+    this.isLoading = false;
+    this.updateSigninBtn();
+    const {token, user} = data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    setTimeout(() => {
+      window.location.href = "entries.html";
+    }, 2000);
+    this.status.show(data);
   }
 
   onError(error){
-    console.log(error);
+    this.isLoading = false;
+    this.updateSigninBtn();
+    this.status.show(error, true);
   }
 
 }

@@ -25,10 +25,10 @@ class DiaryModel extends Models{
     const query = {
       text,
       values: [
-        data.user_id,
+        data.userId,
         GenId(15),
-        data.entry_title,
-        data.entry_content,
+        data.entryTitle,
+        data.entryContent,
         new Date(),
         new Date()
       ],
@@ -47,7 +47,7 @@ class DiaryModel extends Models{
     const query = {
       text,
       values: [
-        data.user_id,
+        data.userId,
       ],
     };
 
@@ -65,8 +65,8 @@ class DiaryModel extends Models{
     const query = {
       text,
       values: [
-        data.user_id,
-        data.entry_id,
+        data.userId,
+        data.entryId,
       ],
     };
 
@@ -84,7 +84,7 @@ class DiaryModel extends Models{
     const query = {
       text,
       values: [
-        data.user_id,
+        data.userId,
       ],
     };
 
@@ -102,11 +102,11 @@ class DiaryModel extends Models{
     const query = {
       text,
       values: [
-        data.entry_title,
-        data.entry_content,
+        data.entryTitle,
+        data.entryContent,
         new Date(),
-        data.user_id,
-        data.entry_id
+        data.userId,
+        data.entryId
       ],
     };
 

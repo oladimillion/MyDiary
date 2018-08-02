@@ -6,14 +6,14 @@ export function LoginMiddleware(req, res, next){
 
   const { username, password } = req.body;
 
-  if(!username){
+  if(typeof username !== "string" || !username.trim()){
     Object.assign(
       errors, 
       {username: "This field is required"}
     );
   }
 
-  if(!password){
+  if(typeof username !== "string" || !password.trim()){
     Object.assign(
       errors, 
       {password: "This field is required"}
@@ -35,21 +35,30 @@ export function SignupMiddleware(req, res, next){
 
   const { username, email, password } = req.body;
 
-  if(!username){
+  if(typeof username !== "string" || !username.trim()){
     Object.assign(
       errors, 
       {username: "This field is required"}
     );
   }
 
-  if(!password){
+  if(typeof password !== "string" || !password.trim()){
     Object.assign(
       errors, 
       {password: "This field is required"}
     );
   }
 
-  if(!email){
+  const re = /([\s]+)/g;
+
+  if(re.test(password)){
+    Object.assign(
+      errors, 
+      {password: "Password can not contain spaces"}
+    );
+  }
+
+  if(typeof email !== "string" || !email.trim()){
     Object.assign(
       errors, 
       {email: "This field is required"}
@@ -82,15 +91,14 @@ export function SignupMiddleware(req, res, next){
       }
 
       if(Object.keys(errors).length){
-        return res.status(400).json({
+        return res.status(409).json({
           errors,
         })
       }
       next();
     })
     .catch(err => {
-      console.log(err);
-      return res.status(400).json({
+      return res.status(500).json({
         error: "Registration failed. Try again",
       })
     });

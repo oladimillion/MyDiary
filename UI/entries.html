@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./assets/css/entry.css">
   <link rel="stylesheet" href="./assets/css/entries.css">
   <link rel="stylesheet" href="./assets/css/modal.css">
+  <script src="./assets/js/private.js"></script>
   <title>MyDiary - Entries</title>
 </head>
 <body>
@@ -95,154 +96,25 @@
       <div class="row list-entry">
 
         <aside class="aside-bar" id="entry-aside">
-          <ul class="list-wrapper">
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
-            <li class="list"
-              onclick="entries.listSelected(event, this, 1)">
-              <span class="list-icon">
-                <i class="fa fa-minus"></i>
-              </span>
-              <div class="title">
-                This is a title
-              </div>
-              <!-- end of title -->
-              <div class="date">
-                10/07/2018
-              </div>
-            </li>
+          <ul class="list-wrapper" id="list-wrapper">
           </ul>
           <!-- end of list wrapper -->
+          <div id="info" class="show-action _hide">
+            <div class="_center">No entry yet</div>
+          </div>
+          <!-- end of show action -->
+          <div id="loading" class="show-action">
+            <div class="_center">
+              <i class="fa fa-spinner fa-spin"></i>
+            </div>
+          </div>
+          <!-- end of show action -->
         </aside>
         <!-- end of aside bar -->
 
         <!-- TODO: remember to add _hide to entry body -->
-         <div class="entry entry-body 
-           mobile-body" id="entry-body">
-          <div class="title">
-            This is a title
-          </div>
-          <!-- end of title -->
-          <div class="content">
-              Dolor impedit praesentium dolore amet ea Dolores vel quaerat dolorum dolorem velit! Laudantium molestiae nisi accusantium ratione quasi. Officia at consectetur velit corporis libero? Eius dignissimos minus quaerat maxime quasi?
-                Ipsum provident accusantium accusantium ex sapiente Molestiae amet iure error suscipit natus distinctio. A dolorum dicta qui repellendus sunt, ex Nostrum repudiandae eius magni assumenda nesciunt? Est eligendi commodi provident
-            
-          </div>
-          <!-- end of content -->
-          <div class="row btm-content">
-            <button class="btn btn-edit">
-              <a href="./entry.html">
-                <i class="fa fa-edit"></i>
-                &nbsp;Edit
-              </a>
-            </button>
-
-            <div class="date">
-              10/07/2018
-            </div>
-          </div>
+        <div 
+          class="entry entry-body mobile-body _hide" id="entry-body">
           <!-- end of btm btn -->
 
         </div>
@@ -262,18 +134,20 @@
       <header class="modal-header">
         <i class="fa fa-user"></i>
         &nbsp;&nbsp;PROFILE
-        <span class="close-btn cancel-profile-btn">x</span>
+        <span class="close-btn cancel-profile-btn">
+          <i class="fa fa-times"></i>
+        </span>
       </header>
       <!-- end of modal header -->
       <div class="modal-body">
         <div class="top-section">
           <span class="label">Username:</span>
-          <span class="">test</span>
+          <span class="p-username"></span>
         </div>
         <!-- end of top section -->
         <div class="top-section mid-section">
           <span class="label">Email:</span>
-          <span class="">test@test.com</span>
+          <span class="p-email"></span>
         </div>
         <!-- end of top section -->
         <div class="lower-section">
@@ -300,13 +174,15 @@
       <header class="modal-header">
         <i class="fa fa-bell"></i>
         &nbsp;&nbsp;REMINDER
-        <span class="close-btn cancel-btn">x</span>
+        <span class="close-btn cancel-btn">
+          <i class="fa fa-times"></i>
+        </span>
       </header>
       <!-- end of modal header -->
       <div class="modal-body">
         <div class="top-section">
           <span class="label">Number of entries:</span>
-          <span class="count">40</span>
+          <span class="count">0</span>
         </div>
         <!-- end of top section -->
         <div class="lower-section">

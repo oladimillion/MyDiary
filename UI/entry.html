@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./assets/css/form.css">
   <link rel="stylesheet" href="./assets/css/entry.css">
   <link rel="stylesheet" href="./assets/css/modal.css">
+  <script src="./assets/js/private.js"></script>
   <title>MyDiary - Entry</title>
 </head>
 <body>
@@ -61,6 +62,16 @@
 
   <main class="main-body row flow-column">
 
+    <div id="show-status" class="show-status _hide">
+      <span 
+        onclick="entry.status.hide()"
+        class="close">
+        <i class="fa fa-times"></i>
+      </span>
+      <table id="status-wrapper"></table>
+    </div>
+    <!-- end of show status -->
+
     <header class="dashboard-header">
       <ul class="nav-entry row">
         <li class="nav-list selected">
@@ -92,6 +103,7 @@
               placeholder="Entry Title" 
               />
             <button
+              id="btn-save"
               type="submit"
               class="btn btn-save">
               <i class="fa fa-floppy-o"></i>
@@ -121,18 +133,20 @@
       <header class="modal-header">
         <i class="fa fa-user"></i>
         &nbsp;&nbsp;PROFILE
-        <span class="close-btn cancel-profile-btn">x</span>
+        <span class="close-btn cancel-profile-btn">
+          <i class="fa fa-times"></i>
+        </span>
       </header>
       <!-- end of modal header -->
       <div class="modal-body">
         <div class="top-section">
           <span class="label">Username:</span>
-          <span class="">test</span>
+          <span class="p-username"></span>
         </div>
         <!-- end of top section -->
         <div class="top-section mid-section">
           <span class="label">Email:</span>
-          <span class="">test@test.com</span>
+          <span class="p-email"></span>
         </div>
         <!-- end of top section -->
         <div class="lower-section">
@@ -159,13 +173,15 @@
       <header class="modal-header">
         <i class="fa fa-bell"></i>
         &nbsp;&nbsp;REMINDER
-        <span class="close-btn cancel-btn">x</span>
+        <span class="close-btn cancel-btn">
+          <i class="fa fa-times"></i>
+        </span>
       </header>
       <!-- end of modal header -->
       <div class="modal-body">
         <div class="top-section">
           <span class="label">Number of entries:</span>
-          <span class="count">40</span>
+          <span class="count">0</span>
         </div>
         <!-- end of top section -->
         <div class="lower-section">

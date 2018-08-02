@@ -33,12 +33,13 @@ class SignupModel extends Models{
     const query = {
       text,
       values: [
-        data.username,
+        data.username
       ],
     };
 
     return this.pool.query(query);
   }
+
   insertData(data){
     const text = `
       INSERT INTO users(
