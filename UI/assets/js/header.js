@@ -4,6 +4,13 @@ class Header{
     this.settingsDropdown = 
       document.getElementById("settings-dropdown");
     this.timerID = null;
+    this.usernameTag = document.querySelector(".p-username");
+    this.emailTag = document.querySelector(".p-email");
+
+    this.logoutBtn = document.getElementById("logout");
+
+    this.userInfo = this.getUserInfo();
+    this.setUserInfo(this.userInfo);
   }
 
   clearTimeout(){
@@ -20,13 +27,31 @@ class Header{
     }, 200);
   }
 
+  getUserInfo(){
+    const userInfo = localStorage.getItem("user");
+    if(userInfo){
+      return JSON.parse(userInfo);
+    }
+    return null;
+  }
+
+  setUserInfo(userInfo){
+    if(!userInfo){
+      return;
+    }
+    this.usernameTag.innerHTML = userInfo.username;
+    this.emailTag.innerHTML = userInfo.email;
+  }
+
   showSettingItem(){
     this.clearTimeout()
     this.settingsDropdown.classList.remove("hide");
   }
 
   logout(){
-    console.log("logging out");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("entry");
     window.location.href = "login.html";
   }
 }
@@ -45,7 +70,7 @@ document.getElementsByTagName("body")[0]
     }
   });
 
-document.getElementById("logout")
-  .addEventListener("click", (e) => header.logout());
+
+header.logoutBtn.addEventListener("click", (e) => header.logout());
 
 

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./assets/css/header.css">
   <link rel="stylesheet" href="./assets/css/form.css">
   <link rel="stylesheet" href="./assets/css/optional.css">
+  <script src="./assets/js/public.js"></script>
   <title>MyDiary - Login</title>
 </head>
 <body>
@@ -47,6 +48,16 @@
   <!-- end of main header -->
 
   <main class="main-body row">
+
+    <div id="show-status" class="show-status _hide">
+      <span 
+        onclick="login.status.hide()"
+        class="close">
+        <i class="fa fa-times"></i>
+      </span>
+      <table id="status-wrapper"></table>
+    </div>
+    <!-- end of show status -->
 
     <div class="wrapper row">
 

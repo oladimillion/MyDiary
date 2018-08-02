@@ -58,7 +58,7 @@ div.dropdown ul.dropdown-items {
   box-shadow: 0 0 13px #ccc;
   z-index: 100;
   border-radius: 4px;
-  height: 84px;
+  height: 78px;
   transition: all 0.4s;
   overflow: hidden;
 }
@@ -78,7 +78,7 @@ div.dropdown ul.dropdown-items.hide {
 
 ul.dropdown-items li {
   /* text-align: center; */
-  margin: 2px 0px;
+  /* margin: 2px 0px; */
   border-bottom: 1px solid #ccc;
 }
 
