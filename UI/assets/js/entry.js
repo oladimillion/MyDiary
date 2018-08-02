@@ -44,6 +44,10 @@ class Entry extends Request{
       return;
     }
 
+    if(this.isLoading){
+      return;
+    }
+
     const body = {
       entryTitle: formData.get("title"),
       entryContent: formData.get("entry"),

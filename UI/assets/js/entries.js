@@ -173,6 +173,8 @@ class Entries extends Request {
     } else {
       this.showInfoText();
     }
+    document.querySelector("span.count").innerHTML 
+      = this.itemsList.length.toString();
   }
 
   onError(error){
