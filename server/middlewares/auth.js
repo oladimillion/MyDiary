@@ -6,14 +6,14 @@ export function LoginMiddleware(req, res, next){
 
   const { username, password } = req.body;
 
-  if(!username){
+  if(typeof username !== "string" || !username.trim()){
     Object.assign(
       errors, 
       {username: "This field is required"}
     );
   }
 
-  if(!password){
+  if(typeof username !== "string" || !password.trim()){
     Object.assign(
       errors, 
       {password: "This field is required"}
@@ -35,14 +35,14 @@ export function SignupMiddleware(req, res, next){
 
   const { username, email, password } = req.body;
 
-  if(typeof username !== "string" || !username){
+  if(typeof username !== "string" || !username.trim()){
     Object.assign(
       errors, 
       {username: "This field is required"}
     );
   }
 
-  if(typeof password !== "string" || !password){
+  if(typeof password !== "string" || !password.trim()){
     Object.assign(
       errors, 
       {password: "This field is required"}
@@ -58,7 +58,7 @@ export function SignupMiddleware(req, res, next){
     );
   }
 
-  if(typeof email !== "string" || !email){
+  if(typeof email !== "string" || !email.trim()){
     Object.assign(
       errors, 
       {email: "This field is required"}

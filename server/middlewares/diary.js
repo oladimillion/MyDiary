@@ -5,14 +5,14 @@ export function DiaryMiddleware(req, res, next){
 
   const { entryTitle, entryContent } = req.body;
 
-  if(!entryTitle){
+  if(typeof entryTitle !== "string" || !entryTitle.trim()){
     Object.assign(
       errors, 
       {entryTitle: "This field is required"}
     );
   }
 
-  if(!entryContent){
+  if(typeof entryContent !== "string" || !entryContent.trim()){
     Object.assign(
       errors, 
       {entryContent: "This field is required"}
