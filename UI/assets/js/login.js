@@ -2,6 +2,7 @@ class Login extends Request{
 
   constructor(){
     super();
+    this.status = new Status();
     this.btnSignin = document.getElementById("btn-signin");
     this.isLoading = false;
   }
@@ -12,7 +13,7 @@ class Login extends Request{
     const errors = ValidateInput(formData);
 
     if(Object.keys(errors).length || this.isLoading){
-      console.log(errors)
+      this.status.show({errors}, true);
       return;
     }
 
@@ -26,7 +27,6 @@ class Login extends Request{
     this.updateSigninBtn();
 
     this.post("auth/login", body)
-      .then(res => res.json())
       .then(this.onSuccess.bind(this))
       .catch(this.onError.bind(this));    
   }
@@ -46,13 +46,16 @@ class Login extends Request{
     const {token, user} = data;
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-    window.location.href = "entries.html";
+    setTimeout(() => {
+      window.location.href = "entries.html";
+    }, 2000);
+    this.status.show(data);
   }
 
   onError(error){
-    console.log(error);
     this.isLoading = false;
     this.updateSigninBtn();
+    this.status.show(error, true);
   }
 
 }

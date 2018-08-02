@@ -66,7 +66,6 @@ class Entries extends Request {
   fetchData(){
     // this.showLoadingIcon();
     this.get("entries")
-      .then(res => res.json())
       .then(this.onSuccess.bind(this))
       .catch(this.onError.bind(this));    
   }
@@ -106,7 +105,7 @@ class Entries extends Request {
       <li class="list"
         onclick="entries.listSelected(event, this, ${index})">
         <span class="list-icon">
-          <i class="fa fa-minus"></i>
+          <i class="fa fa-tag"></i>
         </span>
         <div class="title">
         ${data.entry_title}
@@ -168,7 +167,6 @@ class Entries extends Request {
 
   onSuccess(data){
     this.itemsList = data.entries;
-    // console.log(this.itemsList);
     this.hideLoadingIcon();
     if(this.itemsList.length){
       this.appendListItems(this.itemsList);
@@ -180,7 +178,6 @@ class Entries extends Request {
   onError(error){
     this.hideLoadingIcon();
     this.showInfoText();
-    console.log(error);
   }
 
 

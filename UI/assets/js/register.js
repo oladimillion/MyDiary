@@ -2,6 +2,7 @@ class Register extends Request{
 
   constructor(){
     super();
+    this.status = new Status();
     this.btnSignup = document.getElementById("btn-signup");
     this.isLoading = false;
   }
@@ -16,7 +17,7 @@ class Register extends Request{
     }
 
     if(Object.keys(errors).length || this.isLoading){
-      console.log(errors)
+      this.status.show({errors}, true);
       return;
     }
 
@@ -30,7 +31,6 @@ class Register extends Request{
     this.updateSignupBtn();
 
     this.post("auth/signup", body)
-      .then(res => res.json())
       .then(this.onSuccess.bind(this))
       .catch(this.onError.bind(this));    
   }
@@ -50,13 +50,16 @@ class Register extends Request{
     const {token, user} = data;
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-    window.location.href = "entries.html";
+    setTimeout(() => {
+      window.location.href = "entries.html";
+    }, 2000);
+    this.status.show(data);
   }
 
   onError(error){
-    console.log(error);
     this.isLoading = false;
     this.updateSignupBtn();
+    this.status.show(error, true);
   }
 
 }

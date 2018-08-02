@@ -25,7 +25,17 @@ class Request{
       ...this.headers,
       ...this.options,
       body: JSON.stringify(payload),
-    });
+    })
+      .then(res => res.json())
+      .then(res => {
+        const {error, errors} = res;
+        if(error || errors){
+          throw res;
+        } else {
+          return res;
+        }
+      });
+
   }
 
   put(url, payload){
@@ -35,12 +45,30 @@ class Request{
       ...this.headers,
       ...this.options,
       body: JSON.stringify(payload),
-    });
+    })
+      .then(res => res.json())
+      .then(res => {
+        const {error, errors} = res;
+        if(error || errors){
+          throw res;
+        } else {
+          return res;
+        }
+      });
   }
 
   get(url){
     const URI = this.API + url;
-    return fetch(URI, {...this.headers, ...this.options});
+    return fetch(URI, {...this.headers, ...this.options})
+      .then(res => res.json())
+      .then(res => {
+        const {error, errors} = res;
+        if(error || errors){
+          throw res;
+        } else {
+          return res;
+        }
+      });
   }
 
 }

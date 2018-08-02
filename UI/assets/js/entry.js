@@ -3,6 +3,8 @@ class Entry extends Request{
   constructor(){
     super();
 
+    this.status = new Status();
+
     this.titleInput = document.querySelector("input[name='title']");
     this.textarea = document.querySelector("textarea");
     this.btnSave = document.getElementById("btn-save");
@@ -11,7 +13,7 @@ class Entry extends Request{
     this.isLoading = false;
     this.entry = {};
 
-    this.localStorageData()
+    this.localStorageData();
   }
 
   localStorageData(){
@@ -38,13 +40,13 @@ class Entry extends Request{
     const errors = ValidateInput(formData);
 
     if(Object.keys(errors).length || this.isLoading){
-      console.log(errors)
+      this.status.show({errors}, true);
       return;
     }
 
     const body = {
-      entry_title: formData.get("title"),
-      entry_content: formData.get("entry"),
+      entryTitle: formData.get("title"),
+      entryContent: formData.get("entry"),
     };
 
     this.isLoading = true;
@@ -52,13 +54,11 @@ class Entry extends Request{
 
     if(!this.update){
       this.post("entries", body)
-        .then(res => res.json())
         .then(this.onSuccess.bind(this))
         .catch(this.onError.bind(this));    
     }
     else {
       this.put("entries/" + this.entry.entry_id, body)
-        .then(res => res.json())
         .then(this.onSuccess.bind(this))
         .catch(this.onError.bind(this));    
     }
@@ -79,17 +79,19 @@ class Entry extends Request{
 
 
   onSuccess(data){
-    console.log(data);
     this.isLoading = false;
     this.updateSaveBtn();
     localStorage.removeItem("entry");
-    window.location.href = "entries.html";
+    this.status.show(data);
+    setTimeout(() => {
+      window.location.href = "entries.html";
+    }, 2000);
   }
 
   onError(error){
-    console.log(error);
     this.isLoading = false;
     this.updateSaveBtn();
+    this.status.show(error, true);
   }
 
 } 

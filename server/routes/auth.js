@@ -18,5 +18,12 @@ route.post('/signup',
   auth.signup.bind(auth), 
 );
 
+if(process.env.NODE_ENV !== "production"){
+  route.delete('/:username', 
+    Private,
+    auth.delete.bind(auth), 
+  );
+}
+
 
 export default route;
