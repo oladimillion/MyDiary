@@ -62,8 +62,6 @@ class Status {
 
     const {error, errors, message} = msg;
 
-    console.log(error, errors, message);
-
     if(error){
       this.appendMsg({error});
     } else if (message){

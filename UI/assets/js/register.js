@@ -23,8 +23,14 @@ class Register extends Request{
 
     let body = {};
 
+    if(this.isLoading){
+      return;
+    }
+
     Array.from(formData).forEach(([label, value]) => {
-      body = {...body, [label]: value};
+      if(label !== "cpassword"){
+        body = {...body, [label]: value};
+      }
     })
 
     this.isLoading = true;

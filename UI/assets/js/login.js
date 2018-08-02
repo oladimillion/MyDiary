@@ -19,6 +19,10 @@ class Login extends Request{
 
     let body = {};
 
+    if(this.isLoading){
+      return;
+    }
+
     Array.from(formData).forEach(([label, value]) => {
       body = {...body, [label]: value};
     })

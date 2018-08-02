@@ -2,7 +2,8 @@
 class Request{
 
   constructor() {
-    this.API = "http://localhost:8000/api/v1/";
+    this.API = "https://mydiary-ola.herokuapp.com/api/v1/";
+    // this.API = "http://localhost:8000/api/v1/";
     this.token = localStorage.getItem("token") || "";
 
     this.headers = {
