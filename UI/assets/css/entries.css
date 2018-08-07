@@ -28,6 +28,7 @@ div.switch-arrow button.btn-back {
   cursor: pointer;
   transition: all 0.4s;
   letter-spacing: 0.4px;
+  border-radius: 8px; 
 }
 
 div.switch-arrow button.btn-back:hover {
@@ -128,7 +129,7 @@ li.list span.list-icon {
   left: 2px;
   top: 50%;
   transform: translateY(-50%);
-  color: #ccc;
+  color: #fff;
 }
 
 li.list div.title {
