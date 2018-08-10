@@ -32,13 +32,13 @@ class Entries extends Request {
     this.asideList = document.querySelectorAll("li.list");
     this.asideList.forEach(element => {
       element.classList.remove("selected");
-    })
+    });
   }
 
   appendEntryBodyHtml(data){
     return `
         <div class="title">
-        ${data.entry_title}
+          ${data.entry_title}
         </div>
         <!-- end of title -->
         <div class="content" id="body-content">
@@ -55,9 +55,8 @@ class Entries extends Request {
               &nbsp;Edit
             </a>
           </button>
-
           <div class="date">
-            ${this.formatDate(data.created_at)}
+            ${this.formatDate(data.updated_at)}
           </div>
         </div>
     `;
@@ -105,14 +104,14 @@ class Entries extends Request {
       <li class="list"
         onclick="entries.listSelected(event, this, ${index})">
         <span class="list-icon">
-          <i class="fa fa-tag"></i>
+          <i class="fa fa-book"></i>
         </span>
         <div class="title">
         ${data.entry_title}
         </div>
         <!-- end of title -->
         <div class="date">
-        ${this.truncateDate(data.created_at)}
+        ${this.truncateDate(data.updated_at)}
         </div>
       </li>
     `;
@@ -157,7 +156,7 @@ class Entries extends Request {
   }
 
   truncateDate(date){
-    return date.substr(0, 10);
+    return new Date(date).toLocaleDateString();
   }
 
   redirect(){
@@ -173,8 +172,6 @@ class Entries extends Request {
     } else {
       this.showInfoText();
     }
-    document.querySelector("span.count").innerHTML 
-      = this.itemsList.length.toString();
   }
 
   onError(error){

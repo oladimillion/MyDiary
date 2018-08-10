@@ -2,13 +2,13 @@
 class Request{
 
   constructor() {
-    this.API = "https://mydiary-ola.herokuapp.com/api/v1/";
-    // this.API = "http://localhost:8000/api/v1/";
-    this.token = localStorage.getItem("token") || "";
+    // this.API = "https://mydiary-ola.herokuapp.com/api/v1/";
+    this.API = "http://localhost:8000/api/v1/";
+    const token = localStorage.getItem("token") || "";
 
     this.headers = {
       headers: {
-        "Authorization": "Bearer " + this.token,
+        "Authorization": "Bearer " + token,
         "Content-Type": "application/json; charset=utf-8",
       } 
     };
@@ -17,6 +17,8 @@ class Request{
       mode: "cors",
       credentials: 'omit',
     };
+
+    this.filter = this.filter.bind(this);
   }
 
   post(url, payload){
@@ -28,14 +30,7 @@ class Request{
       body: JSON.stringify(payload),
     })
       .then(res => res.json())
-      .then(res => {
-        const {error, errors} = res;
-        if(error || errors){
-          throw res;
-        } else {
-          return res;
-        }
-      });
+      .then(this.filter);
 
   }
 
@@ -48,28 +43,23 @@ class Request{
       body: JSON.stringify(payload),
     })
       .then(res => res.json())
-      .then(res => {
-        const {error, errors} = res;
-        if(error || errors){
-          throw res;
-        } else {
-          return res;
-        }
-      });
+      .then(this.filter);
   }
 
   get(url){
     const URI = this.API + url;
     return fetch(URI, {...this.headers, ...this.options})
       .then(res => res.json())
-      .then(res => {
-        const {error, errors} = res;
-        if(error || errors){
-          throw res;
-        } else {
-          return res;
-        }
-      });
+      .then(this.filter);
+  }
+
+  filter(res){
+    const {error, errors} = res;
+    if(error || errors){
+      throw res;
+    } else {
+      return res;
+    }
   }
 
 }

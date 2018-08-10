@@ -5,12 +5,17 @@ import diary from "../controllers/diary";
 
 const route = express.Router();
 
+route.delete('/:entryId', 
+  Private,
+  diary.deleteOne.bind(diary),
+);
+
 route.get('/', 
   Private,
   diary.getEntries.bind(diary)
 );
 
-route.get('/:id', 
+route.get('/:entryId', 
   Private,
   diary.getEntry.bind(diary),
 );
@@ -21,13 +26,14 @@ route.post('/',
   diary.createEntry.bind(diary),
 );
 
-route.put('/:id', 
+route.put('/:entryId', 
   Private,
   DiaryMiddleware,
   diary.updateEntry.bind(diary),
 );
 
 if(process.env.NODE_ENV !== "production"){
+  // delete all entries pertaining to a user
   route.delete('/:userId', 
     Private,
     diary.deleteAll.bind(diary), 

@@ -30,6 +30,8 @@ header.main-header div.app-name {
   font-size: 23px;
   font-weight: 700;
   letter-spacing: 0.6px;
+  position: relative;
+  left: 22px;
 }
 
 header.main-header div.dropdown {
