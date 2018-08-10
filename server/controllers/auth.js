@@ -1,25 +1,23 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { AuthValidator as Validator } from "../utils/validators";
-import SignupModel from "../models/signup-model";
-import LoginModel from "../models/login-model";
+import AuthModel from "../models/auth-model";
 
 dotenv.config();
 
 class Auth {
 
   constructor(){
-    this.loginModel = new LoginModel();
-    this.signupModel = new SignupModel();
+    this.authModel = new AuthModel();
   }
 
   delete(req, res){
 
     const data = Object.assign({}, {username: req.params.username});
 
-    return this.signupModel.delete(data)
+    return this.authModel.delete(data)
       .then(result => {
-        return res.status(200).json({
+        return res.status(204).json({
           message: "User deleted successfully",
         });
       })
@@ -28,6 +26,12 @@ class Auth {
           error: "User not deleted",
         });
       })
+  }
+
+  genToken(data){
+    return jwt.sign({
+      userId: data.user_id,
+    }, process.env.JWT_SECRET);
   }
 
   login(req, res){
@@ -40,16 +44,14 @@ class Auth {
       });
     }
 
-    return this.loginModel.login(req.body)
+    return this.authModel.login(req.body)
       .then(result => {
-        const { user_id, username, email } = result.user;
         if(result.exist){
+          const { user_id, username, email } = result.user;
           return res.status(200).json({
             message: "Login successful",
-            user: {userId: user_id, username, email},
-            token: jwt.sign({
-              userId: user_id,
-            }, process.env.JWT_SECRET),
+            user: {username, email},
+            token: this.genToken({user_id}),
           });
         } else {
           return res.status(400).json({
@@ -74,15 +76,13 @@ class Auth {
       });
     }
 
-    return this.signupModel.signup(req.body)
+    return this.authModel.signup(req.body)
       .then((result) => {
         const { user_id, username, email } = result.rows[0];
         return res.status(201).json({
           message: "Registration successful",
-          user: {userId: user_id, username, email},
-          token: jwt.sign({
-            userId: user_id,
-          }, process.env.JWT_SECRET),
+          user: {username, email},
+          token: this.genToken({user_id}),
         });
       })
       .catch((err) => {
@@ -91,6 +91,42 @@ class Auth {
         });
       })
   }
+
+  changeInfo(req, res){
+
+    const errors = Validator(req.body);
+
+    if(Object.keys(errors).length){
+      return res.status(400).json({
+        errors,
+      });
+    }
+
+    return this.authModel
+      .update(Object.assign(
+        {}, 
+        req.body, 
+        {
+          password: req.password,
+          userId: req.userId,
+        }
+      ))
+      .then((result) => {
+        const { user_id, username, email } = result.rows[0];
+        return res.status(201).json({
+          message: "Profile successfully updated",
+          user: {username, email},
+          token: this.genToken({user_id}),
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+        return res.status(500).json({
+          error: "Profile could not be updated",
+        });
+      })
+  }
+
 }
 
 export default new Auth;

@@ -89,7 +89,7 @@ class Entry extends Request{
     this.status.show(data);
     setTimeout(() => {
       window.location.href = "entries.html";
-    }, 2000);
+    }, 1000);
   }
 
   onError(error){

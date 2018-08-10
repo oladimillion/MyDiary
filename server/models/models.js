@@ -24,19 +24,28 @@ class Models {
   createTable(){
     const createTable = `
       CREATE TABLE IF NOT EXISTS users(
-        user_id VARCHAR UNIQUE NOT NULL,
+        user_id VARCHAR PRIMARY KEY,
         username VARCHAR UNIQUE NOT NULL,
         email VARCHAR UNIQUE NOT NULL,
-        password VARCHAR,
+        password VARCHAR NOT NULL,
+        updated_at TIMESTAMP, 
         created_at TIMESTAMP
       );
 
       CREATE TABLE IF NOT EXISTS entries(
-        user_id VARCHAR NOT NULL,
-        entry_id VARCHAR UNIQUE NOT NULL,
-        entry_title VARCHAR NOT NULL,
-        entry_content TEXT NOT NULL,
-        updated_at TIMESTAMP,
+        entry_id VARCHAR PRIMARY KEY, 
+        user_id VARCHAR REFERENCES users(user_id) ON DELETE CASCADE, 
+        entry_title VARCHAR NOT NULL, 
+        entry_content VARCHAR NOT NULL, 
+        updated_at TIMESTAMP, 
+        created_at TIMESTAMP
+      );
+
+      CREATE TABLE IF NOT EXISTS reminders(
+        reminder_id VARCHAR PRIMARY KEY, 
+        user_id VARCHAR REFERENCES users(user_id) ON DELETE CASCADE, 
+        time TIME NOT NULL, 
+        updated_at TIMESTAMP, 
         created_at TIMESTAMP
       );
     `;

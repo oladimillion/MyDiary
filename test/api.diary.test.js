@@ -24,7 +24,7 @@ describe('Delete entry api test', () => {
     request.delete(path + "/test").send()
       .set('Authorization', 'Bearer ' + token)
       .end((err, res) => {
-        assert.equal(res.statusCode, 200);
+        assert.equal(res.statusCode, 204);
         done();
       });
   });
@@ -198,7 +198,6 @@ describe('Get single entry api test', () => {
   });
 
 });
-
 
 
 describe('Update single entry api test', () => {

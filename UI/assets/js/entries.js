@@ -3,6 +3,7 @@ class Entries extends Request {
 
   constructor(){
     super();
+    this.status = new Status();
 
     this.entryAside = document.getElementById("entry-aside");
     this.entryBody = document.getElementById("entry-body");
@@ -19,6 +20,8 @@ class Entries extends Request {
     this.itemsList = [];
     this.selectedItem = {};
 
+    this.listIsSelected = false;
+
     this.fetchData();
   }
 
@@ -32,13 +35,13 @@ class Entries extends Request {
     this.asideList = document.querySelectorAll("li.list");
     this.asideList.forEach(element => {
       element.classList.remove("selected");
-    })
+    });
   }
 
   appendEntryBodyHtml(data){
     return `
         <div class="title">
-        ${data.entry_title}
+          ${data.entry_title}
         </div>
         <!-- end of title -->
         <div class="content" id="body-content">
@@ -55,16 +58,14 @@ class Entries extends Request {
               &nbsp;Edit
             </a>
           </button>
-
           <div class="date">
-            ${this.formatDate(data.created_at)}
+            ${this.formatDate(data.updated_at)}
           </div>
         </div>
     `;
   }
 
   fetchData(){
-    // this.showLoadingIcon();
     this.get("entries")
       .then(this.onSuccess.bind(this))
       .catch(this.onError.bind(this));    
@@ -76,17 +77,9 @@ class Entries extends Request {
 
   hideMobileAside(){
     this.entryAside.classList.add("mobile-aside");
-    this.backButton.classList.remove("_hide");
-  }
-
-  hideMobileContentBody(){
-    this.entryBody.classList.add("mobile-body");
   }
 
   listSelected(event, context, index){
-    if(context.classList.contains("selected")){
-      // return;
-    }
 
     this.selectedItem = this.itemsList[index];
     this.entryBody.innerHTML = 
@@ -95,8 +88,9 @@ class Entries extends Request {
     this.clearSelections();
     context.classList.add("selected");
 
+    this.listIsSelected = true;
+
     this.showContentBody();
-    this.showMobileContentBody();
     this.hideMobileAside();
   }
 
@@ -105,14 +99,14 @@ class Entries extends Request {
       <li class="list"
         onclick="entries.listSelected(event, this, ${index})">
         <span class="list-icon">
-          <i class="fa fa-tag"></i>
+          <i class="fa fa-book"></i>
         </span>
         <div class="title">
         ${data.entry_title}
         </div>
         <!-- end of title -->
         <div class="date">
-        ${this.truncateDate(data.created_at)}
+        ${this.truncateDate(data.updated_at)}
         </div>
       </li>
     `;
@@ -120,11 +114,13 @@ class Entries extends Request {
 
   showMobileAside(){
     this.entryAside.classList.remove("mobile-aside");
-    this.backButton.classList.add("_hide");
   }
 
-  showMobileContentBody(){
-    this.entryBody.classList.remove("mobile-body");
+  toggleMobileAside(){
+    if(!this.listIsSelected){
+      return;
+    }
+    this.entryAside.classList.toggle("mobile-aside");
   }
 
   showContentBody(){
@@ -157,7 +153,7 @@ class Entries extends Request {
   }
 
   truncateDate(date){
-    return date.substr(0, 10);
+    return new Date(date).toLocaleDateString();
   }
 
   redirect(){
@@ -173,8 +169,11 @@ class Entries extends Request {
     } else {
       this.showInfoText();
     }
-    document.querySelector("span.count").innerHTML 
-      = this.itemsList.length.toString();
+
+    localStorage.setItem(
+      "entry-count", 
+      String(this.itemsList.length)
+    );
   }
 
   onError(error){
@@ -188,8 +187,7 @@ class Entries extends Request {
 const entries = new Entries();
 
 entries.backButton.addEventListener("click", (e) => {
-  entries.hideMobileContentBody();
-  entries.showMobileAside();
+  entries.toggleMobileAside();
 });
 
 

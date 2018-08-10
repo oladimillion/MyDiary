@@ -23,14 +23,18 @@
 
 ## App's API endpoints
 
-| Functionality        |  HTTP Method  |         API endpoints           |
-| --------------- | --------------|-------------------------------- |
-| Login           | POST          | /api/v1/auth/login              |
-| Registration    | POST          |  /api/v1/auth/signup            |
-| Add entry       | POST          | /api/v1/entries                 |
-| Update entry    | PUT           | /api/v1/entries/&lt;entryid&gt; |
-| Entry List      | GET           | /api/v1/entries                 |
-| Entry Detail    | GET           | /api/v1/entries/&lt;entryid&gt; |
+| Functionality       |  HTTP Method  |         API endpoints                |
+| ------------------- | --------------|------------------------------------- |
+| Login               | POST          | /api/v1/auth/login                   |
+| Registration        | POST          | /api/v1/auth/signup                  |
+| Update Profile      | PUT           | /api/v1/auth/update                  |
+| Add entry           | POST          | /api/v1/entries                      |
+| Update entry        | PUT           | /api/v1/entries/&lt;entryId&gt;      |
+| Entry List          | GET           | /api/v1/entries                      |
+| Entry Detail        | GET           | /api/v1/entries/&lt;entryId&gt;      |
+| Delete entry        | DELETE        | /api/v1/entries/&lt;entryId&gt;      |
+| Add/update reminder | POST          | /api/v1/reminders                    |
+| Delete reminder     | DELETE        | /api/v1/reminders/&lt;remindersId&gt;|
 
 
 ## App's template on Github Pages

@@ -4,13 +4,7 @@ class Header{
     this.settingsDropdown = 
       document.getElementById("settings-dropdown");
     this.timerID = null;
-    this.usernameTag = document.querySelector(".p-username");
-    this.emailTag = document.querySelector(".p-email");
-
     this.logoutBtn = document.getElementById("logout");
-
-    this.userInfo = this.getUserInfo();
-    this.setUserInfo(this.userInfo);
   }
 
   clearTimeout(){
@@ -27,22 +21,6 @@ class Header{
     }, 200);
   }
 
-  getUserInfo(){
-    const userInfo = localStorage.getItem("user");
-    if(userInfo){
-      return JSON.parse(userInfo);
-    }
-    return null;
-  }
-
-  setUserInfo(userInfo){
-    if(!userInfo){
-      return;
-    }
-    this.usernameTag.innerHTML = userInfo.username;
-    this.emailTag.innerHTML = userInfo.email;
-  }
-
   showSettingItem(){
     this.clearTimeout()
     this.settingsDropdown.classList.remove("hide");
@@ -50,6 +28,8 @@ class Header{
 
   logout(){
     localStorage.removeItem("user");
+    localStorage.removeItem("time");
+    localStorage.removeItem("entry-count");
     localStorage.removeItem("token");
     localStorage.removeItem("entry");
     window.location.href = "login.html";

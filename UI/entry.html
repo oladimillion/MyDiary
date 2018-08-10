@@ -131,7 +131,7 @@
   <div id="modal-profile" class="modal _hide">
     <div class="modal-content">
       <header class="modal-header">
-        <i class="fa fa-user"></i>
+        <i class="fa fa-user-circle"></i>
         &nbsp;&nbsp;PROFILE
         <span class="close-btn cancel-profile-btn">
           <i class="fa fa-times"></i>
@@ -139,27 +139,86 @@
       </header>
       <!-- end of modal header -->
       <div class="modal-body">
-        <div class="top-section">
-          <span class="label">Username:</span>
-          <span class="p-username"></span>
-        </div>
-        <!-- end of top section -->
-        <div class="top-section mid-section">
-          <span class="label">Email:</span>
-          <span class="p-email"></span>
-        </div>
-        <!-- end of top section -->
-        <div class="lower-section">
-          <span class="label">Password:</span>
-          <span class="">************</span>
-        </div>
-        <!-- end of lower section -->
-        <div class="ctrl-btns">
-          <button class="btn btn-cancel cancel-profile-btn">
-            Cancel
-          </button>
-        </div>
-        <!-- end of ctrl btn -->
+        <form id="profile-form">
+          <div class="well">
+            <table>
+              <tr>
+                <td>
+                  <span class="label">Username:</span>
+                </td>
+                <td>
+                  <input 
+                    class="input" 
+                    id="username"
+                    type="text" 
+                    name="username"
+                    placeholder="change username"
+                    value="oladimeji"
+                    />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">Email:</span>
+                </td>
+                <td>
+                  <input 
+                    class="input" 
+                    id="email"
+                    type="email" 
+                    name="email"
+                    placeholder="change email"
+                    value="oladimeji@email.com"
+                    />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">Old Password:</span>
+                </td>
+                <td>
+                  <input 
+                    class="input" 
+                    id="oldPassword"
+                    type="password" 
+                    name="oldPassword"
+                    placeholder="old password"
+                    value=""
+                    />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">New Password:</span>
+                </td>
+                <td>
+                  <input 
+                    class="input" 
+                    id="newPassword"
+                    type="password" 
+                    name="newPassword"
+                    placeholder="new password"
+                    value=""
+                    />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- end of well -->
+          <div class="ctrl-btns">
+            <button 
+              type="button"
+              class="btn btn-cancel cancel-profile-btn">
+              Cancel
+            </button>
+            <button 
+              id="profile-btn"
+              type="submit" class="btn btn-save modal-save">
+              Save
+            </button>
+          </div>
+          <!-- end of ctrl btn -->
+        </form>
       </div>
       <!-- end of modal body -->
     </div>
@@ -179,31 +238,65 @@
       </header>
       <!-- end of modal header -->
       <div class="modal-body">
-        <div class="top-section">
-          <span class="label">Number of entries:</span>
-          <span class="count">0</span>
-        </div>
-        <!-- end of top section -->
-        <div class="lower-section">
-          <span class="label">Time:</span>
-          <input class="input" type="time" />
-        </div>
-        <!-- end of lower section -->
-        <div class="ctrl-btns">
-          <button class="btn btn-cancel cancel-btn">
-            Cancel
-          </button>
-          <button id="save-btn" class="btn btn-save">
-            Save
-          </button>
-        </div>
-        <!-- end of ctrl btn -->
+        <form id="reminder-form">
+          <div class="well">
+            <table>
+              <tr>
+                <td class="reminder">
+                  <span class="label">Number of entries:</span>
+                </td>
+                <td>
+                  <input 
+                    class="input" 
+                    id="count"
+                    type="text" 
+                    name="count"
+                    placeholder="change count"
+                    value="0"
+                    disabled
+                    />
+                </td>
+              </tr>
+              <tr>
+                <td class="reminder">
+                  <span class="label">Set Time:</span>
+                </td>
+                <td>
+                  <input 
+                    class="input time" 
+                    id="time"
+                    type="time" 
+                    name="time"
+                    placeholder="change time"
+                    value=""
+                    />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- end of well -->
+          <div class="ctrl-btns">
+            <button 
+              type="button"
+              class="btn btn-cancel cancel-btn">
+              Cancel
+            </button>
+            <button 
+              id="reminder-btn"
+              type="submit"
+              class="btn btn-save modal-save">
+              Save
+            </button>
+          </div>
+          <!-- end of ctrl btn -->
+        </form>
       </div>
       <!-- end of modal body -->
     </div>
     <!-- end of modal content -->
   </div>
   <!-- end of modal -->
+
 
   <footer class="main-footer">
     <div>&copy; Andela</div>
