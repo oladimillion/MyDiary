@@ -443,7 +443,7 @@
         "summary": "delete a reminder with a given ID",
         "responses": {
           "204": {
-            "description": "Delete a  reminder"
+            "description": "Delete a reminder"
           }
         }
       }
@@ -458,6 +458,7 @@
       ],
       "properties": {
         "user_id": {
+          "readOnly": true,
           "type": "string",
           "uniqueItems": true
         },
@@ -473,9 +474,11 @@
           "type": "string"
         },
         "updated_at": {
+          "readOnly": true,
           "type": "string"
         },
         "created_at": {
+          "readOnly": true,
           "type": "string"
         }
       }
@@ -487,9 +490,11 @@
       ],
       "properties": {
         "user_id": {
+          "readOnly": true,
           "type": "string"
         },
         "entry_id": {
+          "readOnly": true,
           "type": "string",
           "uniqueItems": true
         },
@@ -500,9 +505,11 @@
           "type": "string"
         },
         "updated_at": {
+          "readOnly": true,
           "type": "string"
         },
         "created_at": {
+          "readOnly": true,
           "type": "string"
         }
       }
@@ -513,19 +520,23 @@
       ],
       "properties": {
         "user_id": {
+          "readOnly": true,
           "type": "string"
         },
         "reminder_id": {
           "type": "string",
+          "readOnly": true,
           "uniqueItems": true
         },
         "time": {
           "type": "string"
         },
         "updated_at": {
+          "readOnly": true,
           "type": "string"
         },
         "created_at": {
+          "readOnly": true,
           "type": "string"
         }
       }

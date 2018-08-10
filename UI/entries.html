@@ -63,6 +63,16 @@
 
     <main class="main-body row flow-column">
 
+      <div id="show-status" class="show-status _hide">
+        <span 
+          onclick="entries.status.hide()"
+          class="close">
+          <i class="fa fa-times"></i>
+        </span>
+        <table id="status-wrapper"></table>
+      </div>
+      <!-- end of show status -->
+
       <header class="dashboard-header">
         <ul class="nav-entry row">
           <li class="nav-list">
@@ -87,8 +97,7 @@
           <button 
             type="button"
             class="btn btn-back" id="btn-back">
-            <i class="fa fa-arrow-left"></i>
-            &nbsp;Back
+            <i class="fa fa-bars"></i>
           </button>
         </div>
         <!-- end of switch arrow -->
@@ -112,7 +121,6 @@
           </aside>
           <!-- end of aside bar -->
 
-          <!-- TODO: remember to add _hide to entry body -->
           <div 
             class="entry entry-body mobile-body _hide" id="entry-body">
             <!-- end of btm btn -->
@@ -212,7 +220,9 @@
                 class="btn btn-cancel cancel-profile-btn">
                 Cancel
               </button>
-              <button type="submit" class="btn btn-save">
+              <button 
+                id="profile-btn"
+                type="submit" class="btn btn-save modal-save">
                 Save
               </button>
             </div>
@@ -281,8 +291,9 @@
                 Cancel
               </button>
               <button 
+                id="reminder-btn"
                 type="submit"
-                class="btn btn-save">
+                class="btn btn-save modal-save">
                 Save
               </button>
             </div>

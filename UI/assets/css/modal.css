@@ -169,6 +169,7 @@ div.ctrl-btns button.btn {
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: all 0.3s;
+  width: 67px;
 }
 
 div.ctrl-btns button.btn:hover {

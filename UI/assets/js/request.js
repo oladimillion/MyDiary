@@ -21,6 +21,24 @@ class Request{
     this.filter = this.filter.bind(this);
   }
 
+  delete(url){
+    const URI = this.API + url;
+    return fetch(URI, {
+      method: "DELETE", 
+      ...this.headers,
+      ...this.options,
+    })
+      .then(res => res.json())
+      .then(this.filter);
+  }
+
+  get(url){
+    const URI = this.API + url;
+    return fetch(URI, {...this.headers, ...this.options})
+      .then(res => res.json())
+      .then(this.filter);
+  }
+
   post(url, payload){
     const URI = this.API + url;
     return fetch(URI, {
@@ -31,7 +49,6 @@ class Request{
     })
       .then(res => res.json())
       .then(this.filter);
-
   }
 
   put(url, payload){
@@ -42,13 +59,6 @@ class Request{
       ...this.options,
       body: JSON.stringify(payload),
     })
-      .then(res => res.json())
-      .then(this.filter);
-  }
-
-  get(url){
-    const URI = this.API + url;
-    return fetch(URI, {...this.headers, ...this.options})
       .then(res => res.json())
       .then(this.filter);
   }
