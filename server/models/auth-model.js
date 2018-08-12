@@ -80,7 +80,9 @@ class AuthModel extends Models{
   isDataExisting(data){
 
     const text1 = `
-      SELECT a.username FROM users a WHERE a.username = $1;
+      SELECT a.username, a.user_id 
+      FROM users a 
+      WHERE a.username = $1;
     `;
 
     const query1 = {
@@ -89,7 +91,9 @@ class AuthModel extends Models{
     };
 
     const text2 = `
-      SELECT a.email FROM users a WHERE a.email = $1;
+      SELECT a.email, a.user_id 
+      FROM users a 
+      WHERE a.email = $1;
     `;
 
     const query2 = {
