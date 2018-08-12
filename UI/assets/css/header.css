@@ -30,13 +30,15 @@ header.main-header div.app-name {
   font-size: 23px;
   font-weight: 700;
   letter-spacing: 0.6px;
+  position: relative;
+  left: 22px;
 }
 
 header.main-header div.dropdown {
   position: relative;
   font-size: 14px;
   margin: auto 20px;
-  margin-right: 20px;
+  /* margin-right: -5px; */
 }
 
 div.dropdown button.settings-btn {
@@ -97,5 +99,8 @@ ul.dropdown-items li a {
 }
 
 
-
-
+@media (max-width: 605px){
+  header.main-header div.dropdown {
+    margin-right: -5px;
+  }
+}

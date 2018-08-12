@@ -54,10 +54,29 @@ class DiaryModel extends Models{
     return this.pool.query(query);
   }
 
+  deleteOne(data){
+
+    const text = `
+      DELETE FROM entries
+      WHERE user_id = $1 AND entry_id = $2
+    `;
+
+    const query = {
+      text,
+      values: [
+        data.userId,
+        data.entryId
+      ],
+    };
+
+    return this.pool.query(query);
+  }
+
   getOne(data){
 
     const text = `
-      SELECT *
+      SELECT user_id, entry_id, entry_title,
+      entry_content, updated_at, created_at
       FROM entries
       WHERE user_id = $1 AND entry_id = $2
     `;
@@ -66,7 +85,7 @@ class DiaryModel extends Models{
       text,
       values: [
         data.userId,
-        data.entryId,
+        data.entryId
       ],
     };
 
@@ -76,7 +95,8 @@ class DiaryModel extends Models{
   getAll(data){
 
     const text = `
-      SELECT *
+      SELECT user_id, entry_id, entry_title,
+      entry_content, updated_at, created_at
       FROM entries
       WHERE user_id = $1
     `;
@@ -92,6 +112,7 @@ class DiaryModel extends Models{
   }
 
   update(data){
+
     const text = `
       UPDATE entries
       SET entry_title = $1, entry_content = $2, updated_at = $3

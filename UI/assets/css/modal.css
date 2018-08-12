@@ -16,7 +16,8 @@ div.modal {
 
 div.modal div.modal-content {
   margin: auto;
-  width: 300px;
+  min-width: 300px;
+  width: 30%;
   background: #fff;
   border-radius: 5px;
   overflow: hidden;
@@ -24,7 +25,7 @@ div.modal div.modal-content {
 
 div.modal-content header.modal-header {
   width: 100%;
-  background: #000;
+  background: #234C85;
   color: #fff;
   text-align: center;
   font-size: 14px;
@@ -39,7 +40,7 @@ header.modal-header span.close-btn {
   position: absolute;
   top: 9px;
   right: 9px;
-  color: red;
+  color: #fff;
   font-size: 14px;
   cursor: pointer;
 }
@@ -47,6 +48,79 @@ header.modal-header span.close-btn {
 div.modal-content div.modal-body {
   padding: 10px;
 }
+
+div.modal-body form {
+  width: 100%;
+  height: 100%;
+}
+
+div.modal-body div.well {
+  border: 1px solid #ccc;
+  padding: 11px;
+  border-radius: 5px;
+  background: #eee;
+  padding-top: 12px;
+}
+
+div.well table,
+div.well tbody{
+  display: block;
+  position: relative;
+  top: 4px;
+}
+
+div.well table tr {
+  margin: 3px 0px;
+  display: flex;
+}
+
+div.well table tr td:nth-child(2){
+  flex: 1;
+}
+
+
+div.well table tr td:first-child{
+  width: 103px;
+}
+
+div.well table tr td.reminder {
+  width: 124px;
+}
+
+div.well table tr td span {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+div.well table tr td span.label {
+  text-align: right;
+  color: #555;
+}
+
+div.well table tr td input.input {
+  font-size: 15px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  color: #555;
+  position: relative;
+  top: -9px;
+  letter-spacing: 0.7px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+div.well table tr td input.time {
+  padding: 5px; 
+}
+
+div.well table tr td input.input::-webkit-input-placeholder {
+  color: #ccc;
+}
+
 
 div.modal-body div.top-section {
   font-size: 17px;
@@ -81,10 +155,8 @@ div.lower-section select.dropdown {
 }
 
 div.modal-body div.ctrl-btns {
-  padding: 5px 0px;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #bbb;
   padding-top: 10px;
 }
 
@@ -97,6 +169,7 @@ div.ctrl-btns button.btn {
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: all 0.3s;
+  width: 67px;
 }
 
 div.ctrl-btns button.btn:hover {

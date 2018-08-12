@@ -1,4 +1,3 @@
-import jwt from "jsonwebtoken";
 import DiaryModel from "../models/diary-model";
 import { GenId } from "../utils/common";
 import { Validator } from "../utils/validators";
@@ -23,9 +22,10 @@ class Diary {
 
     return this.diaryModel.create(data)
       .then(result => {
+        const entry = result.rows[0];
         return res.status(201).json({
           message: "Entry successfully added",
-          entry: result.rows[0],
+          entry,
         });
       })
       .catch(err => {
@@ -37,11 +37,11 @@ class Diary {
 
   deleteAll(req, res){
 
-    const data = Object.assign({}, {userId: req.params.userId});
+    const data = Object.assign({}, {userId: req.userId});
 
     return this.diaryModel.deleteAll(data)
       .then(result => {
-        return res.status(200).json({
+        return res.status(204).json({
           message: "Entries deleted successfully",
         });
       })
@@ -52,31 +52,55 @@ class Diary {
       })
   }
 
+  deleteOne(req, res){
+
+    const data = Object.assign(
+      {}, 
+      {
+        userId: req.userId,
+        entryId: req.params.entryId
+      }
+    );
+
+    return this.diaryModel.deleteOne(data)
+      .then(result => {
+        return res.status(204).json({
+          message: "Entry deleted successfully",
+        });
+      })
+      .catch(err => {
+        return res.status(500).json({
+          error: "Entry not deleted",
+        });
+      });
+  }
+
   getEntries(req, res){
     return this.diaryModel.getAll({userId: req.userId})
       .then(result => {
         const message = result.rows.length ? 
-          "Entry successfully fetched" : "No entry yet"
+          "Entries successfully fetched" : "No entry yet"
         return res.status(200).json({
           message,
-          entries: result.rows,
+          entries: result.rows.sort(this.sort.call(this)),
         });
       })
       .catch(err => {
         return res.status(500).json({
           error: "Entries fetch failed",
         });
-      })
+      });
   }
 
   getEntry(req, res){
 
-    const data = {userId: req.userId, entryId: req.params.id};
+    const data = {userId: req.userId, entryId: req.params.entryId};
 
     return this.diaryModel.getOne(data)
       .then(result => {
         if(result.rows.length){
           return res.status(200).json({
+            message: "Entry successfully fetched",
             entry: result.rows[0],
           });
         } else {
@@ -92,6 +116,12 @@ class Diary {
       })
   }
 
+  sort(){
+    return (a, b) => {
+      return (Date.parse(a.updated_at) < Date.parse(b.updated_at));
+    }
+  }
+
   updateEntry(req, res){
     const errors = Validator(req.body);
 
@@ -101,14 +131,16 @@ class Diary {
       });
     }
 
-    const data = {userId: req.userId, entryId: req.params.id};
+    const data = {userId: req.userId, entryId: req.params.entryId};
 
-    return this.diaryModel.update(Object.assign({}, req.body, data))
+    return this.diaryModel
+      .update(Object.assign({}, req.body, data))
       .then(result => {
+        const entry = result.rows[0];
         if(result.rows.length){
           return res.status(200).json({
             message: "Entry updated successfully",
-            entry: result.rows[0],
+            entry,
           });
         } else {
           return res.status(404).json({

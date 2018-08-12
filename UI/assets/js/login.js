@@ -52,7 +52,7 @@ class Login extends Request{
     localStorage.setItem("user", JSON.stringify(user));
     setTimeout(() => {
       window.location.href = "entries.html";
-    }, 2000);
+    }, 1000);
     this.status.show(data);
   }
 

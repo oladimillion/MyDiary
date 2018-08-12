@@ -14,100 +14,92 @@ const token = jwt.sign({
 }, process.env.JWT_SECRET);
 
 
-describe('hooks', function() {
-
-  before(function() {
-    // runs before all tests in this block
-    describe('Delete auth api test', () => {
-      it('should remove user', done => {
-        request.delete(path + "/test").send()
-          .set('Authorization', 'Bearer ' + token)
-          .end((err, res) => {
-            assert.equal(res.statusCode, 200);
-            done();
-          });
+describe('Delete auth api test', () => {
+  it('should remove user', done => {
+    request.delete(path + "/test").send()
+      .set('Authorization', 'Bearer ' + token)
+      .end((err, res) => {
+        assert.equal(res.statusCode, 204);
+        done();
       });
-    });
+  });
+});
+
+describe('Signup api test', () => {
+
+  const data = {
+    userId: "test",
+    username: "test",
+    email: "test@test.com",
+    password: "test",
+  };
+
+  it('should return success message', done => {
+    request.post(path + "/signup").send(data)
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        assert.equal(res.statusCode, 201);
+        assert.equal(response.hasOwnProperty("token"), true);
+        assert.equal(response.hasOwnProperty("message"), true);
+        assert.equal(response.hasOwnProperty("user"), true);
+        assert.equal(response.message, "Registration successful");
+        done();
+      });
   });
 
-  describe('Signup api test', () => {
 
-    const data = {
-      userId: "test",
-      username: "test",
-      email: "test@test.com",
-      password: "test",
-    };
-
-    it('should return success message', done => {
-      request.post(path + "/signup").send(data)
-        .end((err, res) => {
-          const response = JSON.parse(res.text);
-          assert.equal(res.statusCode, 201);
-          assert.equal(response.hasOwnProperty("token"), true);
-          assert.equal(response.hasOwnProperty("message"), true);
-          assert.equal(response.hasOwnProperty("user"), true);
-          assert.equal(response.user.hasOwnProperty("userId"), true);
-          assert.equal(response.message, "Registration successful");
-          done();
-        });
-    });
-
-
-    it('should return an error message', done => {
-      request.post(path + "/signup").send()
-        .end((err, res) => {
-          const response = JSON.parse(res.text);
-          assert.equal(res.statusCode, 400);
-          assert.equal(response.hasOwnProperty("errors"), true);
-          assert.equal(response.errors.hasOwnProperty("username"), true);
-          assert.equal(response.errors.hasOwnProperty("email"), true);
-          assert.equal(response.errors.hasOwnProperty("password"), true);
-          done();
-        });
-    });
-
+  it('should return an error message', done => {
+    request.post(path + "/signup").send()
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        assert.equal(res.statusCode, 400);
+        assert.equal(response.hasOwnProperty("errors"), true);
+        assert.equal(response.errors.hasOwnProperty("username"), true);
+        assert.equal(response.errors.hasOwnProperty("email"), true);
+        assert.equal(response.errors.hasOwnProperty("password"), true);
+        done();
+      });
   });
-
-  describe('Login api test', () => {
-
-    const data = {
-      username: "test",
-      password: "test",
-    };
-
-
-    it('should return 200 status code', done => {
-      request.post(path + "/login").send(data)
-        .end((err, res) => {
-          const response = JSON.parse(res.text);
-          assert.equal(res.statusCode, 200);
-          assert.equal(response.hasOwnProperty("token"), true);
-          assert.equal(response.hasOwnProperty("message"), true);
-          assert.equal(response.hasOwnProperty("user"), true);
-          assert.equal(response.user.hasOwnProperty("userId"), true);
-          assert.equal(response.message, "Login successful");
-          done();
-        });
-    });
-
-
-    it('should return 400 status code', done => {
-      request.post(path + "/login").send()
-        .end((err, res) => {
-          const response = JSON.parse(res.text);
-          assert.equal(res.statusCode, 400);
-          assert.equal(response.hasOwnProperty("errors"), true);
-          assert.equal(response.errors.hasOwnProperty("username"), true);
-          assert.equal(response.errors.hasOwnProperty("password"), true);
-          done();
-        });
-    });
-
-  });
-
 
 });
+
+describe('Login api test', () => {
+
+  const data = {
+    username: "test",
+    password: "test",
+  };
+
+
+  it('should return 200 status code', done => {
+    request.post(path + "/login").send(data)
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        assert.equal(res.statusCode, 200);
+        assert.equal(response.hasOwnProperty("token"), true);
+        assert.equal(response.hasOwnProperty("message"), true);
+        assert.equal(response.hasOwnProperty("user"), true);
+        assert.equal(response.message, "Login successful");
+        done();
+      });
+  });
+
+
+  it('should return 400 status code', done => {
+    request.post(path + "/login").send()
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        assert.equal(res.statusCode, 400);
+        assert.equal(response.hasOwnProperty("errors"), true);
+        assert.equal(response.errors.hasOwnProperty("username"), true);
+        assert.equal(response.errors.hasOwnProperty("password"), true);
+        done();
+      });
+  });
+
+});
+
+
 http.close();
 
 

@@ -1,6 +1,7 @@
 import express from "express";
 import authRoute from "./auth";
 import diaryRoute from "./diary";
+import reminderRoute from "./reminder";
 
 const route = express.Router();
 
@@ -8,6 +9,7 @@ const path = "/api/v1";
 
 route.use(path + "/auth", authRoute);
 route.use(path + "/entries", diaryRoute);
+route.use(path + "/reminders", reminderRoute);
 
 route.use((req, res) => {
 	res.type('text/json');

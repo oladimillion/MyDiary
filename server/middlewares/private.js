@@ -17,7 +17,7 @@ export function Private (req, res, next) {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         res.status(401).json({
-          error: "Please login to access the resource"
+          error: "Authentication failed. Try again"
         });
       } else {
         req.userId = decoded.userId;
@@ -26,7 +26,7 @@ export function Private (req, res, next) {
     });
   } else {
     res.status(401).json({
-      error: "Please login to access the resource"
+      error: "Authentication failed. Try again"
     });
   }
 }
