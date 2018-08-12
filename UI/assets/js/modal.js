@@ -125,6 +125,8 @@ class Modal extends Request {
   toggleModalProfile(){
     if(this.isLoading) return;
     this.clearFields();
+    this.userData = this.getUserData();
+    this.setUserData(this.userData);
     this.modalProfile.classList.toggle("_hide");
   }
 

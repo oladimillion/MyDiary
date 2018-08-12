@@ -125,7 +125,10 @@ export function ChangeInfoMiddleware(req, res, next){
       // in case user do not want to change password
       req.password = password;
 
-      next();
+      // check if username and email provide 
+      // is in use by another user
+      return VerifyExistingData(req, res, next);
+
     })
     .catch(err => {
       console.log(err)
@@ -206,3 +209,47 @@ export function SignupMiddleware(req, res, next){
       })
     });
 }
+
+
+function VerifyExistingData(req, res, next){
+
+  const errors = {};
+
+  return new AuthModel().isDataExisting(req.body)
+    .then(([result1, result2]) => {
+
+      const { username, email } = req.body;
+
+      if(result1.rows.length && 
+        (result1.rows[0].user_id !== req.userId)){
+        Object.assign(
+          errors, 
+          {username: username + " already taken"}
+        );
+      }
+
+      if(result2.rows.length && 
+        (result2.rows[0].user_id !== req.userId)){
+        Object.assign(
+          errors, 
+          {email: email + " already taken"}
+        );
+      }
+
+      if(Object.keys(errors).length){
+        return res.status(409).json({
+          errors,
+        })
+      }
+      next();
+    })
+    .catch(err => {
+      console.log(err)
+      return res.status(500).json({
+        error: "Profile could not be updated",
+      })
+    });
+}
+
+
+
