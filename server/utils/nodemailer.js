@@ -1,8 +1,6 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 
-import config from "./nodemailer.config";
-
 dotenv.config();
 
 // create reusable transporter object using the default SMTP transport
@@ -33,10 +31,10 @@ class NodeMailer{
       auth: {
         type: 'OAuth2',
         user: "oladimillion.dev@gmail.com",
-        clientId: config.CLIENT_ID || process.env.CLIENT_ID,
-        clientSecret: config.CLIENT_SECRET || process.env.CLIENT_SECRET,
-        refreshToken: config.REFRESH_TOKEN || process.env.REFRESH_TOKEN,
-        accessToken: config.ACCESS_TOKEN || process.env.ACCESS_TOKEN,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: process.env.ACCESS_TOKEN,
         expires: 3000
       }
     }); 
