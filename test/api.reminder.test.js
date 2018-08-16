@@ -77,7 +77,9 @@ describe('Add reminder api test', () => {
       .end((err, res) => {
         const response = JSON.parse(res.text);
         assert.equal(res.statusCode, 403);
-        assert.equal(response.hasOwnProperty("error"), true);
+        assert.equal(response.hasOwnProperty("errors"), true);
+        assert.equal(response.errors.hasOwnProperty("time"), true);
+        assert.equal(response.errors.time, 'This field is required');
         done();
       });
   });

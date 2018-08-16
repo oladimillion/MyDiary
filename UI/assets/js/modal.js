@@ -21,6 +21,8 @@ class Modal extends Request {
     this.setUserData(this.userData);
 
     this.fetchReminder();
+
+    this.zoneOffset = new Date().getTimezoneOffset().toString();
   }
 
   clearFields(){
@@ -95,7 +97,7 @@ class Modal extends Request {
   submitReminder(form){
     const formData = new FormData(form);
 
-    let body = {};
+    let body = {zoneOffset: this.zoneOffset};
 
     if(this.isLoading){
       return;
