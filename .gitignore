@@ -1,4 +1,5 @@
 node_modules/
+nodemailer.config.js
 
 
 npm-debug.log.376226242

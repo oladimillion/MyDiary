@@ -30,6 +30,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
+    "nodemailer": "^4.6.7",
     "pg": "^7.4.3",
     "swagger-ui-express": "^3.0.10"
   },

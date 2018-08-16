@@ -2,27 +2,38 @@ import ReminderModel from "../models/reminder-model";
 import { GenId } from "../utils/common";
 import { Validator } from "../utils/validators";
 
+import NodeMailer from "../utils/nodemailer";
+
 class Reminder {
 
   constructor(){
     this.reminderModel = new ReminderModel();
+    this.nodeMailer = new NodeMailer(ReminderModel);
   }
 
   createOrUpdate(req, res){
 
-    const { time } = req.body;
+    const errors = {};
 
-    if(typeof time !== "string" || !time.trim()){
-      return res.status(403).json({
-        error: "Invalid time provided"
-      });
-    }
+    Object.keys(req.body).forEach(key => {
+      if(typeof req.body[key] !== "string"){
+        Object.assign(
+          errors,
+          {[key]: "Invalid data provided"},
+        );
+      }
+    })
 
-    const errors = Validator(req.body);
 
     if(Object.keys(errors).length){
       return res.status(403).json({
-        errors,
+        errors
+      });
+    }
+
+    if(Object.keys(Validator(req.body)).length){
+      return res.status(403).json({
+        errors: Validator(req.body),
       });
     }
 
@@ -30,6 +41,9 @@ class Reminder {
 
     return this.reminderModel.createOrUpdate(data)
       .then(result => {
+
+        this.nodeMailer.getOne(result.rows[0]);
+
         return res.status(201).json({
           message: "Reminder successfully added",
           reminder: result.rows[0],
