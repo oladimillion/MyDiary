@@ -44,6 +44,7 @@ class Models {
       CREATE TABLE IF NOT EXISTS reminders(
         reminder_id VARCHAR PRIMARY KEY, 
         user_id VARCHAR REFERENCES users(user_id) ON DELETE CASCADE, 
+        zone_offset VARCHAR, 
         time TIME NOT NULL, 
         updated_at TIMESTAMP, 
         created_at TIMESTAMP
@@ -69,6 +70,7 @@ class Models {
   }
 
 }
+
 
 
 export default Models;

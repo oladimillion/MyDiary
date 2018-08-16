@@ -42,19 +42,24 @@ class ReminderModel extends Models{
       INSERT INTO reminders(
         reminder_id,
         user_id,
+        zone_offset,
         time,
         updated_at,
         created_at
       )
-      VALUES($1, $2, $3, $4, $5)
+      VALUES($1, $2, $3, $4, $5, $6)
       RETURNING *
     `;
+
+    const zoneOffset = data.zoneOffset || 
+      new Date().getTimezoneOffset().toString();
 
     const query = {
       text,
       values: [
         GenId(15),
         data.userId,
+        zoneOffset,
         data.time,
         new Date(),
         new Date()
@@ -80,19 +85,59 @@ class ReminderModel extends Models{
     return this.pool.query(query);
   }
 
-  update(data){
+  getAllUsersAndReminder(){
 
     const text = `
-      UPDATE reminders
-      SET time = $1, updated_at = $2
-      WHERE user_id = $3
-      RETURNING *
+      SELECT r.reminder_id, r.user_id, r.zone_offset, r.time, u.email
+      FROM users u
+      RIGHT JOIN reminders r
+      ON u.user_id = r.user_id
+    `;
+
+    const query = {
+      text,
+    };
+
+    return this.pool.query(query);
+  }
+
+  getOneUsersAndReminder(data){
+
+    const text = `
+      SELECT r.reminder_id, r.user_id, r.zone_offset, r.time, u.email 
+      FROM users u 
+      RIGHT JOIN reminders r 
+      ON u.user_id = r.user_id 
+      WHERE r.user_id = $1;
     `;
 
     const query = {
       text,
       values: [
+        data.userId,
+      ],
+    };
+
+    return this.pool.query(query);
+  }
+
+  update(data){
+
+    const text = `
+      UPDATE reminders
+      SET time = $1, zone_offset = $2 , updated_at = $3
+      WHERE user_id = $4
+      RETURNING *
+    `;
+
+    const zoneOffset = data.zoneOffset || 
+      new Date().getTimezoneOffset().toString();
+
+    const query = {
+      text,
+      values: [
         data.time,
+        zoneOffset,
         new Date(),
         data.userId,
       ],
