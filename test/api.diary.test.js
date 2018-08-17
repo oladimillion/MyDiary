@@ -52,9 +52,14 @@ describe('Create entry api test', () => {
         assert.equal(response.entry.hasOwnProperty("entry_content"), true);
         assert.equal(response.entry.hasOwnProperty("created_at"), true);
         assert.equal(response.entry.hasOwnProperty("updated_at"), true);
+        assert.equal(typeof response.entry, "object");
+        assert.equal(response.entry.user_id, "test");
+        assert.equal(response.entry.entry_title, "this is a title");
+        assert.equal(response.entry.entry_content, "this is a content");
         done();
       });
   });
+
 
 
   it('should return an error message', done => {
@@ -72,6 +77,10 @@ describe('Create entry api test', () => {
         );
         assert.equal(
           response.errors.entryTitle, 
+          "This field is required"
+        );
+        assert.equal(
+          response.errors.entryContent, 
           "This field is required"
         );
         done();
@@ -135,7 +144,7 @@ describe('Create entry api test', () => {
 
 describe('Get all entries api test', () => {
 
-  it('should return an error', done => {
+  it('should require authentication', done => {
     request.get(path)
       .send()
       .end((err, res) => {
@@ -175,7 +184,7 @@ describe('Get all entries api test', () => {
 
 describe('Get single entry api test', () => {
 
-  it('should return an error', done => {
+  it('should require authentication', done => {
     request.get(path + "/randomid")
       .send()
       .end((err, res) => {
@@ -207,13 +216,14 @@ describe('Update single entry api test', () => {
     entryContent: 'this is a content',
   };
 
-  it('should return an error', done => {
+  it('should require authentication', done => {
     request.put(path + "/randomid")
       .send()
       .end((err, res) => {
         const response = JSON.parse(res.text);
         assert.equal(res.statusCode, 401);
         assert.equal(response.hasOwnProperty("error"), true);
+        assert.equal(response.error, "Authentication failed. Try again");
         done();
       });
   });
