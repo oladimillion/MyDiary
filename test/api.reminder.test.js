@@ -46,6 +46,8 @@ describe('Add reminder api test', () => {
         assert.equal(res.statusCode, 201);
         assert.equal(response.hasOwnProperty("message"), true);
         assert.equal(response.hasOwnProperty("reminder"), true);
+        assert.equal(response.message, "Reminder successfully added");
+        assert.equal(typeof response.reminder, "object");
         done();
       });
   });
@@ -57,6 +59,7 @@ describe('Add reminder api test', () => {
         const response = JSON.parse(res.text);
         assert.equal(res.statusCode, 500);
         assert.equal(response.hasOwnProperty("error"), true);
+        assert.equal(response.error, "Reminder could not be added");
         done();
       });
   });
@@ -67,6 +70,7 @@ describe('Add reminder api test', () => {
         const response = JSON.parse(res.text);
         assert.equal(res.statusCode, 401);
         assert.equal(response.hasOwnProperty("error"), true);
+        assert.equal(response.error, "Authentication failed. Try again");
         done();
       });
   });
@@ -108,10 +112,10 @@ describe('Get all reminder api test', () => {
         const response = JSON.parse(res.text);
         assert.equal(res.statusCode, 401);
         assert.equal(response.hasOwnProperty("error"), true);
+        assert.equal(response.error, "Authentication failed. Try again");
         done();
       });
   });
-
 });
 
 

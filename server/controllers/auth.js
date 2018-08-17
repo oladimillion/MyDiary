@@ -113,7 +113,7 @@ class Auth {
       ))
       .then((result) => {
         const { user_id, username, email } = result.rows[0];
-        return res.status(201).json({
+        return res.status(200).json({
           message: "Profile successfully updated",
           user: {username, email},
           token: this.genToken({user_id}),
