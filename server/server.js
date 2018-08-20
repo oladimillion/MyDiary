@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import { Server } from "http";
+import baseHttp, { Server } from "http";
 import morgan from "morgan";
 import Models from "./models/models";
 import route from "./routes/index" ;
@@ -48,10 +48,19 @@ app.set('port', process.env.PORT || 8000);
 // connecting to database
 new Models().connect();
 
-http.listen(app.get('port'), function (err) {
+http.listen(app.get('port'), (err) => {
   if (!err) console.log('server listening on port ', app.get('port'));
   else console.log(err);
 });
+
+
+// https://quickleft.com/blog/6-easy-ways-to-prevent-your-heroku-node-app-from-sleeping/
+// prevents app from sleeping
+if(process.env.NODE_ENV === "production"){
+  setInterval( () => {
+    baseHttp.get("http://mydiary-ola.herokuapp.com");
+  }, 300000); // every 5 minutes (300000)
+}
 
 export default http;
 
