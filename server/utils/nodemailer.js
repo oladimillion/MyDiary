@@ -9,8 +9,6 @@ dotenv.config();
 class NodeMailer{
 
   constructor(ReminderModel){
-    this.transporter = this.createTransport();
-
     this.reminderModel = new ReminderModel();
     this.reminderData = [];
     this.intervalID = null;
@@ -64,7 +62,7 @@ class NodeMailer{
   mailOptions(to) {
     return {
       from: '"MyDiary" <oladimillion.dev@gmail.com>', // sender address
-      to, // list of receivers
+      to : to.join(", "), // list of receivers
       subject: "Hey there", // Subject line
       text: "It time to record your thought for today", // plain text body
       html: `
@@ -122,6 +120,9 @@ class NodeMailer{
 
   sendMail(callback){
 
+    const transporter = this.createTransport();
+
+
     // setup email data
     const to = this.filterEmails();
 
@@ -134,10 +135,10 @@ class NodeMailer{
       return;
     }
 
-    let mailOptions = this.mailOptions(to);
+    const mailOptions = this.mailOptions(to);
 
     // send mail with defined transport object
-    this.transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log("NodeMailer:ERROR: ", error);
         callback(error, null)
