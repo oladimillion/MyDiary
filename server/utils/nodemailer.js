@@ -93,75 +93,54 @@ class NodeMailer{
     return this.reminderData
       .filter(value => {
         return (
-          this.isGreaterOrEqual(
-            this.getClientTime(value.time),
-            this.getServerTime(value.zone_offset)
-          ) 
-          && 
-          (
-            this.getMinutesMilliSeconds(value.time)
-            - this.getMinutesMilliSeconds(
-              this.getServerTime(value.zone_offset)
-            ) <=  
-              this.minutesToMilliSeconds(this.interval)
-          )
-          && 
-          (
-            this.getMinutesMilliSeconds(value.time)
-            - this.getMinutesMilliSeconds(
-              this.getServerTime(value.zone_offset)
-            ) >  0
-          )
+          this.getClientTime(value.time) ===
+          this.getServerTime(value.zone_offset)
         );
       })
       .map(data => data.email);
   }
 
 
-  sendMail(callback){
+  sendMail(){
+    return new Promise((resolve, reject) => {
+      const transporter = this.createTransport();
 
-    const transporter = this.createTransport();
+      // setup email data
+      const to = this.filterEmails();
 
+      console.log(to);
 
-    // setup email data
-    const to = this.filterEmails();
-
-    console.log("SEND ---- EMAIL")
-    // console.log(this.reminderData);
-    console.log(to);
-    console.log("SEND ---- EMAIL")
-
-    if(!to.length){
-      return;
-    }
-
-    const mailOptions = this.mailOptions(to);
-
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log("NodeMailer:ERROR: ", error);
-        callback(error, null)
+      if(!to.length){
+        resolve("no email");
       }
 
-      if(info){
-        console.log('Message sent: %s', info.messageId);
-        callback(null, info.messageId);
-      }
+      const mailOptions = this.mailOptions(to);
+
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          reject(error);
+        }
+
+        if(info){
+          // console.log('Message sent: %s', info.messageId);
+          resolve("email sent");
+        }
+      });
     });
   }
 
   watch(){
     this.intervalID = setInterval(() => {
       console.log(new Date().toLocaleTimeString());
-      this.sendMail((err, success) => {
-      })
-    }, this.minutesToMilliSeconds(this.interval))
-  }
-
-  fixTimeZone(time, offset){
-    offset = 60000 * parseInt(offset);
-    return new Date(time - offset).toTimeString();
+      this.sendMail()
+        .then((msg) => {
+          console.log(msg);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, this.minutesToMilliSeconds(this.interval));
   }
 
   fixTimeZone(time, offset){
@@ -186,7 +165,6 @@ class NodeMailer{
     return time.substring(0,5);
   }
 
-
   getTimeMilliSeconds(timeString){
     timeString = timeString.split(":");
     return this.hoursToMilliSeconds(timeString[0]) +
@@ -195,13 +173,6 @@ class NodeMailer{
 
   getMinutesMilliSeconds(time){
     return this.minutesToMilliSeconds(time.split(":")[1]);
-  }
-
-  isGreaterOrEqual(local, server){
-    local = local.split(":");
-    server = server.split(":");
-
-    return parseInt(local[0]) >= parseInt(server[0]);
   }
 
 }
