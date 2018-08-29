@@ -9,8 +9,8 @@ export function Validator(data){
   }
 
   Object.keys(data).forEach(key => {
-    let value = data[key].trim();
-    if(!value){
+    let value = data[key];
+    if(typeof value !== "string" || !value){
       Object.assign(
         errors, 
         {[key]: "This field is required"}
@@ -27,7 +27,7 @@ export function AuthValidator(data){
   errors = Object.assign({}, Validator(data));
 
   Object.keys(data).forEach(key => {
-    let value = data[key].trim();
+    let value = data[key];
 
     if(value && value.length < 4){
       Object.assign(

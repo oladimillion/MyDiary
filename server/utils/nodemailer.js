@@ -64,7 +64,7 @@ class NodeMailer{
       from: '"MyDiary" <oladimillion.dev@gmail.com>', // sender address
       to : to.join(", "), // list of receivers
       subject: "Hey there", // Subject line
-      text: "It time to record your thought for today", // plain text body
+      text: "It's time to record your thought for today", // plain text body
       html: `
       <div style="font-size: 16px; font-weight: 600;">
         It time to record your thought for today
