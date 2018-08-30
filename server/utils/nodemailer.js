@@ -67,7 +67,7 @@ class NodeMailer{
       text: "It's time to record your thought for today", // plain text body
       html: `
       <div style="font-size: 16px; font-weight: 600;">
-        It time to record your thought for today
+        It's time to record your thought for today
       </div>
       ` // html body
     };
