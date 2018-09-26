@@ -56,11 +56,11 @@ http.listen(app.get('port'), (err) => {
 
 // https://quickleft.com/blog/6-easy-ways-to-prevent-your-heroku-node-app-from-sleeping/
 // prevents app from sleeping
-if(process.env.NODE_ENV === "production"){
-  setInterval( () => {
-    baseHttp.get("http://mydiary-ola.herokuapp.com");
-  }, 300000); // every 5 minutes (300000)
-}
+// if(process.env.NODE_ENV === "production"){
+//   setInterval( () => {
+//     baseHttp.get("http://mydiary-ola.herokuapp.com");
+//   }, 300000); // every 5 minutes (300000)
+// }
 
 export default http;
 
