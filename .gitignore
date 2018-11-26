@@ -2,7 +2,7 @@ node_modules/
 nodemailer.config.js
 .env
 npm-debug.log.376226242
-
+.DS_Store
 npm-debug.log
 
 

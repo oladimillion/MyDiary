@@ -16,7 +16,10 @@ class NodeMailer{
     this.interval = 1;
 
     this.getAll();
-    this.watch();
+
+    if(process.env.NODE_ENV === "production"){
+      this.watch();
+    }
 
     this.sendMail = this.sendMail.bind(this);
   }
