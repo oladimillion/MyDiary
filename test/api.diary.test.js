@@ -279,7 +279,6 @@ describe('Update single entry api test', () => {
 
 
 http.close();
-// process.exit(0);
 
 
 
