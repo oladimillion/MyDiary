@@ -119,5 +119,6 @@ describe('Get all reminder api test', () => {
 });
 
 
+http.close();
 
 

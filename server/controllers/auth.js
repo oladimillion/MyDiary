@@ -31,6 +31,8 @@ class Auth {
   genToken(data){
     return jwt.sign({
       userId: data.user_id,
+      username: data.username,
+      email: data.email,
     }, process.env.JWT_SECRET);
   }
 
@@ -51,7 +53,7 @@ class Auth {
           return res.status(200).json({
             message: "Login successful",
             user: {username, email},
-            token: this.genToken({user_id}),
+            token: this.genToken({user_id, username, email}),
           });
         } else {
           return res.status(400).json({
@@ -82,7 +84,7 @@ class Auth {
         return res.status(201).json({
           message: "Registration successful",
           user: {username, email},
-          token: this.genToken({user_id}),
+          token: this.genToken({user_id, username, email}),
         });
       })
       .catch((err) => {
@@ -116,7 +118,7 @@ class Auth {
         return res.status(200).json({
           message: "Profile successfully updated",
           user: {username, email},
-          token: this.genToken({user_id}),
+          token: this.genToken({user_id, username, email}),
         });
       })
       .catch((err) => {

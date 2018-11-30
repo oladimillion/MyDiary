@@ -27,8 +27,12 @@ body {
   flex-flow: column;
 }
 
-._hide{
+div.hide{
   display: none;
+}
+
+div#root {
+  height: 100%;
 }
 
 main.main-body {
@@ -40,7 +44,7 @@ main.main-body {
   overflow: hidden;
 }
 
-main.main-body div.show-status {
+div.show-status {
   position: fixed;
   z-index: 200;
   top: 12px;
@@ -52,12 +56,12 @@ main.main-body div.show-status {
   max-width: 296px;
 }
 
-main.main-body div.show-status.success{
+div.show-status.success{
   background: #41A34C;
   border: 2px solid #378B41;
 }
 
-main.main-body div.show-status.error{
+div.show-status.error{
   background: #EE0808;
   border: 2px solid #B80606;
 }

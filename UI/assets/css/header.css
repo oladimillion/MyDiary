@@ -50,6 +50,7 @@ div.dropdown button.settings-btn {
   cursor: pointer;
   outline: none;
   font-weight: 600;
+  font-size: 13px;
 }
 
 div.dropdown ul.dropdown-items {
@@ -74,13 +75,11 @@ div.dropdown ul.dropdown-items::before {
   background: #444;
 }
 
-div.dropdown ul.dropdown-items.hide {
+div.dropdown ul.dropdown-items._hide {
   height: 0px;
 }
 
 ul.dropdown-items li {
-  /* text-align: center; */
-  /* margin: 2px 0px; */
   border-bottom: 1px solid #ccc;
 }
 
@@ -96,6 +95,7 @@ ul.dropdown-items li a {
   padding: 5px 10px;
   display: inline-block;
   font-weight: 600;
+  cursor: pointer;
 }
 
 

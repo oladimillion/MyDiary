@@ -40,10 +40,13 @@ app.use((req, res, next) => {
 
 //load all routes
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 app.use(route);
 
 
-app.set('port', process.env.PORT || 8000);
+
+app.set('port', process.env.PORT || 9000);
 
 // connecting to database
 new Models().connect();
