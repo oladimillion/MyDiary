@@ -5,13 +5,14 @@ import { Action } from "./index";
 
 import API from "./api";
 
-import { USER, MSGINFO_SUCCESS, MSGINFO_FAILURE } from "./types";
+import { USER, MSGINFO_SUCCESS, MSGINFO_FAILURE, ENTRY_ALL } from "./types";
 
 
 export const LogoutAction = () => {
   return dispatch => {
     localStorage.removeItem('token');
     dispatch(Action(USER, {}));
+    dispatch(Action(ENTRY_ALL, []));
   }
 }
 

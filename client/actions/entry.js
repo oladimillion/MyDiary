@@ -18,7 +18,6 @@ export const GetEntryRequest = () => {
         return data;
       })
       .catch(({ response }) => { 
-        dispatch(Action(MSGINFO_FAILURE, response.data));
         throw response;
       });
   }

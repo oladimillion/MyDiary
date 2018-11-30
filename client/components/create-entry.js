@@ -8,6 +8,7 @@ import {
   GetEntryRequest,
   UpdateEntryRequest,
 } from "../actions/entry";
+import { GetReminderRequest } from "../actions/reminder";
 
 
 class CreateEntry extends Component {
@@ -24,6 +25,7 @@ class CreateEntry extends Component {
   state = this.initialState;
 
   componentDidMount() {
+    this.props.GetReminderRequest();
 
     const { entryId } = this.props.match.params;
 
@@ -144,4 +146,5 @@ export default connect(mapStateToProps, {
   CreateEntryRequest,
   GetEntryRequest,
   UpdateEntryRequest,
+  GetReminderRequest,
 })(CreateEntry);

@@ -13,6 +13,7 @@ import ViewEntry from "./components/view-entry";
 import Profile from "./components/profile";
 import MsgInfo from "./components/msg-info";
 import Reminder from "./components/reminder";
+import PrivateRoute from "./protected-route";
 
 
 import "../UI/assets/css/main.css";
@@ -35,11 +36,20 @@ const Root = ({store}) => (
         <Profile />
         <Reminder />
         <Switch>
-          <Route exact path="/" component={ ViewEntry } />
+          <Route 
+            exact path="/" 
+            component={ PrivateRoute(ViewEntry) } 
+          />
           <Route exact path="/login" component={ Login } />
           <Route exact path="/signup" component={ Signup } />
-          <Route exact path="/entry/create" component={ CreateEntry } />
-          <Route exact path="/entry/create/:entryId" component={ CreateEntry } />
+          <Route exact 
+            path="/entry/create" 
+            component={ PrivateRoute(CreateEntry) } 
+          />
+          <Route exact 
+            path="/entry/create/:entryId" 
+            component={ PrivateRoute(CreateEntry) } 
+          />
           <Redirect to="/" />
         </Switch> 
       </span>

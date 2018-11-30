@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import EntryNav from "./partials/entry-nav";
 
 import { GetEntryRequest } from "../actions/entry";
+import { GetReminderRequest } from "../actions/reminder";
 
 class ViewEntry extends Component {
 
@@ -27,7 +28,10 @@ class ViewEntry extends Component {
 
     if(!this.state.entry.length) {
       this.setState({ loading: true });
-      this.props.GetEntryRequest()
+      Promise.all([
+        this.props.GetReminderRequest(),
+        this.props.GetEntryRequest()
+      ])
         .then(res => {
           this.setState({ loading: false });
         })
@@ -192,5 +196,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   GetEntryRequest,
+  GetReminderRequest,
 })(ViewEntry);
 

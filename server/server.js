@@ -40,7 +40,10 @@ app.use((req, res, next) => {
 
 //load all routes
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 app.use(route);
+
 
 
 app.set('port', process.env.PORT || 9000);

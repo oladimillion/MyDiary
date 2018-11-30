@@ -20,7 +20,6 @@ class Reminder extends Component {
 
   componentDidMount() {
     this.modalReminder = document.getElementById("modal-reminder");
-    this.props.GetReminderRequest();
 
     if(this.state.count === "0"){
       this.props.GetEntryRequest();
