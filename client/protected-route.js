@@ -21,11 +21,8 @@ const ProtectedRoute = (ComposedComponent) => {
     }
   }
 
-  const mapStateToProps = (state) => ({
-    user: state.User,
-  });
 
-  return connect(mapStateToProps, {})(ProtectedRouteComponent);
+  return ProtectedRouteComponent;
 };
 
 export default ProtectedRoute;

@@ -3,10 +3,8 @@ import { connect } from "react-redux";
 
 import { 
   CreateReminderRequest, 
-  GetReminderRequest,
 } from "../actions/reminder";
 
-import { GetEntryRequest } from "../actions/entry";
 
 
 class Reminder extends Component {
@@ -20,10 +18,6 @@ class Reminder extends Component {
 
   componentDidMount() {
     this.modalReminder = document.getElementById("modal-reminder");
-
-    if(this.state.count === "0"){
-      this.props.GetEntryRequest();
-    }
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -146,7 +140,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   CreateReminderRequest, 
-  GetEntryRequest,
-  GetReminderRequest,
 })(Reminder);
 

@@ -13,7 +13,7 @@ import ViewEntry from "./components/view-entry";
 import Profile from "./components/profile";
 import MsgInfo from "./components/msg-info";
 import Reminder from "./components/reminder";
-import PrivateRoute from "./protected-route";
+import ProtectedRoute from "./protected-route";
 
 
 import "../UI/assets/css/main.css";
@@ -24,8 +24,6 @@ import "../UI/assets/css/entries.css";
 import "../UI/assets/css/modal.css";
 import "../UI/assets/css/optional.css";
 
-
-// import ProctectedRoutes from "./protected-routes"
 
 const Root = ({store}) => (
   <Provider store={store}>
@@ -38,17 +36,17 @@ const Root = ({store}) => (
         <Switch>
           <Route 
             exact path="/" 
-            component={ PrivateRoute(ViewEntry) } 
+            component={ ProtectedRoute(ViewEntry) } 
           />
           <Route exact path="/login" component={ Login } />
           <Route exact path="/signup" component={ Signup } />
           <Route exact 
             path="/entry/create" 
-            component={ PrivateRoute(CreateEntry) } 
+            component={ ProtectedRoute(CreateEntry) } 
           />
           <Route exact 
             path="/entry/create/:entryId" 
-            component={ PrivateRoute(CreateEntry) } 
+            component={ ProtectedRoute(CreateEntry) } 
           />
           <Redirect to="/" />
         </Switch> 
