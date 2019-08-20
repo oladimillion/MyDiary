@@ -1,5 +1,6 @@
 
-div._hide{
+button.hide,
+div.hide{
   display: none !important;
 }
 
@@ -89,7 +90,7 @@ div.well table tr td.reminder {
 
 div.well table tr td span {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   margin-right: 5px;
 }

@@ -21,6 +21,9 @@
 ## App is live
   visit [https://mydiary-ola.herokuapp.com](https://mydiary-ola.herokuapp.com)
 
+## App's API documentation
+  visit `http://localhost:8000/api-docs` or [docs](https://mydiary-ola.herokuapp.com/api-docs/)
+
 ## App's API endpoints
 
 | Functionality       |  HTTP Method  |         API endpoints                |

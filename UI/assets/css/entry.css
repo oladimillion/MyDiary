@@ -14,7 +14,7 @@ ul.nav-entry li.nav-list {
   background: #505860;
 }
 
-ul.nav-entry li.nav-list.selected {
+ul.nav-entry li.nav-list a.active {
   background: #0098D8;
 }
 
@@ -92,6 +92,7 @@ div.entry-input button.btn.btn-save {
   background: #000;
   cursor: pointer;
   transition: all 0.3s;
+  font-size: 14px;
 }
 
 div.entry-input button.btn.btn-save:hover {

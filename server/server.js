@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import { Server } from "http";
+import baseHttp, { Server } from "http";
 import morgan from "morgan";
 import Models from "./models/models";
 import route from "./routes/index" ;
@@ -40,18 +40,23 @@ app.use((req, res, next) => {
 
 //load all routes
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 app.use(route);
 
 
-app.set('port', process.env.PORT || 8000);
+
+app.set('port', process.env.PORT || 9000);
 
 // connecting to database
 new Models().connect();
 
-http.listen(app.get('port'), function (err) {
+http.listen(app.get('port'), (err) => {
   if (!err) console.log('server listening on port ', app.get('port'));
   else console.log(err);
 });
+
+
 
 export default http;
 

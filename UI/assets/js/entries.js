@@ -125,7 +125,7 @@ class Entries extends Request {
 
   showContentBody(){
     this.editBtn = document.getElementById("btn-edit");
-    this.entryBody.classList.remove("_hide");
+    this.entryBody.classList.remove("hide");
   }
 
   showInfoText(){

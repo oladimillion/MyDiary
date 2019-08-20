@@ -9,8 +9,6 @@ dotenv.config();
 class NodeMailer{
 
   constructor(ReminderModel){
-    this.transporter = this.createTransport();
-
     this.reminderModel = new ReminderModel();
     this.reminderData = [];
     this.intervalID = null;
@@ -18,7 +16,10 @@ class NodeMailer{
     this.interval = 1;
 
     this.getAll();
-    this.watch();
+
+    if(process.env.NODE_ENV === "production"){
+      this.watch();
+    }
 
     this.sendMail = this.sendMail.bind(this);
   }
@@ -64,12 +65,12 @@ class NodeMailer{
   mailOptions(to) {
     return {
       from: '"MyDiary" <oladimillion.dev@gmail.com>', // sender address
-      to, // list of receivers
+      to : to.join(", "), // list of receivers
       subject: "Hey there", // Subject line
-      text: "It time to record your thought for today", // plain text body
+      text: "It's time to record your thought for today", // plain text body
       html: `
       <div style="font-size: 16px; font-weight: 600;">
-        It time to record your thought for today
+        It's time to record your thought for today
       </div>
       ` // html body
     };
@@ -95,72 +96,54 @@ class NodeMailer{
     return this.reminderData
       .filter(value => {
         return (
-          this.isGreaterOrEqual(
-            this.getClientTime(value.time),
-            this.getServerTime(value.zone_offset)
-          ) 
-          && 
-          (
-            this.getMinutesMilliSeconds(value.time)
-            - this.getMinutesMilliSeconds(
-              this.getServerTime(value.zone_offset)
-            ) <=  
-              this.minutesToMilliSeconds(this.interval)
-          )
-          && 
-          (
-            this.getMinutesMilliSeconds(value.time)
-            - this.getMinutesMilliSeconds(
-              this.getServerTime(value.zone_offset)
-            ) >  0
-          )
+          this.getClientTime(value.time) ===
+          this.getServerTime(value.zone_offset)
         );
       })
       .map(data => data.email);
   }
 
 
-  sendMail(callback){
+  sendMail(){
+    return new Promise((resolve, reject) => {
+      const transporter = this.createTransport();
 
-    // setup email data
-    const to = this.filterEmails();
+      // setup email data
+      const to = this.filterEmails();
 
-    console.log("SEND ---- EMAIL")
-    // console.log(this.reminderData);
-    console.log(to);
-    console.log("SEND ---- EMAIL")
+      console.log(to);
 
-    if(!to.length){
-      return;
-    }
-
-    let mailOptions = this.mailOptions(to);
-
-    // send mail with defined transport object
-    this.transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log("NodeMailer:ERROR: ", error);
-        callback(error, null)
+      if(!to.length){
+        resolve("no email");
       }
 
-      if(info){
-        console.log('Message sent: %s', info.messageId);
-        callback(null, info.messageId);
-      }
+      const mailOptions = this.mailOptions(to);
+
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          reject(error);
+        }
+
+        if(info){
+          // console.log('Message sent: %s', info.messageId);
+          resolve("email sent");
+        }
+      });
     });
   }
 
   watch(){
     this.intervalID = setInterval(() => {
       console.log(new Date().toLocaleTimeString());
-      this.sendMail((err, success) => {
-      })
-    }, this.minutesToMilliSeconds(this.interval))
-  }
-
-  fixTimeZone(time, offset){
-    offset = 60000 * parseInt(offset);
-    return new Date(time - offset).toTimeString();
+      this.sendMail()
+        .then((msg) => {
+          console.log(msg);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, this.minutesToMilliSeconds(this.interval));
   }
 
   fixTimeZone(time, offset){
@@ -185,7 +168,6 @@ class NodeMailer{
     return time.substring(0,5);
   }
 
-
   getTimeMilliSeconds(timeString){
     timeString = timeString.split(":");
     return this.hoursToMilliSeconds(timeString[0]) +
@@ -194,13 +176,6 @@ class NodeMailer{
 
   getMinutesMilliSeconds(time){
     return this.minutesToMilliSeconds(time.split(":")[1]);
-  }
-
-  isGreaterOrEqual(local, server){
-    local = local.split(":");
-    server = server.split(":");
-
-    return parseInt(local[0]) >= parseInt(server[0]);
   }
 
 }

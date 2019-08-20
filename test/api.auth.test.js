@@ -97,6 +97,63 @@ describe('Login api test', () => {
       });
   });
 
+
+});
+
+describe('Update profile api test', () => {
+
+  let data = {
+    username: "test",
+    email: "test10@test.com",
+    oldPassword: "test",
+    newPassword: "test10",
+  };
+
+
+
+  it('should change user email', done => {
+    request.put(path + "/update").send(data)
+      .set('Authorization', 'Bearer ' + token)
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        assert.equal(res.statusCode, 200);
+        assert.equal(response.hasOwnProperty("token"), true);
+        assert.equal(response.hasOwnProperty("message"), true);
+        assert.equal(response.hasOwnProperty("user"), true);
+        assert.equal(response.user.email, data.email);
+        assert.equal(response.message, "Profile successfully updated");
+        done();
+      });
+  });
+  
+  
+  it('should not update user profile', done => {
+    request.put(path + "/update").send()
+      .set('Authorization', 'Bearer ' + token)
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        assert.equal(res.statusCode, 400);
+        assert.equal(response.hasOwnProperty("errors"), true);
+        assert.equal(response.errors.hasOwnProperty("username"), true);
+        assert.equal(response.errors.hasOwnProperty("email"), true);
+        assert.equal(response.errors.username, "This field is required");
+        assert.equal(response.errors.email, "This field is required");
+        done();
+      });
+  });
+
+
+  it('should require authentication', done => {
+    request.put(path + "/update").send()
+      .end((err, res) => {
+        const response = JSON.parse(res.text);
+        assert.equal(res.statusCode, 401);
+        assert.equal(response.hasOwnProperty("error"), true);
+        assert.equal(response.error, "Authentication failed. Try again");
+        done();
+      });
+  });
+
 });
 
 
