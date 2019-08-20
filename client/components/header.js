@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { LogoutAction } from "../actions/auth";
 
-import Logo from "../../UI/assets/img/andela.png";
-
 
 class Header extends Component {
 
@@ -62,12 +60,7 @@ class Header extends Component {
     return (
       <header class="main-header">
         <div class="row">
-          <div class="logo">
-            <img 
-              src={Logo} 
-              alt="logo"
-            />
-          </div>
+
           <div class="app-name">
             MyDiary
           </div>
