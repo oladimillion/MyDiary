@@ -42,7 +42,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "nodemailer": "^4.6.7",
     "pg": "^7.4.3",
